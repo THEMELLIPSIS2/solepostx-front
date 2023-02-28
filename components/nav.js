@@ -9,7 +9,7 @@ const Nav = ({ categories }) => {
           <ul className="uk-navbar-nav">
             <li>
               <Link legacyBehavior href="/">
-                <a>Strapi Blog</a>
+                <a>Solepost</a>
               </Link>
             </li>
           </ul>
