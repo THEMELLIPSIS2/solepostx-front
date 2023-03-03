@@ -6,10 +6,8 @@ const Image = ({ image }) => {
 
   return (
     <NextImage
-      layout="responsive"
       width={width}
       height={height}
-      objectFit="contain"
       src={getStrapiMedia(image)}
       alt={alternativeText || ''}
     />
