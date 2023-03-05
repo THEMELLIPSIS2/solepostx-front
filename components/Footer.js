@@ -43,9 +43,4 @@ function Footer(props) {
   );
 }
 
-Footer.propTypes = {
-  description: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-};
-
 export default Footer;

@@ -56,7 +56,7 @@ setToday(new Date())
               return( 
               <div key={article.id}>
                 <Paper style={{margin:'10px'}}>
-                <Link href={`/article/${article.id}`}> <Typography>{capitalized}</Typography>
+                <Link href={`/article/${article.attributes.slug}`}> <Typography>{capitalized}</Typography>
                  <NextImage image={article.attributes.image} /></Link>
                   <Typography variant='small' component='small'>{age} ago</Typography>
                 </Paper>
@@ -76,9 +76,9 @@ setToday(new Date())
                 return word[0].toUpperCase() + word.substring(1); 
               }).join(' ')
               return( 
-              <div key={article.id}>
+              <div key={article.attributes.slug}>
                 <Paper style={{margin:'10px'}}>
-                  <Link href={`/article/${article.id}`}><Typography variant='h5' component='h5'>{capitalized}</Typography>
+                  <Link href={`/article/${article.attributes.slug}`}><Typography variant='h5' component='h5'>{capitalized}</Typography>
                   <NextImage image={article.attributes.image} /></Link>
                   <Typography variant='small' component='small'>{age} ago</Typography>
                 </Paper>
