@@ -12,7 +12,7 @@ import { ThemeProvider } from '@mui/material';
 import { theme } from '../util/theme';
 
 import  Footer from '@/components/Footer';
-import Nav from '@/components/Nav';
+// import Nav from '@/components/nav'; <- DO NOT REMOVE YET
 
 const MyApp = ({ Component, pageProps }) => {
   const { global } = pageProps
@@ -27,7 +27,7 @@ const MyApp = ({ Component, pageProps }) => {
       </Head>
       <GlobalContext.Provider value={global.attributes}>
         <ThemeProvider theme={theme}>
-          {/* <Nav /> */}
+          {/* <Nav /> <- DO NOT REMOVE YET */}
           <Component {...pageProps} />
           <Footer />
         </ThemeProvider>
