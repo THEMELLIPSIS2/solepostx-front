@@ -7,9 +7,15 @@ import { getStrapiMedia } from '../lib/media';
 
 // Store Strapi Global object in context
 export const GlobalContext = createContext({});
+import '../styles/globals.css';
+import { ThemeProvider } from '@mui/material';
+import { theme } from '../util/theme';
+
+import  Footer from '@/components/Footer';
+import Nav from '@/components/Nav';
 
 const MyApp = ({ Component, pageProps }) => {
-  const { global } = pageProps;
+  const { global } = pageProps
 
   return (
     <>
@@ -20,7 +26,11 @@ const MyApp = ({ Component, pageProps }) => {
         />
       </Head>
       <GlobalContext.Provider value={global.attributes}>
-        <Component {...pageProps} />
+        <ThemeProvider theme={theme}>
+          {/* <Nav /> */}
+          <Component {...pageProps} />
+          <Footer />
+        </ThemeProvider>
       </GlobalContext.Provider>
     </>
   );
