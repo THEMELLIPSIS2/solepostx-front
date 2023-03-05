@@ -26,7 +26,7 @@ function Nav() {
           <Button size="small" color='inherit'>Subscribe</Button>
 
           <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Typography component="h2" variant="h3" color="inherit" align="flex-start" noWrap sx={{ flex: 1 }}>
+            <Typography component="h2" variant="h3" color="inherit" align="center" noWrap sx={{ flex: 1 }}>
               SOLEPOST
             </Typography>
           </Toolbar>
@@ -61,15 +61,5 @@ function Nav() {
     </Box>
   );
 }
-
-Nav.propTypes = {
-  sections: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      url: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
-  title: PropTypes.string.isRequired,
-};
 
 export default Nav;
