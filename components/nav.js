@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Searchfield from './Searchbar.js'
-
+import styles from './Nav.module.css'
 
 const StyledToolbar = styled(Toolbar)(() => ({
   // Override media queries injected by theme.mixins.toolbar
@@ -19,15 +19,22 @@ const StyledToolbar = styled(Toolbar)(() => ({
 
 function Nav() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1 }} className={styles.nav}>
       <AppBar position="static">
         <StyledToolbar>
 
           <Button size="small" color='inherit'>Subscribe</Button>
 
           <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Typography component="h2" variant="h3" color="inherit" align="center" noWrap sx={{ flex: 1 }}>
-              SOLEPOST
+            <Typography  className={styles.logo} component="a" href='/' variant="h3" color='white' align="center" noWrap    sx={{
+              mr: 2,
+              display: { xs: 'none', md: 'flex' },
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}>
+          SOLEPOST
             </Typography>
           </Toolbar>
 
@@ -51,10 +58,10 @@ function Nav() {
               <Link color="inherit" variant="subtitle1" sx={{ p: 1, flexShrink: 0 }}>
                     Nike
               </Link>
-              <Searchfield />
+            
           </Toolbar>
+  <Searchfield />
 
-          {/* <Searchfield /> */}
 
         </StyledToolbar>
       </AppBar>
