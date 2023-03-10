@@ -1,9 +1,9 @@
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
 import { useState,useEffect } from 'react';
-import Link from 'next/link';
-import NextImage from './image';
+import styles from './Homepage.module.css'
+import { Card } from './card';
+
 export const HomePage = ({ recents = [],features=[] }) => {
 
 let [today,setToday] = useState(null)
@@ -42,25 +42,16 @@ setToday(new Date())
 
   return (
    
-    <div className="homepage" style={{width:'100%'}}> {console.log(recents)}
+    <div className={styles.homepage} style={{width:'100%'}}> {console.log(recents)}
       <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        <Grid item xs={3}>
+        <Grid item xs={4}>
 
             {
             recents.map((article) => {
               let date = article.attributes.createdAt
               let age = howLongAgo(date)
-              let capitalized = article.attributes.title.split(' ').map(word => {
-                return word[0].toUpperCase() + word.substring(1); 
-              }).join(' ')
               return( 
-              <div key={article.id}>
-                <Paper style={{margin:'10px'}}>
-                <Link href={`/article/${article.attributes.slug}`}> <Typography>{capitalized}</Typography>
-                 <NextImage image={article.attributes.image} /></Link>
-                  <Typography variant='small' component='small'>{age} ago</Typography>
-                </Paper>
-              </div>
+             <Card article={article} age={age} />
               )
             })
             }
@@ -68,27 +59,18 @@ setToday(new Date())
         </Grid>
         <Grid item xs={6}>
 
-            {
+        {
             features.map((article) => {
               let date = article.attributes.createdAt
               let age = howLongAgo(date)
-              let capitalized = article.attributes.title.split(' ').map(word => {
-                return word[0].toUpperCase() + word.substring(1); 
-              }).join(' ')
               return( 
-              <div key={article.attributes.slug}>
-                <Paper style={{margin:'10px'}}>
-                  <Link href={`/article/${article.attributes.slug}`}><Typography variant='h5' component='h5'>{capitalized}</Typography>
-                  <NextImage image={article.attributes.image} /></Link>
-                  <Typography variant='small' component='small'>{age} ago</Typography>
-                </Paper>
-              </div>
+             <Card article={article} age={age} />
               )
             })
             }
 
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={2}>
           <Paper>
             Socials
             </Paper>
