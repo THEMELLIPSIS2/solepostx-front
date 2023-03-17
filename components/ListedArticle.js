@@ -24,7 +24,7 @@ const ListedArticle = ({ article }) => {
         textAlign: {}
       }}
     >
-      <Box sx={{ width: { xs: '100%', sm: '30%' } }}>
+      <Box sx={{ width: { xs: '100%', sm: '40%' } }}>
         <Link href={`/article/${article.attributes.slug}`}>
           <Image image={article.attributes.image} />
         </Link>
