@@ -14,13 +14,15 @@ import SearchIcon from '@mui/icons-material/Search';
 
   export default function SearchField() {
     return ( //vv temporary vv remove box sx entirely when the searchbar color is figured out.
-      <Box component="form" 
-      noValidate 
-      sx={{bgcolor: 'background.paper',display: 'flex', alignItems: 'flex-end',float:'right'}}>
+      <Box component="form" noValidate sx={{bgcolor: 'background.paper',display: 'flex', alignItems: 'flex-end',float:'right'}}>
+        
         <ThemeProvider theme={theme}>
-        <TextField id="input-with-sx" label="Search" variant="filled" /> 
-        <SearchIcon sx={{ color: 'action.active', mr: 1, my: 0.5, alignSelf:'center'}}/>
+        
+          <TextField id="input-with-sx" label="Search" variant="filled" /> 
+          <SearchIcon sx={{ color: 'action.active', mr: 1, my: 0.5, alignSelf:'center'}}/>
+        
         </ThemeProvider>
+      
       </Box>
     );
   }
