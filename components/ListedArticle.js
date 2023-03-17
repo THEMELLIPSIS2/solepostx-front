@@ -30,7 +30,13 @@ const ListedArticle = ({ article }) => {
         </Link>
       </Box>
       <Box
-        sx={{ display: 'flex', flexDirection: 'column', p: { xs: 1, sm: 0 } }}
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          p: { xs: 1, sm: 0 },
+          height: '100%',
+          gap: 1
+        }}
       >
         <Link href={`/category/${category}`}>
           <Typography variant="subtitle2">{category.toUpperCase()}</Typography>
@@ -38,11 +44,9 @@ const ListedArticle = ({ article }) => {
         <Link href={`/article/${article.attributes.slug}`}>
           <Typography variant="h5">{capitalized}</Typography>
         </Link>
-        <Box>
-          <Typography variant="caption">
-            {date.toDateString().toUpperCase()}
-          </Typography>
-        </Box>
+        <Typography variant="caption">
+          {date.toDateString().toUpperCase()}
+        </Typography>
       </Box>
     </Card>
   );
