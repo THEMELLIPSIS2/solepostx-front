@@ -10,7 +10,7 @@ const ListedArticle = ({ article }) => {
       return word[0].toUpperCase() + word.substring(1);
     })
     .join(' ');
-  let category = article.attributes.category.data.attributes.name;
+   let category = article.attributes.category.data ? article.attributes.category.data.attributes.name : null;
   console.log(article);
   let date = new Date(article.attributes.publishedAt);
   return (
@@ -38,9 +38,10 @@ const ListedArticle = ({ article }) => {
           gap: 1
         }}
       >
+        {category && 
         <Link href={`/category/${category}`}>
           <Typography variant="subtitle2">{category.toUpperCase()}</Typography>
-        </Link>
+        </Link> }
         <Link href={`/article/${article.attributes.slug}`}>
           <Typography variant="h5">{capitalized}</Typography>
         </Link>

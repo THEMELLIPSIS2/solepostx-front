@@ -39,7 +39,9 @@ function Nav() {
 
           <Toolbar component="nav" variant="dense" sx={{ justifyContent: 'space-between'}}>
           
-              <Link color="inherit" variant="subtitle1" sx={{ p: 1, flexShrink: 0 }}>
+              <Link color="inherit" variant="subtitle1" sx={{ p: 1, flexShrink: 0 }}
+              href='/features'
+              >
                     Features
               </Link>
               <Link color="inherit" variant="subtitle1" sx={{ p: 1, flexShrink: 0 }}>
@@ -48,13 +50,19 @@ function Nav() {
               <Link color="inherit" variant="subtitle1" sx={{ p: 1, flexShrink: 0 }}>
                     Release Dates
               </Link>
-              <Link color="inherit" variant="subtitle1" sx={{ p: 1, flexShrink: 0 }}>
+              <Link color="inherit" variant="subtitle1" sx={{ p: 1, flexShrink: 0 }}
+              href='/category/jordan'
+              >
                     Jordan Brand
               </Link>
-              <Link color="inherit" variant="subtitle1" sx={{ p: 1, flexShrink: 0 }}>
+              <Link color="inherit" variant="subtitle1" sx={{ p: 1, flexShrink: 0 }}
+              href='/category/adidas'
+              >
                     Adidas
               </Link>
-              <Link color="inherit" variant="subtitle1" sx={{ p: 1, flexShrink: 0 }}>
+              <Link color="inherit" variant="subtitle1" sx={{ p: 1, flexShrink: 0 }}
+              href='/category/nike'
+              >
                     Nike
               </Link>
             

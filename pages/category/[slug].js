@@ -1,7 +1,6 @@
 import Seo from '../../components/seo';
 import Layout from '../../components/layout';
-import Articles from '../../components/articles';
-
+import ListedArticle from '../../components/ListedArticle'
 import { fetchAPI } from '../../lib/api';
 
 const Category = ({ category, categories }) => {
@@ -16,7 +15,12 @@ const Category = ({ category, categories }) => {
       <div className="uk-section">
         <div className="uk-container uk-container-large">
           <h1>{category.attributes.name}</h1>
-          <Articles articles={category.attributes.articles.data} />
+          {category.attributes.articles.data.map(article => {
+            return (
+            <ListedArticle article={article} />
+            )
+          })}
+         
         </div>
       </div>
     </Layout>
