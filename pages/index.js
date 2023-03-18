@@ -20,7 +20,7 @@ export async function getStaticProps() {
   // Run API calls in parallel
   const [articlesRes,featuredRes,categoriesRes] = await Promise.all([
     fetchAPI('/articles', { populate: '*', filters: {featured: { $eq: 'false'}}, publicationState:'live', pagination: {limit:6} }),
-    fetchAPI('/articles', { populate: ['image', 'category'], filters: {featured: { $eq: 'true'}}, publicationState:'live',pagination: {limit:3}}),
+    fetchAPI('/articles', { populate: '*', filters: {featured: { $eq: 'true'}}, publicationState:'live',pagination: {limit:3}}),
     fetchAPI('/categories', { populate: '*' })
   ]);
 

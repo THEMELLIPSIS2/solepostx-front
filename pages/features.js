@@ -5,7 +5,7 @@ import Layout from '../components/layout';
 export async function getStaticProps() {
     // Run API calls in parallel
     const [featuredRes] = await Promise.all([
-      fetchAPI('/articles', { populate: ['image', 'category'], filters: {featured: { $eq: 'true'}}, publicationState:'live'}),
+      fetchAPI('/articles', { populate: ['image', 'category','tags'], filters: {featured: { $eq: 'true'}}, publicationState:'live'}),
     ]);
   
     return {
