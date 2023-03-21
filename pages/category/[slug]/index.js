@@ -1,13 +1,15 @@
-import Seo from '../../components/seo';
-import Layout from '../../components/layout';
-import ListedArticle from '../../components/ListedArticle'
-import { fetchAPI } from '../../lib/api';
+import Seo from '../../../components/seo';
+import Layout from '../../../components/layout';
+import ListedArticle from '../../../components/ListedArticle'
+import { fetchAPI } from '../../../lib/api';
+import { useRouter } from 'next/router'
 
 const Category = ({ category, categories }) => {
   const seo = {
     metaTitle: category.attributes.name,
     metaDescription: `All ${category.attributes.name} articles`
   };
+
 
   return (
     <Layout categories={categories.data}>
@@ -33,16 +35,17 @@ export async function getStaticPaths() {
   return {
     paths: categoriesRes.data.map((category) => ({
       params: {
-        slug: category.attributes.slug
+        slug: category.attributes.slug || null
       }
     })),
     fallback: false
   };
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }) {  
+  
   const matchingCategories = await fetchAPI('/categories', {
-    filters: { slug: params.slug },
+    filters: { slug: params.slug.split('/')[0] },
     populate: {
       articles: {
         populate: '*'
