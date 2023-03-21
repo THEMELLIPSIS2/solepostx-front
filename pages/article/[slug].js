@@ -87,7 +87,7 @@ export async function getStaticProps({ params }) {
     filters: {
       slug: params.slug
     },
-    populate: ['image', 'category', 'author.picture'],
+    populate: '*',
   });
   const categoriesRes = await fetchAPI('/categories');
 

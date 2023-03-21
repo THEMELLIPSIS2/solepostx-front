@@ -21,7 +21,7 @@ const {slug,tag} = router.query
           <h2>{tag}</h2>
           {catetags.attributes.articles.data.map(article => {
             return (
-            <ListedArticle article={article} />
+            <ListedArticle article={article} key={article.title}/>
             )
           })}
          

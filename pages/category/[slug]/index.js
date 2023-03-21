@@ -19,7 +19,7 @@ const Category = ({ category, categories }) => {
           <h1>{category.attributes.name}</h1>
           {category.attributes.articles.data.map(article => {
             return (
-            <ListedArticle article={article} />
+            <ListedArticle article={article} key={article.title} />
             )
           })}
          

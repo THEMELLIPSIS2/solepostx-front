@@ -17,7 +17,7 @@ const Tag = ({ tag, tags }) => {
           <h1>{tag.attributes.name}</h1>
           {tag.attributes.articles.data.map(article => {
             return (
-            <ListedArticle article={article} />
+            <ListedArticle article={article} key={article.title} />
             )
           })}
          

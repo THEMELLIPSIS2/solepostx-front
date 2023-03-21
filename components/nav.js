@@ -47,7 +47,9 @@ function Nav() {
               <Link color="inherit" variant="subtitle1" sx={{ p: 1, flexShrink: 0 }}>
                     Videos
               </Link>
-              <Link color="inherit" variant="subtitle1" sx={{ p: 1, flexShrink: 0 }}>
+              <Link color="inherit" variant="subtitle1" sx={{ p: 1, flexShrink: 0 }}
+              href='/calendar'
+              >
                     Release Dates
               </Link>
               <Link color="inherit" variant="subtitle1" sx={{ p: 1, flexShrink: 0 }}
