@@ -51,7 +51,7 @@ setToday(new Date())
               let date = article.attributes.createdAt
               let age = howLongAgo(date)
               return( 
-             <Card article={article} age={age} key={article.title}/>
+             <Card article={article} age={age} key={article.title} className={styles.card}/>
               )
             })
             }
@@ -64,7 +64,7 @@ setToday(new Date())
               let date = article.attributes.createdAt
               let age = howLongAgo(date)
               return( 
-             <Card article={article} age={age} />
+             <Card article={article} age={age} className={styles.card}/>
               )
             })
             }

@@ -8,7 +8,10 @@
     position: relative;
     overflow: hidden;
 }
-
+.card {
+    z-index: 1 !important;
+    position: relative;
+}
 .picture {
     object-fit: cover;
     width: 100%;
@@ -32,5 +35,5 @@
 }
 .card:hover {
     transform: scale(1.1);
-
+    z-index: 999 !important;
 }
