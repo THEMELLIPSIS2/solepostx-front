@@ -6,6 +6,7 @@ import Link from '@mui/material/Link';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import FacebookIcon from '@mui/icons-material/Facebook';
 import { ThemeProvider } from '@mui/material';
 import { theme } from '../util/theme';
 import Divider from '@mui/material/Divider';
@@ -51,10 +52,12 @@ function Footer() {
                 <TwitterIcon />
               </Link>
 
-              <Link href='https://www.youtube.com/@SolePost/featured' target="_blank" rel="noreferrer">
+              <Link href='https://www.youtube.com/@SolePost/featured' target="_blank" rel="noreferrer" sx={{paddingRight: 1}}>
                 <YouTubeIcon />
               </Link>
-              
+              <Link href='https://www.facebook.com/theSolePost/' target="_blank" rel="noreferrer">
+                <FacebookIcon />
+              </Link>
             </Box>
           </Box>
           
