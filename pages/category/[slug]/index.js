@@ -1,8 +1,8 @@
-import Seo from '../../components/seo';
-import Layout from '../../components/layout';
-import Articles from '../../components/articles';
-
-import { fetchAPI } from '../../lib/api';
+import Seo from '../../../components/seo';
+import Layout from '../../../components/layout';
+import ListedArticle from '../../../components/ListedArticle'
+import { fetchAPI } from '../../../lib/api';
+import { useRouter } from 'next/router'
 
 const Category = ({ category, categories }) => {
   const seo = {
@@ -10,13 +10,19 @@ const Category = ({ category, categories }) => {
     metaDescription: `All ${category.attributes.name} articles`
   };
 
+
   return (
     <Layout categories={categories.data}>
       <Seo seo={seo} />
       <div className="uk-section">
         <div className="uk-container uk-container-large">
           <h1>{category.attributes.name}</h1>
-          <Articles articles={category.attributes.articles.data} />
+          {category.attributes.articles.data.map(article => {
+            return (
+            <ListedArticle article={article} />
+            )
+          })}
+         
         </div>
       </div>
     </Layout>
@@ -29,16 +35,17 @@ export async function getStaticPaths() {
   return {
     paths: categoriesRes.data.map((category) => ({
       params: {
-        slug: category.attributes.slug
+        slug: category.attributes.slug || null
       }
     })),
     fallback: false
   };
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }) {  
+  
   const matchingCategories = await fetchAPI('/categories', {
-    filters: { slug: params.slug },
+    filters: { slug: params.slug.split('/')[0] },
     populate: {
       articles: {
         populate: '*'
