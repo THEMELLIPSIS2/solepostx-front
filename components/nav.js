@@ -6,9 +6,9 @@ import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
-import Searchfield from './Searchbar.js'
-import styles from './Nav.module.css'
-
+import Searchfield from './Searchbar.js';
+import styles from './Nav.module.css';
+import { useState, useEffect } from 'react';
 const StyledToolbar = styled(Toolbar)(() => ({
   // Override media queries injected by theme.mixins.toolbar
   '@media all': {
@@ -17,61 +17,98 @@ const StyledToolbar = styled(Toolbar)(() => ({
 }));
 
 function Nav() {
+  const [monthYear, setMonthYear] = useState([]);
+
+  useEffect(() => {
+    let year = new Date().getFullYear();
+    let month = new Date().getMonth() + 1;
+    if (month < 10) month = '0' + month;
+    setMonthYear([month, year]);
+  }, []);
   return (
     <Box sx={{ flexGrow: 1 }} className={styles.nav}>
       <AppBar position="static">
         <StyledToolbar>
-
-          <Button size="small" color='inherit'>Subscribe</Button>
+          <Button size="small" color="inherit">
+            Subscribe
+          </Button>
 
           <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Typography  className={styles.logo} component="a" href='/' variant="h3" color='white' align="center" noWrap    sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}>
-          SOLEPOST
+            <Typography
+              className={styles.logo}
+              component="a"
+              href="/"
+              variant="h3"
+              color="white"
+              align="center"
+              noWrap
+              sx={{
+                mr: 2,
+                display: { xs: 'none', md: 'flex' },
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              SOLEPOST
             </Typography>
           </Toolbar>
 
-          <Toolbar component="nav" variant="dense" sx={{ justifyContent: 'space-between'}}>
-          
-              <Link color="inherit" variant="subtitle1" sx={{ p: 1, flexShrink: 0 }}
-              href='/features'
-              >
-                    Features
-              </Link>
-              <Link color="inherit" variant="subtitle1" sx={{ p: 1, flexShrink: 0 }}>
-                    Videos
-              </Link>
-              <Link color="inherit" variant="subtitle1" sx={{ p: 1, flexShrink: 0 }}
-              href='/calendar'
-              >
-                    Release Dates
-              </Link>
-              <Link color="inherit" variant="subtitle1" sx={{ p: 1, flexShrink: 0 }}
-              href='/category/jordan'
-              >
-                    Jordan Brand
-              </Link>
-              <Link color="inherit" variant="subtitle1" sx={{ p: 1, flexShrink: 0 }}
-              href='/category/adidas'
-              >
-                    Adidas
-              </Link>
-              <Link color="inherit" variant="subtitle1" sx={{ p: 1, flexShrink: 0 }}
-              href='/category/nike'
-              >
-                    Nike
-              </Link>
-            
+          <Toolbar
+            component="nav"
+            variant="dense"
+            sx={{ justifyContent: 'space-between' }}
+          >
+            <Link
+              color="inherit"
+              variant="subtitle1"
+              sx={{ p: 1, flexShrink: 0 }}
+              href="/features"
+            >
+              Features
+            </Link>
+            <Link
+              color="inherit"
+              variant="subtitle1"
+              sx={{ p: 1, flexShrink: 0 }}
+            >
+              Videos
+            </Link>
+            <Link
+              color="inherit"
+              variant="subtitle1"
+              sx={{ p: 1, flexShrink: 0 }}
+              href={`/calendar/${monthYear[0]}-${monthYear[1]}`}
+            >
+              Release Dates
+            </Link>
+            <Link
+              color="inherit"
+              variant="subtitle1"
+              sx={{ p: 1, flexShrink: 0 }}
+              href="/category/jordan"
+            >
+              Jordan Brand
+            </Link>
+            <Link
+              color="inherit"
+              variant="subtitle1"
+              sx={{ p: 1, flexShrink: 0 }}
+              href="/category/adidas"
+            >
+              Adidas
+            </Link>
+            <Link
+              color="inherit"
+              variant="subtitle1"
+              sx={{ p: 1, flexShrink: 0 }}
+              href="/category/nike"
+            >
+              Nike
+            </Link>
           </Toolbar>
-  <Searchfield />
-
-
+          <Searchfield />
         </StyledToolbar>
       </AppBar>
     </Box>

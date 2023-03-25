@@ -11,7 +11,7 @@ const ListedArticle = ({ article }) => {
     })
     .join(' ');
    let category = article.attributes.category.data ? article.attributes.category.data.attributes.name : null;
-  console.log(article);
+
   let date = new Date(article.attributes.publishedAt);
   return (
     <Card

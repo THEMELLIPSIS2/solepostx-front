@@ -1,0 +1,11 @@
+.container {
+    text-align: center;
+    margin: 40px;
+}
+.calendar {
+    width:50% !important;
+    
+}
+.container button {
+    height:60px !important
+}
