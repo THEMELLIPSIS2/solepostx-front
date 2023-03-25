@@ -7,7 +7,7 @@ import { fetchAPI } from '../lib/api';
 const Home = ({ articles, features, categories }) => {
   return (
     <Layout categories={categories}>
-      <div className="uk-section">
+      <div classNa>
         <div className="uk-container uk-container-large">
           <HomePage recents={articles} features={features}/>
         </div>
@@ -19,8 +19,8 @@ const Home = ({ articles, features, categories }) => {
 export async function getStaticProps() {
   // Run API calls in parallel
   const [articlesRes,featuredRes,categoriesRes] = await Promise.all([
-    fetchAPI('/articles', { populate: '*', filters: {featured: { $eq: 'false'}}, publicationState:'live', pagination: {limit:6} }),
-    fetchAPI('/articles', { populate: '*', filters: {featured: { $eq: 'true'}}, publicationState:'live',pagination: {limit:3}}),
+    fetchAPI('/articles', { populate: '*', filters: {featured: { $eq: 'false'}}, publicationState:'live', pagination: {limit:6}, sort: 'createdAt:desc' }),
+    fetchAPI('/articles', { populate: '*', filters: {featured: { $eq: 'true'}}, publicationState:'live',pagination: {limit:3}, sort: 'createdAt:desc'}),
     fetchAPI('/categories', { populate: '*' })
   ]);
 

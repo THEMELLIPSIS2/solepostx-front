@@ -25,7 +25,7 @@ export async function getStaticProps() {
             <h1>Featured</h1>
             {articles.map(article => {
               return (
-              <ListedArticle article={article} />
+              <ListedArticle article={article} key={article.title} />
               )
             })}
            
