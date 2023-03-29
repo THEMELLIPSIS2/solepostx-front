@@ -14,7 +14,7 @@ const Article = ({ article, categories }) => {
     metaTitle: article.attributes.title,
     metaDescription: article.attributes.description,
     shareImage: article.attributes.image,
-    article: true
+    article: true,
   };
 
   return (
@@ -47,7 +47,7 @@ const Article = ({ article, categories }) => {
                   style={{
                     position: 'static',
                     borderRadius: '20%',
-                    height: 60
+                    height: 60,
                   }}
                 />
               )}
@@ -69,31 +69,21 @@ const Article = ({ article, categories }) => {
   );
 };
 
-export async function getStaticPaths() {
-  const articlesRes = await fetchAPI('/articles', { fields: ['slug'] });
 
-  return {
-    paths: articlesRes.data.map((article) => ({
-      params: {
-        slug: article.attributes.slug
-      }
-    })),
-    fallback: false
-  };
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const articlesRes = await fetchAPI('/articles', {
     filters: {
-      slug: params.slug
+      slug: params.slug,
     },
     populate: '*',
   });
-  const categoriesRes = await fetchAPI('/categories');
+  const categoriesRes = await fetchAPI('/categories', {
+    filters: { isBrand: { $eq: 'true' } },
+  });
 
   return {
     props: { article: articlesRes.data[0], categories: categoriesRes },
-    revalidate: 1
+
   };
 }
 

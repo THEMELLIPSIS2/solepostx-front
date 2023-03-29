@@ -19,30 +19,17 @@ const Category = ({ category, categories }) => {
           <h1>{category.attributes.name}</h1>
           {category.attributes.articles.data.map(article => {
             return (
-            <ListedArticle article={article} key={article.title} />
+            <ListedArticle article={article} key={article.slug} />
             )
           })}
-         
         </div>
       </div>
     </Layout>
   );
 };
 
-export async function getStaticPaths() {
-  const categoriesRes = await fetchAPI('/categories', { fields: ['slug'] });
 
-  return {
-    paths: categoriesRes.data.map((category) => ({
-      params: {
-        slug: category.attributes.slug || null
-      }
-    })),
-    fallback: false
-  };
-}
-
-export async function getStaticProps({ params }) {  
+export async function getServerSideProps({ params }) {  
   
   const matchingCategories = await fetchAPI('/categories', {
     filters: { slug: params.slug.split('/')[0] },
@@ -52,14 +39,14 @@ export async function getStaticProps({ params }) {
       }
     }
   });
-  const allCategories = await fetchAPI('/categories');
+  const allCategories = await fetchAPI('/categories', {filters:{isBrand:{$eq:'true'}}});
 
   return {
     props: {
       category: matchingCategories.data[0],
       categories: allCategories
     },
-    revalidate: 1
+
   };
 }
 
