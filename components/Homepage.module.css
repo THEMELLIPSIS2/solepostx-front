@@ -25,9 +25,12 @@
   right: 0;
   height: fit-content;
   margin: auto;
-  background-color: rgb(66, 66, 66, 0.5);
+  background-color: rgb(66, 66, 66, 0.7);
 }
-
+.header:hover{
+    color:rgb(255, 47, 47);
+    text-decoration: underline;
+}
 .card .bottom .link:hover {
 text-decoration: underline !important;
 }

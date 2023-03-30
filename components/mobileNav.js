@@ -91,13 +91,13 @@ export function MobileNav({ categories }) {
           <Divider sx={{ mb: 2, maxWidth: '300px' }} />
 
           <Box sx={{ mb: 2 }}>
-            <ListItemButton component={Link} href="/features">
+            <ListItemButton component={Link} href="/features" className={styles.link}>
               <ListItemText primary="Features" />
             </ListItemButton>
-            <ListItemButton component={Link} href="/videos">
+            <ListItemButton component={Link} href="/videos" className={styles.link} >
               <ListItemText primary="Videos" />
             </ListItemButton>
-            <ListItemButton component={Link} href={`/calendar/${monthYear[0]}-${monthYear[1]}`}>
+            <ListItemButton component={Link} href={`/calendar/${monthYear[0]}-${monthYear[1]}`} className={styles.link}>
               <ListItemText primary="Release Dates" />
             </ListItemButton>
           </Box>
@@ -125,6 +125,7 @@ export function MobileNav({ categories }) {
                     key={brand.attributes.slug}
                     component={Link}
                     href={`/category/${brand.attributes.slug}`}
+                    className={styles.link}
                   >
                     <ListItemText inset primary={capitalized} />
                   </ListItem>
