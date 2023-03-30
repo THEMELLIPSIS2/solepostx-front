@@ -72,6 +72,7 @@ function Nav() {
               color="inherit"
               variant="subtitle1"
               sx={{ p: 1, flexShrink: 0 }}
+              href="/videos"
             >
               Videos
             </Link>
