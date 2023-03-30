@@ -11,29 +11,22 @@ import '../styles/globals.css';
 import { ThemeProvider } from '@mui/material';
 import { theme } from '../util/theme';
 
-import  Footer from '@/components/Footer';
-
+import Footer from '@/components/Footer';
 
 const MyApp = ({ Component, pageProps }) => {
-  const { global } = pageProps
+  const { global } = pageProps;
 
   return (
     <>
       <Head>
-
-      <link
+        <link
           rel="shortcut icon"
           href={getStrapiMedia(global.attributes.favicon)}
         />
-      
-        
       </Head>
 
-       <GlobalContext.Provider value={global.attributes}>
-      
-     
+      <GlobalContext.Provider value={global.attributes}>
         <ThemeProvider theme={theme}>
-
           <Component {...pageProps} />
           <Footer />
         </ThemeProvider>
@@ -54,9 +47,9 @@ MyApp.getInitialProps = async (ctx) => {
     populate: {
       favicon: '*',
       defaultSeo: {
-        populate: '*'
-      }
-    }
+        populate: '*',
+      },
+    },
   });
   // Pass the data to our page via props
   return { ...appProps, pageProps: { global: globalRes.data } };

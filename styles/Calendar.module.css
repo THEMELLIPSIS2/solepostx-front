@@ -3,8 +3,8 @@
     margin: 40px;
 }
 .calendar {
-    width:50% !important;
-    
+    width:60% !important;
+    min-height: 100dvh
 }
 .container button {
     height:60px !important

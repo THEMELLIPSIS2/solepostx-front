@@ -1,0 +1,30 @@
+.main {
+  margin: 5%;
+}
+.header {
+    display: flex;
+    justify-content: center;
+}
+.header .container{
+    display: inline-block;
+}
+.header h1 {
+    display:inline
+}
+.container {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.container img {
+    height:100%;
+    width:100%
+}
+.outer {
+    display:flex;
+    flex-direction: column;
+}
+.email {
+    align-self: center;
+}

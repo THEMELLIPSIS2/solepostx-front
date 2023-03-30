@@ -28,9 +28,6 @@ function Footer() {
   return (
     <Box component="footer" sx={{ bgcolor: 'background.paper', py: 6 }}>
       <ThemeProvider theme={theme}>
-        <Typography align="center" color="text.secondary">
-          FILLER
-        </Typography>
 
         <Container maxWidth="lg">
           <Box align="left" sx={{ display: 'flex', float: 'left' }}>
@@ -79,7 +76,6 @@ function Footer() {
           <Box align="right" sx={{ display: 'flex', float: 'right' }}>
             <Copyright />
           </Box>
-          <Divider variant="middle" />
         </Container>
       </ThemeProvider>
     </Box>
