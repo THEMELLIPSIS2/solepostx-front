@@ -12,7 +12,7 @@ import ListedArticle from '../../components/ListedArticle';
 import Button from '@mui/material/Button';
 import styles from '../../styles/Calendar.module.css';
 
-const Home = ({ articles,categories }) => {
+const Home = ({ articles, categories }) => {
   const [date, setDate] = useState(dayjs());
   const [monthYear, setMonthYear] = useState();
 
@@ -67,18 +67,18 @@ const Home = ({ articles,categories }) => {
           </Button>
         </div>
         <div>
-        {Object.keys(sorted).length > 0 ? (
-          Object.entries(sorted).map(([date, articles]) => {
-            return (
-              <div key={date}>
-                <h1>{date}</h1>
-                <div>{mapArticles(articles)}</div>
-              </div>
-            );
-          })
-        ) : (
-          <div>No release dates this month!</div>
-        )}
+          {Object.keys(sorted).length > 0 ? (
+            Object.entries(sorted).map(([date, articles]) => {
+              return (
+                <div key={date}>
+                  <h1>{date}</h1>
+                  <div>{mapArticles(articles)}</div>
+                </div>
+              );
+            })
+          ) : (
+            <div>No release dates this month!</div>
+          )}
         </div>
       </div>
     </Layout>
@@ -86,9 +86,8 @@ const Home = ({ articles,categories }) => {
 };
 
 export async function getServerSideProps({ params }) {
-  // Run API calls in parallel
 
-  const [articlesRes,categoriesRes] = await Promise.all([
+  const [articlesRes, categoriesRes] = await Promise.all([
     fetchAPI('/articles', {
       populate: '*',
       filters: {
@@ -96,14 +95,14 @@ export async function getServerSideProps({ params }) {
       },
       publicationState: 'live',
       sort: 'releaseDate:asc',
-    }), 
-  fetchAPI('/categories', {filters:{isBrand:{$eq:'true'}}})
+    }),
+    fetchAPI('/categories', { filters: { isBrand: { $eq: 'true' } } }),
   ]);
 
   return {
     props: {
       articles: articlesRes.data,
-      categories:categoriesRes
+      categories: categoriesRes,
     },
   };
 }

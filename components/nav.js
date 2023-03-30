@@ -117,6 +117,7 @@ function Nav({ categories }) {
                       key={brand.attributes.slug}
                       component={Link}
                       href={`/category/${brand.attributes.slug}`}
+                      className={styles.link}
                     >
                       {capitalized}
                     </MenuItem>
@@ -129,7 +130,7 @@ function Nav({ categories }) {
             </div>
           </Toolbar>
         ) : (
-          <Toolbar sx={{}} className={styles.innerNav}>
+          <Toolbar className={styles.innerNav}>
             <MobileNav categories={categories} />
           </Toolbar>
         )}

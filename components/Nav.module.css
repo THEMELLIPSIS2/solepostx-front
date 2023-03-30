@@ -3,7 +3,7 @@
   color: inherit;
 }
 .nav a:hover {
-  color: inherit;
+  color: rgb(200, 0, 0);
   text-decoration: underline;
 }
 .logo:hover {
@@ -15,4 +15,8 @@
 }
 .search {
   margin-left: auto;
+}
+.link:hover{
+    color: rgb(200, 0, 0); 
+    text-decoration: underline;
 }

@@ -8,78 +8,53 @@ import Link from 'next/link';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 export const HomePage = ({ recents = [], features = [] }) => {
-  let [today, setToday] = useState(null);
   const isMobile = useMediaQuery('(max-width:950px)');
-  useEffect(() => {
-    setToday(new Date());
-  }, []);
 
-  function howLongAgo(date) {
-    let rightDate = new Date(date);
-    let seconds = Math.floor((today - rightDate) / 1000);
-
-    let interval = seconds / 31536000;
-
-    if (interval > 1) {
-      return Math.floor(interval) + ' years';
-    }
-    interval = seconds / 2592000;
-    if (interval > 1) {
-      return Math.floor(interval) + ' months';
-    }
-    interval = seconds / 86400;
-    if (interval > 1) {
-      return Math.floor(interval) + ' days';
-    }
-    interval = seconds / 3600;
-    if (interval > 1) {
-      return Math.floor(interval) + ' hours';
-    }
-    interval = seconds / 60;
-    if (interval > 1) {
-      return Math.floor(interval) + ' minutes';
-    }
-    return Math.floor(seconds) + ' seconds';
-  }
-
+  let leftRecents = recents.slice(0, 2);
+  let rightRecents = recents.slice(-2);
   return (
     <div className={styles.homepage} style={{ width: '100%' }}>
       {!isMobile ? (
-        <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Grid item xs={5}>
-            {recents.map((article) => {
-              let date = article.attributes.createdAt;
-              let age = howLongAgo(date);
+        <Grid container alignItems='center' rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+          <Grid item xs={3} className={styles.recent}>
+            {leftRecents.map((article) => {
               return (
                 <Card
                   article={article}
-                  age={age}
                   key={article.id}
                   className={styles.card}
                 />
               );
             })}
           </Grid>
-          <Grid item xs={5}>
+          <Grid item xs={6} className={styles.featured}>
             {features.map((article) => {
-              let date = article.attributes.createdAt;
-              let age = howLongAgo(date);
-              return <Card article={article} age={age} key={article.id} />;
+              return <Card article={article} key={article.id} />;
             })}
-            <Button component={Link} href='/features'>More Featured</Button>
+            <Button component={Link} href="/features">
+              More Featured
+            </Button>
           </Grid>
-          <Grid item xs={2}>
-            <Paper>Socials</Paper>
+          <Grid item xs={3} className={styles.recent} alignItems='center'>
+            {rightRecents.map((article) => {
+              return (
+                <Card
+                  article={article}
+                  key={article.id}
+                  className={styles.card}
+                />
+              );
+            })}
           </Grid>
         </Grid>
       ) : (
         <div className={styles.mobileFeature}>
           {features.map((article) => {
-            let date = article.attributes.createdAt;
-            let age = howLongAgo(date);
-            return <Card article={article} age={age} key={article.id} />;
+            return <Card article={article} key={article.id} />;
           })}
-          <Button component={Link} href='/features'>More Featured</Button>
+          <Button component={Link} href="/features">
+            More Featured
+          </Button>
         </div>
       )}
     </div>

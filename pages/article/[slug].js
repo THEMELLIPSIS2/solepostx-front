@@ -1,9 +1,9 @@
 import Moment from 'react-moment';
 import ReactMarkdown from 'react-markdown';
-
+import styles from '../../styles/Author.module.css'
 import Seo from '../../components/seo';
 import Layout from '../../components/layout';
-
+import Link from 'next/link';
 import { fetchAPI } from '../../lib/api';
 import { getStrapiMedia } from '../../lib/media';
 
@@ -20,41 +20,23 @@ const Article = ({ article, categories }) => {
   return (
     <Layout categories={categories.data}>
       <Seo seo={seo} />
-      <div
-        id="banner"
-        className="uk-height-medium uk-flex uk-flex-center uk-flex-middle uk-background-cover uk-light uk-padding uk-margin"
-        data-src={imageUrl}
-        data-srcset={imageUrl}
-        data-uk-img
-      >
-        <h1>{article.attributes.title}</h1>
+
+      <div className={styles.banner}>
+      <img src={imageUrl}  />
       </div>
+      <h1 style={{textAlign:'center'}}>{article.attributes.title}</h1>
       <div className="uk-section">
         <div className="uk-container uk-container-small">
           <ReactMarkdown children={article.attributes.content} />
+
           <hr className="uk-divider-small" />
           <div className="uk-grid-small uk-flex-left" data-uk-grid="true">
-            <div>
-              {article.attributes.author.data.attributes.picture && (
-                <img
-                  src={getStrapiMedia(
-                    article.attributes.author.data.attributes.picture
-                  )}
-                  alt={
-                    article.attributes.author.data.attributes.picture.data
-                      .attributes.alternativeText
-                  }
-                  style={{
-                    position: 'static',
-                    borderRadius: '20%',
-                    height: 60,
-                  }}
-                />
-              )}
-            </div>
             <div className="uk-width-expand">
               <p className="uk-margin-remove-bottom">
-                By {article.attributes.author.data.attributes.name}
+                By{' '}
+                <Link href={`/authors/${article.attributes.id}`}>
+                  {article.attributes.author.data.attributes.name}
+                </Link>
               </p>
               <p className="uk-text-meta uk-margin-remove-top">
                 <Moment format="MMM Do YYYY">
@@ -69,7 +51,6 @@ const Article = ({ article, categories }) => {
   );
 };
 
-
 export async function getServerSideProps({ params }) {
   const articlesRes = await fetchAPI('/articles', {
     filters: {
@@ -83,7 +64,6 @@ export async function getServerSideProps({ params }) {
 
   return {
     props: { article: articlesRes.data[0], categories: categoriesRes },
-
   };
 }
 
