@@ -18,7 +18,7 @@ import SearchIcon from '@mui/icons-material/Search';
         
         <ThemeProvider theme={theme}>
         
-          <TextField id="input-with-sx" label="Search" variant="filled" /> 
+          <TextField id="input-with-sx" label="Search" variant="filled"/> 
           <SearchIcon sx={{ color: 'action.active', mr: 1, my: 0.5, alignSelf:'center'}}/>
         
         </ThemeProvider>

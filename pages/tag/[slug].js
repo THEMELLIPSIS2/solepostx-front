@@ -3,14 +3,14 @@ import Layout from '../../components/layout';
 import ListedArticle from '../../components/ListedArticle'
 import { fetchAPI } from '../../lib/api';
 
-const Tag = ({ tag, tags }) => {
+const Tag = ({ tag, categories }) => {
   const seo = {
     metaTitle: tag.attributes.name,
     metaDescription: `All ${tag.attributes.name} articles`
   };
 
   return (
-    <Layout tags={tags.data}>
+    <Layout categories={categories.data}>
       <Seo seo={seo} />
       <div className="uk-section">
         <div className="uk-container uk-container-large">
@@ -27,20 +27,7 @@ const Tag = ({ tag, tags }) => {
   );
 };
 
-export async function getStaticPaths() {
-  const tagsRes = await fetchAPI('/tags', { fields: ['slug'] });
-
-  return {
-    paths: tagsRes.data.map((tag) => ({
-      params: {
-        slug: tag.attributes.slug
-      }
-    })),
-    fallback: false
-  };
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const matchingTags = await fetchAPI('/tags', {
     filters: { slug: params.slug },
     populate: {
@@ -50,13 +37,13 @@ export async function getStaticProps({ params }) {
     }
   });
   const allTags = await fetchAPI('/tags');
-
+  const allCategories = await fetchAPI('/categories', {filters:{isBrand:{$eq:'true'}}});
   return {
     props: {
       tag: matchingTags.data[0],
-      tags: allTags
+      tags: allTags,
+      categories: allCategories
     },
-    revalidate: 1
   };
 }
 

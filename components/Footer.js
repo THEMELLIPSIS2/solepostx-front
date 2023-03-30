@@ -9,11 +9,11 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import { ThemeProvider } from '@mui/material';
 import { theme } from '../util/theme';
-import Divider from '@mui/material/Divider';
+import styles from './Footer.module.css';
 
 function Copyright() {
   return (
-    <Typography variant="body" color="text.secondary" align="center">
+    <Typography variant="body" color="text.secondary" align="center" className={styles.footer}>
       {'Copyright ©'}
       <Link color="inherit" href="">
         SolePost
@@ -26,11 +26,10 @@ function Copyright() {
 
 function Footer() {
   return (
-    <Box component="footer" sx={{ bgcolor: 'background.paper', py: 6 }}>
+    <Box component="footer" 
+    sx={{ bgcolor: 'background.paper', py: 6 }}>
+      
       <ThemeProvider theme={theme}>
-        <Typography align="center" color="text.secondary">
-          FILLER
-        </Typography>
 
         <Container maxWidth="lg">
           <Box align="left" sx={{ display: 'flex', float: 'left' }}>
@@ -39,6 +38,7 @@ function Footer() {
               color="text.secondary"
               component="p"
               sx={{ display: 'flex', justifyContent: 'space-between' }}
+              className={styles.footer}
             >
               <Link
                 href="https://www.instagram.com/thesolepost/?hl=en"
@@ -79,7 +79,6 @@ function Footer() {
           <Box align="right" sx={{ display: 'flex', float: 'right' }}>
             <Copyright />
           </Box>
-          <Divider variant="middle" />
         </Container>
       </ThemeProvider>
     </Box>

@@ -15,6 +15,11 @@ export const theme = createTheme({
     },
     info: {
       main: '#fff'
+    },
+    button: {
+      main:'#A26868',
+      contrastText:'#A41A1C',
+      hover: '#A41A1C'
     }
   }
 });
