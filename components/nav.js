@@ -10,7 +10,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { MobileNav } from './mobileNav.js';
-
+import logo from '../assets/logo2.png';
 function Nav({ categories }) {
   const [monthYear, setMonthYear] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -43,26 +43,7 @@ function Nav({ categories }) {
             <Button size="small" color="secondary">
               Subscribe
             </Button>
-            <Typography
-              className={styles.logo}
-              component="a"
-              href="/"
-              variant="h4"
-              color="white"
-              align="center"
-              noWrap
-              sx={{
-                mr: 2,
-                display: { md: 'flex' },
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: 'inherit',
-                textDecoration: 'none',
-              }}
-            >
-              SOLEPOST
-            </Typography>
-
+           <Link href='/'> <img src={logo.src} height="100px" width="250px" /></Link>
             <div>
               <Link
                 color="inherit"

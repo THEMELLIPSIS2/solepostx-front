@@ -10,6 +10,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import { ThemeProvider } from '@mui/material';
 import { theme } from '../util/theme';
 import styles from './Footer.module.css';
+import logo from '../assets/lgo3.png';
 
 function Copyright() {
   return (
@@ -27,11 +28,12 @@ function Copyright() {
 function Footer() {
   return (
     <Box component="footer" 
-    sx={{ bgcolor: 'background.paper', py: 6 }}>
+    sx={{ bgcolor: 'background.paper', py: 3 }}>
       
       <ThemeProvider theme={theme}>
 
         <Container maxWidth="lg">
+          <img src={logo.src} width='90px'/>
           <Box align="left" sx={{ display: 'flex', float: 'left' }}>
             <Box
               align="left"
