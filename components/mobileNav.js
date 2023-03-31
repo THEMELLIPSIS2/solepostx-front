@@ -5,6 +5,7 @@ import Searchfield from './Searchbar.js';
 import styles from './Nav.module.css';
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
+import logo from '../assets/logo2.png'
 //drawer elements used
 import Drawer from '@mui/material/Drawer';
 import CloseIcon from '@mui/icons-material/Close';
@@ -45,25 +46,7 @@ export function MobileNav({ categories }) {
   };
   return (
     <>
-      <Typography
-        className={styles.logo}
-        component="a"
-        href="/"
-        variant="h4"
-        color="white"
-        align="center"
-        noWrap
-        sx={{
-          mr: 2,
-          display: { md: 'flex' },
-          fontWeight: 700,
-          letterSpacing: '.3rem',
-          color: 'inherit',
-          textDecoration: 'none',
-        }}
-      >
-        SOLEPOST
-      </Typography>
+    <Link href='/'> <img src={logo.src} height="100px" width="250px" /></Link>
 
       <IconButton
         edge="start"

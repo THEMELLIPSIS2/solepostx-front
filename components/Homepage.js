@@ -6,6 +6,7 @@ import styles from './Homepage.module.css';
 import { Card } from './card';
 import Link from 'next/link';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import VideocamIcon from '@mui/icons-material/Videocam';
 
 export const HomePage = ({ recents = [], features = [], video = [] }) => {
   const isMobile = useMediaQuery('(max-width:950px)');
@@ -38,7 +39,7 @@ export const HomePage = ({ recents = [], features = [], video = [] }) => {
               {features.map((article) => {
                 return <Card article={article} key={article.id} />;
               })}
-              <Button component={Link} href="/features">
+              <Button component={Link} href="/features" size='large'>
                 More Featured
               </Button>
             </Grid>
@@ -53,13 +54,15 @@ export const HomePage = ({ recents = [], features = [], video = [] }) => {
                 );
               })}
             </Grid>
-          </Grid>
+          </Grid>     
+                <VideocamIcon sx={{display:'block',marginLeft:'auto',marginRight:'auto',fontSize:'50px'}}/>
           <Grid
             container
             justifyContent="center"
             spacing={1}
             sx={{ backgroundColor: '#737373', width: '100%' }}
-          >
+          >  
+
             <Grid item xs={9} className={styles.recent} alignItems="center">
               <iframe
                 width="853"
