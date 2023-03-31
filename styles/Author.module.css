@@ -36,9 +36,10 @@
 .image{
     justify-self: center;
     align-self: center;
+    
 }
 .banner {
-    background-color: rgb(75, 75, 75);
+    background-color: rgb(165, 165, 165);
     height:500px;
      overflow: hidden;
      display:flex;
@@ -49,5 +50,7 @@
 .banner img {
     object-fit: contain;
    height:100%;
-
+   border:8px outset #aa2e2e;
+   -webkit-box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
+   -moz-box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
 }
