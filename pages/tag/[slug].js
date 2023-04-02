@@ -2,7 +2,7 @@ import Seo from '../../components/seo';
 import Layout from '../../components/layout';
 import ListedArticle from '../../components/ListedArticle'
 import { fetchAPI } from '../../lib/api';
-
+import Typography from '@mui/material/Typography';
 const Tag = ({ tag, categories }) => {
   const seo = {
     metaTitle: tag.attributes.name,
@@ -14,7 +14,7 @@ const Tag = ({ tag, categories }) => {
       <Seo seo={seo} />
       <div className="uk-section">
         <div className="uk-container uk-container-large">
-          <h1>{tag.attributes.name}</h1>
+        <Typography variant='h2' color='secondary.main'>{(tag.attributes.name).toUpperCase()}</Typography>
           {tag.attributes.articles.data.map(article => {
             return (
             <ListedArticle article={article} key={article.title} />

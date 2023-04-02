@@ -4,6 +4,7 @@ import ListedArticle from '../../components/ListedArticle';
 import { fetchAPI } from '../../lib/api';
 import { useRouter } from 'next/router';
 import styles from '../../styles/Author.module.css';
+import Typography from '@mui/material/Typography';
 const Author = ({ author, categories }) => {
   return (
     <Layout categories={categories.data}>

@@ -35,11 +35,11 @@ function Nav({ categories }) {
     <div>
       <AppBar
         position="static"
-        sx={{ minHeight: '100px' }}
+        sx={{ minHeight: '100px', bgcolor: 'background.paper' }}
         className={styles.nav}
       >
         {!isMobile ? (
-          <Toolbar sx={{}} className={styles.innerNav}>
+          <Toolbar sx={{bgcolor: 'background.paper'}} className={styles.innerNav}>
             <Button size="small" color="secondary">
               Subscribe
             </Button>
@@ -112,7 +112,7 @@ function Nav({ categories }) {
             </div>
           </Toolbar>
         ) : (
-          <Toolbar className={styles.innerNav}>
+          <Toolbar className={styles.innerNav} sx={{bgcolor: 'background.paper'}}>
             <MobileNav categories={categories} />
           </Toolbar>
         )}

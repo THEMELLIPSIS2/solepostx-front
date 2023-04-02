@@ -7,8 +7,6 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import FacebookIcon from '@mui/icons-material/Facebook';
-import { ThemeProvider } from '@mui/material';
-import { theme } from '../util/theme';
 import styles from './Footer.module.css';
 import logo from '../assets/lgo3.png';
 
@@ -29,15 +27,13 @@ function Footer() {
   return (
     <Box component="footer" 
     sx={{ bgcolor: 'background.paper', py: 3 }}>
-      
-      <ThemeProvider theme={theme}>
 
         <Container maxWidth="lg">
           <img src={logo.src} width='90px'/>
           <Box align="left" sx={{ display: 'flex', float: 'left' }}>
             <Box
               align="left"
-              color="text.secondary"
+              color="inherit"
               component="p"
               sx={{ display: 'flex', justifyContent: 'space-between' }}
               className={styles.footer}
@@ -46,6 +42,7 @@ function Footer() {
                 href="https://www.instagram.com/thesolepost/?hl=en"
                 target="_blank"
                 rel="noreferrer"
+                color='inherit'
                 sx={{ paddingRight: 1 }}
               >
                 <InstagramIcon />
@@ -55,6 +52,7 @@ function Footer() {
                 href="https://twitter.com/theSolePost?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"
                 target="_blank"
                 rel="noreferrer"
+                color='inherit'
                 sx={{ paddingRight: 1 }}
               >
                 <TwitterIcon />
@@ -64,6 +62,7 @@ function Footer() {
                 href="https://www.youtube.com/@SolePost/featured"
                 target="_blank"
                 rel="noreferrer"
+                color='inherit'
                 sx={{ paddingRight: 1 }}
               >
                 <YouTubeIcon />
@@ -71,6 +70,7 @@ function Footer() {
               <Link
                 href="https://www.facebook.com/theSolePost/"
                 target="_blank"
+                color='inherit'
                 rel="noreferrer"
               >
                 <FacebookIcon />
@@ -82,7 +82,6 @@ function Footer() {
             <Copyright />
           </Box>
         </Container>
-      </ThemeProvider>
     </Box>
   );
 }

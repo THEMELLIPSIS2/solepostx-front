@@ -3,7 +3,7 @@ import Layout from '../../../../components/layout';
 import ListedArticle from '../../../../components/ListedArticle';
 import { fetchAPI } from '../../../../lib/api';
 import { useRouter } from 'next/router';
-
+import Typography from '@mui/material/Typography';
 const CateTag = ({ catetags, categories }) => {
   // const seo = {
   //   metaTitle: category.attributes.name,
@@ -17,7 +17,7 @@ const CateTag = ({ catetags, categories }) => {
 
       <div className="uk-section">
         <div className="uk-container uk-container-large">
-          <h1>{catetags.attributes.name}</h1>
+        <Typography variant='h2' color='secondary.main'>{(catetags.attributes.name).toUpperCase()}</Typography>
           <h2>{tag}</h2>
           {catetags.attributes.articles.data.map((article) => {
             return <ListedArticle article={article} key={article.title} />;

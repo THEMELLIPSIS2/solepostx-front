@@ -2,7 +2,7 @@ import { Card, Typography, Box } from '@mui/material';
 import Image from './image';
 import Link from 'next/link';
 import { getStrapiMedia } from '@/lib/media';
-
+import styles from './layout.module.css'
 const ListedArticle = ({ article }) => {
   let capitalized = article.attributes.title
     .split(' ')
@@ -21,8 +21,10 @@ const ListedArticle = ({ article }) => {
         alignItems: { xs: '', sm: 'center' },
         gap: 2,
         flexDirection: { xs: 'column', sm: 'row' },
-        textAlign: {}
+        textAlign: {},
+        color:'secondary.main'
       }}
+      className={styles.card}
     >
       <Box sx={{ width: { xs: '100%', sm: '40%' } }}>
         <Link href={`/article/${article.attributes.slug}`}>
@@ -39,11 +41,11 @@ const ListedArticle = ({ article }) => {
         }}
       >
         {category && 
-        <Link href={`/category/${category}`}>
-          <Typography variant="subtitle2">{category.toUpperCase()}</Typography>
+        <Link href={`/category/${article.attributes.category.data.attributes.slug}`}>
+          <Typography variant="subtitle2" color='secondary'>{category.toUpperCase()}</Typography>
         </Link> }
         <Link href={`/article/${article.attributes.slug}`}>
-          <Typography variant="h5">{capitalized}</Typography>
+          <Typography variant="h5" color='secondary'>{capitalized}</Typography>
         </Link>
         <Typography variant="caption">
           {date.toDateString().toUpperCase()}

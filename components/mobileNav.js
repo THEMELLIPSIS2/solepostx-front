@@ -5,7 +5,7 @@ import Searchfield from './Searchbar.js';
 import styles from './Nav.module.css';
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
-import logo from '../assets/logo2.png'
+import logo from '../assets/logo2.png';
 //drawer elements used
 import Drawer from '@mui/material/Drawer';
 import CloseIcon from '@mui/icons-material/Close';
@@ -34,7 +34,6 @@ export function MobileNav({ categories }) {
     setMonthYear([month, year]);
   }, []);
 
-
   const toggleDrawer = (drawer) => (event) => {
     if (
       event.type === 'keydown' &&
@@ -46,7 +45,10 @@ export function MobileNav({ categories }) {
   };
   return (
     <>
-    <Link href='/'> <img src={logo.src} height="100px" width="250px" /></Link>
+      <Link href="/">
+        {' '}
+        <img src={logo.src} height="100px" width="250px" />
+      </Link>
 
       <IconButton
         edge="start"
@@ -74,13 +76,25 @@ export function MobileNav({ categories }) {
           <Divider sx={{ mb: 2, maxWidth: '300px' }} />
 
           <Box sx={{ mb: 2 }}>
-            <ListItemButton component={Link} href="/features" className={styles.link}>
+            <ListItemButton
+              component={Link}
+              href="/features"
+              className={styles.link}
+            >
               <ListItemText primary="Features" />
             </ListItemButton>
-            <ListItemButton component={Link} href="/videos" className={styles.link} >
+            <ListItemButton
+              component={Link}
+              href="/videos"
+              className={styles.link}
+            >
               <ListItemText primary="Videos" />
             </ListItemButton>
-            <ListItemButton component={Link} href={`/calendar/${monthYear[0]}-${monthYear[1]}`} className={styles.link}>
+            <ListItemButton
+              component={Link}
+              href={`/calendar/${monthYear[0]}-${monthYear[1]}`}
+              className={styles.link}
+            >
               <ListItemText primary="Release Dates" />
             </ListItemButton>
           </Box>
