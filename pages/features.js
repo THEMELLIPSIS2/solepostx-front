@@ -1,7 +1,7 @@
 import ListedArticle from '../components/ListedArticle';
 import { fetchAPI } from '../lib/api';
 import Layout from '../components/layout';
-
+import Typography from '@mui/material/Typography';
 export async function getStaticProps() {
   // Run API calls in parallel
   const [featuredRes, categoriesRes] = await Promise.all([
@@ -27,7 +27,7 @@ const Featured = ({ articles,categories }) => {
     <Layout categories={categories}>
       <div className="uk-section">
         <div className="uk-container uk-container-large">
-          <h1>Featured</h1>
+        <Typography variant='h2' color='secondary.main'>FEATURED</Typography>
           {articles.map((article) => {
             return <ListedArticle article={article} key={article.title} />;
           })}

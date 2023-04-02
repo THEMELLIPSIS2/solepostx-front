@@ -20,21 +20,21 @@ export async function getStaticProps() {
     [
       fetchAPI('/articles', {
         populate: '*',
-        filters: { featured: { $eq: 'false' }, videoURL: {$null:'true'} },
+        filters: { featured: { $eq: 'false' }, youtubeURL: {$null:'true'} },
         publicationState: 'live',
         pagination: { limit: 4 },
         sort: 'createdAt:desc',
       }),
       fetchAPI('/articles', {
         populate: '*',
-        filters: { featured: { $eq: 'true' }, videoURL: {$null:'true'} },
+        filters: { featured: { $eq: 'true' }, youtubeURL: {$null:'true'} },
         publicationState: 'live',
         pagination: { limit: 1 },
         sort: 'createdAt:desc',
       }),
       fetchAPI('/categories', { filters: { isBrand: { $eq: 'true' } } }),
       fetchAPI('/articles', {
-        filters: { videoURL: { $notNull: 'true' } },
+        filters: { youtubeURL: { $notNull: 'true' } },
         pagination: { limit: 1 },
         sort: 'createdAt:desc',
       }),

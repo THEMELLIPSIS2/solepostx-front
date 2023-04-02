@@ -14,7 +14,7 @@ export const HomePage = ({ recents = [], features = [], video = [] }) => {
   let leftRecents = recents.slice(0, 2);
   let rightRecents = recents.slice(-2);
   return (
-    <div className={styles.homepage} style={{ width: '100%' }}>
+    <div className={styles.homepage} >
       {console.log(recents)}
       {!isMobile ? (
         <>
@@ -39,7 +39,7 @@ export const HomePage = ({ recents = [], features = [], video = [] }) => {
               {features.map((article) => {
                 return <Card article={article} key={article.id} />;
               })}
-              <Button component={Link} href="/features" size='large'>
+              <Button component={Link} href="/features" size='large' color='secondary'>
                 More Featured
               </Button>
             </Grid>
@@ -60,14 +60,14 @@ export const HomePage = ({ recents = [], features = [], video = [] }) => {
             container
             justifyContent="center"
             spacing={1}
-            sx={{ backgroundColor: '#737373', width: '100%' }}
+            sx={{ backgroundColor: '#737373', width: '100%', marginBottom:'50px'}}
           >  
 
             <Grid item xs={9} className={styles.recent} alignItems="center">
               <iframe
                 width="853"
                 height="480"
-                src={`https://${video[0].attributes.videoURL}`}
+                src={`${video[0].attributes.youtubeURL}`}
                 allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 title="Embedded youtube"
@@ -80,7 +80,7 @@ export const HomePage = ({ recents = [], features = [], video = [] }) => {
           {features.map((article) => {
             return <Card article={article} key={article.id} />;
           })}
-          <Button component={Link} href="/features">
+          <Button component={Link} href="/features" color='secondary'>
             More Featured
           </Button>
         </div>

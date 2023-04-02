@@ -9,8 +9,8 @@ import { getStrapiMedia } from '../lib/media';
 export const GlobalContext = createContext({});
 import '../styles/globals.css';
 import { ThemeProvider } from '@mui/material';
-import { theme } from '../util/theme';
-
+import { lightTheme, darkTheme } from '../util/theme';
+import CssBaseline from '@mui/material/CssBaseline';
 import Footer from '@/components/Footer';
 
 const MyApp = ({ Component, pageProps }) => {
@@ -26,7 +26,8 @@ const MyApp = ({ Component, pageProps }) => {
       </Head>
 
       <GlobalContext.Provider value={global.attributes}>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={darkTheme}>
+          <CssBaseline />
           <Component {...pageProps} />
           <Footer />
         </ThemeProvider>
