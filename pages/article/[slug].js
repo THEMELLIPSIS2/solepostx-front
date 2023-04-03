@@ -8,6 +8,8 @@ import { fetchAPI } from '../../lib/api';
 import { getStrapiMedia } from '../../lib/media';
 import Typography from '@mui/material/Typography';
 import TagIcon from '@mui/icons-material/Tag';
+import { Card, Box, Grid } from '@mui/material';
+
 const Article = ({ article, categories }) => {
   const imageUrl = getStrapiMedia(article.attributes.image);
 
@@ -32,6 +34,16 @@ const Article = ({ article, categories }) => {
       >
         {article.attributes.title.toUpperCase()}
       </Typography>
+            <div align="center">
+              {article.attributes.youtubeURL && <iframe                
+                width="853"
+                height="480"
+                src={`${article.attributes.youtubeURL}`}
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title="Embedded youtube"
+              />}
+            </div>
       <div className="uk-section">
         <div className="uk-container uk-container-small">
           <ReactMarkdown children={article.attributes.content} />

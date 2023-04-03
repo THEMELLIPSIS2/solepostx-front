@@ -1,13 +1,13 @@
-import ListedArticle from '../components/ListedArticle';
 import { fetchAPI } from '../lib/api';
 import Layout from '../components/layout';
+import ListedArticle from '../components/ListedArticle';
 
 export async function getStaticProps() {
   // Run API calls in parallel
   const [featuredRes, categoriesRes] = await Promise.all([
     fetchAPI('/articles', {
       populate: ['image', 'category', 'tags'],
-      filters: { featured: { $eq: 'true' } },
+      filters: { youtubeURL: { $null: false } },
       publicationState: 'live',
     }),
     fetchAPI('/categories', { filters: { isBrand: { $eq: 'true' } } }),
@@ -22,12 +22,15 @@ export async function getStaticProps() {
   };
 }
 
-const Featured = ({ articles,categories }) => {
+const Featured = ({ articles, categories }) => {
   return (
     <Layout categories={categories}>
       <div className="uk-section">
         <div className="uk-container uk-container-large">
           <h1>Videos</h1>
+          {articles.map((article) => {
+            return <ListedArticle article={article} key={article.title} />;
+          })}
         </div>
       </div>
     </Layout>

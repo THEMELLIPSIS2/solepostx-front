@@ -3,6 +3,7 @@ import Image from './image';
 import Link from 'next/link';
 import { getStrapiMedia } from '@/lib/media';
 import styles from './layout.module.css'
+
 const ListedArticle = ({ article }) => {
   let capitalized = article.attributes.title
     .split(' ')
