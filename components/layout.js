@@ -33,7 +33,8 @@ const Layout = ({ children, categories, seo }) => {
 
   return (
     <>
-      <ThemeProvider theme={storedTheme === 'light' ? lightTheme : darkTheme}>
+    {storedTheme && 
+          <ThemeProvider theme={storedTheme === 'light' ? lightTheme : darkTheme}>
         <CssBaseline />
         <Nav categories={categories} className={styles.nav} storedTheme={storedTheme}/>
         <IconButton onClick={toggleTheme} style={{position:'absolute',top:'30px',right:'10px'}}>
@@ -42,6 +43,8 @@ const Layout = ({ children, categories, seo }) => {
         {children}
         <Footer />
       </ThemeProvider>
+    }
+
     </>
   );
 };
