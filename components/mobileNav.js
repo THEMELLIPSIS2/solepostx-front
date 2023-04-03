@@ -123,6 +123,7 @@ export function MobileNav({ categories }) {
                     component={Link}
                     href={`/category/${brand.attributes.slug}`}
                     className={styles.link}
+                    color='secondary'
                   >
                     <ListItemText inset primary={capitalized} />
                   </ListItem>

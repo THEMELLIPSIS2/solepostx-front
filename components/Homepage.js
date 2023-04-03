@@ -7,6 +7,7 @@ import { Card } from './card';
 import Link from 'next/link';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import VideocamIcon from '@mui/icons-material/Videocam';
+import { Typography } from '@mui/material';
 
 export const HomePage = ({ recents = [], features = [], video = [] }) => {
   const isMobile = useMediaQuery('(max-width:950px)');
@@ -39,8 +40,8 @@ export const HomePage = ({ recents = [], features = [], video = [] }) => {
               {features.map((article) => {
                 return <Card article={article} key={article.id} />;
               })}
-              <Button component={Link} href="/features" size='large' color='secondary'>
-                More Featured
+              <Button component={Link} href="/features" size='large' color='secondary' className={styles.link}>
+                See more
               </Button>
             </Grid>
             <Grid item xs={3} className={styles.recent} alignItems="center">
@@ -63,7 +64,8 @@ export const HomePage = ({ recents = [], features = [], video = [] }) => {
             sx={{ backgroundColor: '#737373', width: '100%', marginBottom:'50px'}}
           >  
 
-            <Grid item xs={9} className={styles.recent} alignItems="center">
+            <Grid item xs={9} className={styles.recent} alignItems="center" justifyContent='center' style={{textAlign:'center'}}>
+              <Typography className={styles.link} varaint='h6' component={Link} href={`/articles/${video[0].attributes.slug}`}>{video[0].attributes.title}</Typography>
               <iframe
                 width="853"
                 height="480"
@@ -80,8 +82,8 @@ export const HomePage = ({ recents = [], features = [], video = [] }) => {
           {features.map((article) => {
             return <Card article={article} key={article.id} />;
           })}
-          <Button component={Link} href="/features" color='secondary'>
-            More Featured
+          <Button className={styles.link} component={Link} href="/features" color='secondary'>
+            See more
           </Button>
           <VideocamIcon sx={{display:'block',marginLeft:'auto',marginRight:'auto',fontSize:'50px'}}/>
           <Grid

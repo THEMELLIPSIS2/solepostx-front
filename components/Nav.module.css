@@ -3,7 +3,7 @@
   color: inherit;
 }
 .nav a:hover {
-  color: rgb(200, 0, 0);
+  color: #c80000;
   text-decoration: underline;
 }
 .logo:hover {

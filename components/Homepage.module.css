@@ -27,10 +27,10 @@
   right: 0;
   height: fit-content;
   margin: auto;
-  background-color: rgb(66, 66, 66, 0.7);
+  background-color: rgba(116, 116, 116, 0.9);
 }
 .header:hover{
-    color:rgb(255, 47, 47);
+    color:#930000;
     text-decoration: underline;
 }
 .card .bottom .link:hover {
@@ -41,7 +41,7 @@ text-decoration: underline !important;
 }
 
 .card:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
   z-index: 999 !important;
 }
 .mobileFeature {
