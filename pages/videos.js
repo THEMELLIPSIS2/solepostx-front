@@ -1,6 +1,6 @@
 import { fetchAPI } from '../lib/api';
 import Layout from '../components/layout';
-import ListedVideo from '../components/ListedVideo';
+import ListedArticle from '../components/ListedArticle';
 
 export async function getStaticProps() {
   // Run API calls in parallel
@@ -29,7 +29,7 @@ const Featured = ({ articles, categories }) => {
         <div className="uk-container uk-container-large">
           <h1>Videos</h1>
           {articles.map((article) => {
-            return <ListedVideo article={article} key={article.title} />;
+            return <ListedArticle article={article} key={article.title} />;
           })}
         </div>
       </div>
