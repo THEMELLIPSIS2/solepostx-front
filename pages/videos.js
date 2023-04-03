@@ -7,7 +7,7 @@ export async function getStaticProps() {
   const [featuredRes, categoriesRes] = await Promise.all([
     fetchAPI('/articles', {
       populate: ['image', 'category', 'tags'],
-      filters: { videoURL: { $null: false } },
+      filters: { youtubeURL: { $null: false } },
       publicationState: 'live',
     }),
     fetchAPI('/categories', { filters: { isBrand: { $eq: 'true' } } }),

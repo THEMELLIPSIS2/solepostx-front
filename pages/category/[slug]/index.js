@@ -3,7 +3,7 @@ import Layout from '../../../components/layout';
 import ListedArticle from '../../../components/ListedArticle'
 import { fetchAPI } from '../../../lib/api';
 import { useRouter } from 'next/router'
-
+import Typography from '@mui/material/Typography';
 const Category = ({ category, categories }) => {
   const seo = {
     metaTitle: category.attributes.name,
@@ -16,7 +16,7 @@ const Category = ({ category, categories }) => {
       <Seo seo={seo} />
       <div className="uk-section">
         <div className="uk-container uk-container-large">
-          <h1>{category.attributes.name}</h1>
+          <Typography variant='h2' color='secondary.main'>{(category.attributes.name).toUpperCase()}</Typography>
           {category.attributes.articles.data.map(article => {
             return (
             <ListedArticle article={article} key={article.slug} />

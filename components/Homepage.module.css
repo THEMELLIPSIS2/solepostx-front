@@ -1,7 +1,7 @@
-.homepage a:hover {
+/* .homepage a:hover {
   text-decoration: none !important;
   color: black;
-}
+} */
 
 .article {
   height: 100%;
@@ -12,10 +12,12 @@
   z-index: 1 !important;
   position: relative;
 }
-/* .homepage {
-    margin-top: 150px;
-} */
-
+ .homepage {
+    margin: 3%;
+} 
+.link:hover{
+    color:#a80000 !important
+}
 .header {
   color: white;
   text-align: center;

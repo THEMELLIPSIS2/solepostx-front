@@ -19,7 +19,6 @@ export const Card = ({ article }) => {
     .join(' ');
   return (
     <div key={article.id} className={styles.card}>
-      {console.log(article)}
       <Paper className={styles.article} style={{ margin: '10px' }}>
         <Link href={`/article/${article.attributes.slug}`}>
           <Typography className={styles.header} variant="h6">

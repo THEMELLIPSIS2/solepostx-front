@@ -10,7 +10,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { MobileNav } from './mobileNav.js';
-
+import logo from '../assets/logo2.png';
 function Nav({ categories }) {
   const [monthYear, setMonthYear] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -35,34 +35,15 @@ function Nav({ categories }) {
     <div>
       <AppBar
         position="static"
-        sx={{ minHeight: '100px' }}
+        sx={{ minHeight: '100px', bgcolor: 'background.paper' }}
         className={styles.nav}
       >
         {!isMobile ? (
-          <Toolbar sx={{}} className={styles.innerNav}>
+          <Toolbar sx={{bgcolor: 'background.paper'}} className={styles.innerNav}>
             <Button size="small" color="secondary">
               Subscribe
             </Button>
-            <Typography
-              className={styles.logo}
-              component="a"
-              href="/"
-              variant="h4"
-              color="white"
-              align="center"
-              noWrap
-              sx={{
-                mr: 2,
-                display: { md: 'flex' },
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                color: 'inherit',
-                textDecoration: 'none',
-              }}
-            >
-              SOLEPOST
-            </Typography>
-
+           <Link href='/'> <img src={logo.src} height="100px" width="250px" /></Link>
             <div>
               <Link
                 color="inherit"
@@ -131,7 +112,7 @@ function Nav({ categories }) {
             </div>
           </Toolbar>
         ) : (
-          <Toolbar className={styles.innerNav}>
+          <Toolbar className={styles.innerNav} sx={{bgcolor: 'background.paper'}}>
             <MobileNav categories={categories} />
           </Toolbar>
         )}

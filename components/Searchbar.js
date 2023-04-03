@@ -1,8 +1,6 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { ThemeProvider } from 'styled-components';
-import { theme } from '../util/theme';
 import InputLabel from '@mui/material/InputLabel';
 import Input from '@mui/material/Input';
 import FormControl from '@mui/material/FormControl';
@@ -14,14 +12,11 @@ import SearchIcon from '@mui/icons-material/Search';
 
   export default function SearchField() {
     return ( //vv temporary vv remove box sx entirely when the searchbar color is figured out.
-      <Box component="form" noValidate sx={{bgcolor: 'background.paper',display: 'flex', alignItems: 'flex-end',float:'right'}}>
-        
-        <ThemeProvider theme={theme}>
-        
+      <Box component="form" noValidate sx={{display: 'flex', alignItems: 'flex-end',float:'right'}}>
+
           <TextField id="input-with-sx" label="Search" variant="filled"/> 
           <SearchIcon sx={{ color: 'action.active', mr: 1, my: 0.5, alignSelf:'center'}}/>
-        
-        </ThemeProvider>
+
       
       </Box>
     );

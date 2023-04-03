@@ -1,7 +1,7 @@
-import { Card, Typography, Box } from '@mui/material';
+import { Card, Typography, Box, Grid } from '@mui/material';
 import Image from './image';
 import Link from 'next/link';
-import { getStrapiMedia } from '@/lib/media';
+
 
 const ListedVideo = ({ article }) => {
   let capitalized = article.attributes.title

@@ -1,11 +1,14 @@
 import Moment from 'react-moment';
 import ReactMarkdown from 'react-markdown';
-import styles from '../../styles/Author.module.css'
+import styles from '../../styles/Author.module.css';
 import Seo from '../../components/seo';
 import Layout from '../../components/layout';
 import Link from 'next/link';
 import { fetchAPI } from '../../lib/api';
 import { getStrapiMedia } from '../../lib/media';
+import Typography from '@mui/material/Typography';
+import TagIcon from '@mui/icons-material/Tag';
+import { Card, Box, Grid } from '@mui/material';
 
 const Article = ({ article, categories }) => {
   const imageUrl = getStrapiMedia(article.attributes.image);
@@ -22,9 +25,25 @@ const Article = ({ article, categories }) => {
       <Seo seo={seo} />
 
       <div className={styles.banner}>
-      <img src={imageUrl}  />
+        <img src={imageUrl} />
       </div>
-      <h1 style={{textAlign:'center'}}>{article.attributes.title}</h1>
+      <Typography
+        variant="h2"
+        style={{ textAlign: 'center' }}
+        color="secondary.main"
+      >
+        {article.attributes.title.toUpperCase()}
+      </Typography>
+            <div align="center">
+              {article.attributes.youtubeURL && <iframe                
+                width="853"
+                height="480"
+                src={`${article.attributes.youtubeURL}`}
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title="Embedded youtube"
+              />}
+            </div>
       <div className="uk-section">
         <div className="uk-container uk-container-small">
           <ReactMarkdown children={article.attributes.content} />
@@ -42,7 +61,37 @@ const Article = ({ article, categories }) => {
                 <Moment format="MMM Do YYYY">
                   {article.attributes.published_at}
                 </Moment>
+                {console.log(article)}
               </p>
+              <div>
+                {article.attributes.category && (
+                  <Typography
+                    variant="h5"
+                    color="secondary"
+                    component={Link}
+                    href={`${article.attributes.category.data.attributes.slug}`}
+                  >
+                    {' '}
+                    {article.attributes.category.data.attributes.name}
+                  </Typography>
+                )}
+                <div>
+                  <TagIcon />
+                  {article.attributes.tags &&
+                    article.attributes.tags.data.map((tag) => {
+                      return (
+                        <Typography
+                          variant="p"
+                          color="secondary"
+                          component={Link}
+                          href={`${tag.attributes.slug}`}
+                        >
+                          {tag.attributes.name}
+                        </Typography>
+                      );
+                    })}
+                </div>
+              </div>
             </div>
           </div>
         </div>
