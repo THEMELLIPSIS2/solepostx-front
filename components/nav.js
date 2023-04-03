@@ -11,17 +11,13 @@ import MenuItem from '@mui/material/MenuItem';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { MobileNav } from './mobileNav.js';
 import logo from '../assets/logo2.png';
-import LightModeIcon from '@mui/icons-material/LightMode';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
-import { useStoredTheme } from '@/util/localStorage.js';
-import IconButton from '@mui/material/IconButton';
 
 function Nav({ categories,storedTheme }) {
   const [monthYear, setMonthYear] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const isMobile = useMediaQuery('(max-width:975px)');
-  const [curTheme,setCurTheme] = useState()
+ 
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -29,23 +25,13 @@ function Nav({ categories,storedTheme }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  function toggleTheme(){
-    if(curTheme === 'light'){ 
-      setCurTheme('dark')
-      localStorage.setItem('theme',JSON.stringify('dark'))
-    }
-    else{setCurTheme('light')
-  localStorage.setItem('theme',JSON.stringify('light'))
-  }
-    
-  }
 
   useEffect(() => {
     let year = new Date().getFullYear();
     let month = new Date().getMonth() + 1;
     if (month < 10) month = '0' + month;
     setMonthYear([month, year]);
-    setCurTheme(storedTheme)
+
   }, []);
 
   return (
@@ -127,17 +113,16 @@ function Nav({ categories,storedTheme }) {
             <div className={styles.search}>
               <Searchfield />
             </div>
-            <IconButton onClick={toggleTheme}>
-            {curTheme === 'light' ? <DarkModeIcon /> : <LightModeIcon/>}
-            </IconButton>
+            <div style={{width:'50px'}}>
+
+            </div>
+
           </Toolbar>
         ) : (
           <Toolbar className={styles.innerNav} sx={{bgcolor: 'background.paper'}}>
 
             <MobileNav categories={categories} />
-            <IconButton onClick={toggleTheme}>
-            {curTheme === 'light' ? <DarkModeIcon /> : <LightModeIcon/>}
-            </IconButton>
+<div style={{width:'50px'}}></div>
           </Toolbar>
         )}
         
