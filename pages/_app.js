@@ -4,7 +4,7 @@ import '../assets/css/style.css';
 import { createContext } from 'react';
 import { fetchAPI } from '../lib/api';
 import { getStrapiMedia } from '../lib/media';
-
+import {useStoredTheme }from '../util/localStorage.js'
 // Store Strapi Global object in context
 export const GlobalContext = createContext({});
 import '../styles/globals.css';
@@ -15,7 +15,13 @@ import Footer from '@/components/Footer';
 
 const MyApp = ({ Component, pageProps }) => {
   const { global } = pageProps;
-
+let storedTheme
+if(typeof window !== 'undefined'){
+  storedTheme = localStorage.getItem('theme')
+  if(!storedTheme){
+    localStorage.setItem('theme',JSON.stringify('dark'))
+  }
+}
   return (
     <>
       <Head>
@@ -26,11 +32,10 @@ const MyApp = ({ Component, pageProps }) => {
       </Head>
 
       <GlobalContext.Provider value={global.attributes}>
-        <ThemeProvider theme={darkTheme}>
+
           <CssBaseline />
           <Component {...pageProps} />
-          <Footer />
-        </ThemeProvider>
+
       </GlobalContext.Provider>
     </>
   );

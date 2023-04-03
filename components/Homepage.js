@@ -83,6 +83,26 @@ export const HomePage = ({ recents = [], features = [], video = [] }) => {
           <Button component={Link} href="/features" color='secondary'>
             More Featured
           </Button>
+          <VideocamIcon sx={{display:'block',marginLeft:'auto',marginRight:'auto',fontSize:'50px'}}/>
+          <Grid
+            container
+            justifyContent="center"
+            spacing={1}
+            sx={{ backgroundColor: '#737373', width: '100%', marginBottom:'50px'}}
+          >  
+
+            <Grid item xs={9} alignItems="center">
+              <div className={styles.frameContainer}>
+              <iframe
+                src={`${video[0].attributes.youtubeURL}`}
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title="Embedded youtube"
+                className={styles.iFrame}
+              />
+              </div>
+            </Grid>
+          </Grid>
         </div>
       )}
     </div>
