@@ -23,15 +23,17 @@ export const darkTheme = createTheme({
 });
 export const lightTheme = createTheme({
   palette: {
+    mode:'light',
     primary: {
       main: '#fff',
       contrastText: '#222222'
     },
     background: {
-      paper: '#dddddd'
+      paper: '#878787',
+      default:'#DFDFDF'
     },
     secondary: {
-      main: '#fff',
+      main: '#1A1A1A',
       contrastText:'#fff'
     },
     info: {
