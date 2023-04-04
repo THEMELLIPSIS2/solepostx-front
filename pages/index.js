@@ -4,7 +4,7 @@ import styles from '../styles/Home.module.css';
 import { HomePage } from '@/components/Homepage';
 import { fetchAPI } from '../lib/api';
 
-const Home = ({ articles, features, categories,video }) => {
+const Home = ({ articles, features, categories, video }) => {
   return (
     <Layout categories={categories}>
       <div className={styles.index}>
@@ -20,14 +20,14 @@ export async function getStaticProps() {
     [
       fetchAPI('/articles', {
         populate: '*',
-        filters: { featured: { $eq: 'false' }, youtubeURL: {$null:'true'} },
+        filters: { featured: { $eq: 'false' }, youtubeURL: { $null: 'true' } },
         publicationState: 'live',
         pagination: { limit: 4 },
         sort: 'createdAt:desc',
       }),
       fetchAPI('/articles', {
         populate: '*',
-        filters: { featured: { $eq: 'true' }, youtubeURL: {$null:'true'} },
+        filters: { featured: { $eq: 'true' }, youtubeURL: { $null: 'true' } },
         publicationState: 'live',
         pagination: { limit: 1 },
         sort: 'createdAt:desc',

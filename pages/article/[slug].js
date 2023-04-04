@@ -8,7 +8,7 @@ import { fetchAPI } from '../../lib/api';
 import { getStrapiMedia } from '../../lib/media';
 import Typography from '@mui/material/Typography';
 import TagIcon from '@mui/icons-material/Tag';
-import { Card, Box, Grid } from '@mui/material';
+import { FacebookShareButton, FacebookIcon, FacebookMessengerShareButton, TwitterShareButton,WhatsappShareButton,FacebookMessengerIcon,TwitterIcon,WhatsappIcon } from 'react-share';
 
 const Article = ({ article, categories }) => {
   const imageUrl = getStrapiMedia(article.attributes.image);
@@ -34,16 +34,18 @@ const Article = ({ article, categories }) => {
       >
         {article.attributes.title.toUpperCase()}
       </Typography>
-            <div align="center">
-              {article.attributes.youtubeURL && <iframe                
-                width="853"
-                height="480"
-                src={`${article.attributes.youtubeURL}`}
-                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title="Embedded youtube"
-              />}
-            </div>
+      <div align="center">
+        {article.attributes.youtubeURL && (
+          <iframe
+            width="853"
+            height="480"
+            src={`${article.attributes.youtubeURL}`}
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            title="Embedded youtube"
+          />
+        )}
+      </div>
       <div className="uk-section">
         <div className="uk-container uk-container-small">
           <ReactMarkdown children={article.attributes.content} />
@@ -53,7 +55,7 @@ const Article = ({ article, categories }) => {
             <div className="uk-width-expand">
               <p className="uk-margin-remove-bottom">
                 By{' '}
-                <Link href={`/authors/${article.attributes.id}`}>
+                <Link className={styles.link} href={`/authors/${article.attributes.author.data.id}`}>
                   {article.attributes.author.data.attributes.name}
                 </Link>
               </p>
@@ -61,28 +63,49 @@ const Article = ({ article, categories }) => {
                 <Moment format="MMM Do YYYY">
                   {article.attributes.published_at}
                 </Moment>
-                {console.log(article)}
-              </p>
-              <div>
+              </p>  
+              <FacebookShareButton
+                    url={`https://thesolepost.com/article/${article.attributes.slug}`}
+                    quote={'Check out this article from Solepost!'}
+                    hashtag={`#${article.attributes.category.data.attributes.name}`}
+                  >
+                    <FacebookIcon size={32} round />
+                  </FacebookShareButton>
+              <WhatsappShareButton
+                    url={`https://thesolepost.com/article/${article.attributes.slug}`}
+                    quote={'Check out this article from Solepost!'}
+                  >
+                    <WhatsappIcon size={32} round />
+                  </WhatsappShareButton>
+              <TwitterShareButton
+                    url={`https://thesolepost.com/article/${article.attributes.slug}`}
+                    quote={'Check out this article from Solepost!'}
+                    hashtag={`#${article.attributes.category.data.attributes.name}`}
+                  >
+                    <TwitterIcon size={32} round />
+                  </TwitterShareButton>
+              <div>                
                 {article.attributes.category && (
                   <Typography
                     variant="h5"
                     color="secondary"
                     component={Link}
+                    className={styles.link}
                     href={`${article.attributes.category.data.attributes.slug}`}
                   >
-                    {' '}
                     {article.attributes.category.data.attributes.name}
                   </Typography>
                 )}
                 <div>
                   <TagIcon />
+
                   {article.attributes.tags &&
                     article.attributes.tags.data.map((tag) => {
                       return (
                         <Typography
                           variant="p"
                           color="secondary"
+                          className={styles.link}
                           component={Link}
                           href={`${tag.attributes.slug}`}
                         >
@@ -90,6 +113,7 @@ const Article = ({ article, categories }) => {
                         </Typography>
                       );
                     })}
+
                 </div>
               </div>
             </div>

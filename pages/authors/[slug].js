@@ -8,20 +8,24 @@ import Typography from '@mui/material/Typography';
 const Author = ({ author, categories }) => {
   return (
     <Layout categories={categories.data}>
-      <div className={styles.main}> 
-      <div className={styles.outer}>
-        <div className={styles.header}>
-          <div className={styles.container}>
-            <img src={getStrapiMedia(author.attributes.picture)} />
+      <div className={styles.main}>
+        <div className={styles.outer}>
+          <div className={styles.header}>
+            <div className={styles.container}>
+              <img src={getStrapiMedia(author.attributes.picture)} />
+            </div>
+            <Typography
+              variant="h1"
+              color="secondary"
+              style={{ alignSelf: 'center' }}
+            >
+              {author.attributes.name}
+            </Typography>
           </div>
-
-          {console.log(author)}
-          <h1>{author.attributes.name}</h1>
-        </div>
-        <div className={styles.email}>
+          <div className={styles.email}>
             <small>{author.attributes.email}</small>
+          </div>
         </div>
-</div>
         {author.attributes.articles.data.map((article) => {
           return <ListedArticle article={article} key={article.id} />;
         })}

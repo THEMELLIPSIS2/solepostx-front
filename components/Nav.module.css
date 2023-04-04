@@ -16,7 +16,7 @@
 .search {
   margin-left: auto;
 }
-.link:hover{
-    color: rgb(200, 0, 0); 
-    text-decoration: underline;
+.link:hover {
+  color: rgb(200, 0, 0);
+  text-decoration: underline;
 }

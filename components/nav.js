@@ -12,12 +12,11 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { MobileNav } from './mobileNav.js';
 import logo from '../assets/logo2.png';
 
-function Nav({ categories,storedTheme }) {
+function Nav({ categories, storedTheme }) {
   const [monthYear, setMonthYear] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const isMobile = useMediaQuery('(max-width:975px)');
- 
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -31,7 +30,6 @@ function Nav({ categories,storedTheme }) {
     let month = new Date().getMonth() + 1;
     if (month < 10) month = '0' + month;
     setMonthYear([month, year]);
-
   }, []);
 
   return (
@@ -42,11 +40,17 @@ function Nav({ categories,storedTheme }) {
         className={styles.nav}
       >
         {!isMobile ? (
-          <Toolbar sx={{bgcolor: 'background.paper'}} className={styles.innerNav}>
+          <Toolbar
+            sx={{ bgcolor: 'background.paper' }}
+            className={styles.innerNav}
+          >
             <Button size="small" color="secondary">
               Subscribe
             </Button>
-           <Link href='/'> <img src={logo.src} height="100px" width="250px" /></Link>
+            <Link href="/">
+              {' '}
+              <img src={logo.src} height="100px" width="250px" />
+            </Link>
             <div>
               <Link
                 color="inherit"
@@ -113,19 +117,17 @@ function Nav({ categories,storedTheme }) {
             <div className={styles.search}>
               <Searchfield />
             </div>
-            <div style={{width:'50px'}}>
-
-            </div>
-
+            <div style={{ width: '50px' }}></div>
           </Toolbar>
         ) : (
-          <Toolbar className={styles.innerNav} sx={{bgcolor: 'background.paper'}}>
-
+          <Toolbar
+            className={styles.innerNav}
+            sx={{ bgcolor: 'background.paper' }}
+          >
             <MobileNav categories={categories} />
-<div style={{width:'50px'}}></div>
+            <div style={{ width: '50px' }}></div>
           </Toolbar>
         )}
-        
       </AppBar>
     </div>
   );

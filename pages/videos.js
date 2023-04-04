@@ -16,7 +16,7 @@ export async function getStaticProps() {
   return {
     props: {
       articles: featuredRes.data,
-      categories:categoriesRes.data
+      categories: categoriesRes.data,
     },
     revalidate: 1,
   };

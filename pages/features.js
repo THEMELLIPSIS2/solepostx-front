@@ -16,18 +16,20 @@ export async function getStaticProps() {
   return {
     props: {
       articles: featuredRes.data,
-      categories:categoriesRes.data
+      categories: categoriesRes.data,
     },
     revalidate: 1,
   };
 }
 
-const Featured = ({ articles,categories }) => {
+const Featured = ({ articles, categories }) => {
   return (
     <Layout categories={categories}>
       <div className="uk-section">
         <div className="uk-container uk-container-large">
-        <Typography variant='h2' color='secondary.main'>FEATURED</Typography>
+          <Typography variant="h2" color="secondary.main">
+            FEATURED
+          </Typography>
           {articles.map((article) => {
             return <ListedArticle article={article} key={article.title} />;
           })}

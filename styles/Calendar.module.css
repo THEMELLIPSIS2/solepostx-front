@@ -1,10 +1,10 @@
 .container {
-    text-align: center;
-    margin: 40px;
+  text-align: center;
+  margin: 40px;
 }
 .calendar {
-    width:60% !important;
+  width: 60% !important;
 }
 .container button {
-    height:60px !important
+  height: 60px !important;
 }
