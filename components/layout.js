@@ -7,17 +7,51 @@ import Footer from '@/components/Footer';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import IconButton from '@mui/material/IconButton';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+
 const Layout = ({ children, categories, seo }) => {
+  const isBrowser = () => typeof window !== 'undefined';
   let [storedTheme, setStoredTheme] = useState();
+  const [showButton, setShowButton] = useState(false);
+
+
+  // scroll to top button
+  const handleShowButton = () => {
+    if (isBrowser()) {
+      if (!showButton && window.scrollY > 200) {
+        setShowButton(true);
+        return;
+      }
+      if (!showButton && window.scrollY <= 200) {
+        setShowButton(false);
+        return;
+      }
+    }
+  };
+  if (isBrowser()) window.addEventListener('scroll', handleShowButton);
+
+  useEffect(() => {
+    if (isBrowser()) {
+      return window.removeEventListener('scroll', handleShowButton);
+    }
+  });
+
+  function scrollToTop() {
+    if (!isBrowser()) return;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // theme logic
 
   useEffect(() => {
     let theme = JSON.parse(localStorage.getItem('theme'));
     if (!theme) {
       localStorage.setItem('theme', JSON.stringify('dark'));
     }
+
     setStoredTheme(theme);
-  });
+  }, []);
 
   function toggleTheme() {
     if (storedTheme === 'light') {
@@ -45,7 +79,23 @@ const Layout = ({ children, categories, seo }) => {
           >
             {storedTheme === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
           </IconButton>
+          {showButton && (
+            <IconButton
+              onClick={scrollToTop}
+              sx={{
+                position: 'fixed',
+                bottom: '30px',
+                right: '10px',
+                backgroundColor: 'secondary.contrastText',
+                zIndex: '9999',
+              }}
+            >
+              <ArrowUpwardIcon />
+            </IconButton>
+          )}
+
           {children}
+
           <Footer />
         </ThemeProvider>
       )}

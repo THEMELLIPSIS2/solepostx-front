@@ -99,6 +99,7 @@ export const HomePage = ({ recents = [], features = [], video = [] }) => {
                 varaint="h6"
                 component={Link}
                 href={`/article/${video[0].attributes.slug}`}
+                style={{display:'block'}}
               >
                 {video[0].attributes.title}
               </Typography>
