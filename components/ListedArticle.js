@@ -1,8 +1,8 @@
 import { Card, Typography, Box } from '@mui/material';
 import Image from './image';
 import Link from 'next/link';
-import { getStrapiMedia } from '@/lib/media';
 import styles from './layout.module.css';
+import { getStrapiMedia } from '../lib/media';
 
 const ListedArticle = ({ article }) => {
   let capitalized = article.attributes.title
@@ -11,7 +11,7 @@ const ListedArticle = ({ article }) => {
       return word[0].toUpperCase() + word.substring(1);
     })
     .join(' ');
-  let category = article.attributes.category.data
+  let category = article.attributes.category
     ? article.attributes.category.data.attributes.name
     : null;
 

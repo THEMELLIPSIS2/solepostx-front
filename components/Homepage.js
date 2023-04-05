@@ -1,7 +1,5 @@
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import Paper from '@mui/material/Paper';
-import { useState, useEffect } from 'react';
 import styles from './Homepage.module.css';
 import { Card } from './card';
 import Link from 'next/link';

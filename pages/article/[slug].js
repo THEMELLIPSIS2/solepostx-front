@@ -8,7 +8,16 @@ import { fetchAPI } from '../../lib/api';
 import { getStrapiMedia } from '../../lib/media';
 import Typography from '@mui/material/Typography';
 import TagIcon from '@mui/icons-material/Tag';
-import { FacebookShareButton, FacebookIcon, FacebookMessengerShareButton, TwitterShareButton,WhatsappShareButton,FacebookMessengerIcon,TwitterIcon,WhatsappIcon } from 'react-share';
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  FacebookMessengerShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+  FacebookMessengerIcon,
+  TwitterIcon,
+  WhatsappIcon,
+} from 'react-share';
 
 const Article = ({ article, categories }) => {
   const imageUrl = getStrapiMedia(article.attributes.image);
@@ -55,7 +64,10 @@ const Article = ({ article, categories }) => {
             <div className="uk-width-expand">
               <p className="uk-margin-remove-bottom">
                 By{' '}
-                <Link className={styles.link} href={`/authors/${article.attributes.author.data.id}`}>
+                <Link
+                  className={styles.link}
+                  href={`/authors/${article.attributes.author.data.id}`}
+                >
                   {article.attributes.author.data.attributes.name}
                 </Link>
               </p>
@@ -63,35 +75,35 @@ const Article = ({ article, categories }) => {
                 <Moment format="MMM Do YYYY">
                   {article.attributes.published_at}
                 </Moment>
-              </p>  
+              </p>
               <FacebookShareButton
-                    url={`https://thesolepost.com/article/${article.attributes.slug}`}
-                    quote={'Check out this article from Solepost!'}
-                    hashtag={`#${article.attributes.category.data.attributes.name}`}
-                  >
-                    <FacebookIcon size={32} round />
-                  </FacebookShareButton>
+                url={`https://thesolepost.com/article/${article.attributes.slug}`}
+                quote={'Check out this article from Solepost!'}
+                hashtag={`#${article.attributes.category.data.attributes.name}`}
+              >
+                <FacebookIcon size={32} round />
+              </FacebookShareButton>
               <WhatsappShareButton
-                    url={`https://thesolepost.com/article/${article.attributes.slug}`}
-                    quote={'Check out this article from Solepost!'}
-                  >
-                    <WhatsappIcon size={32} round />
-                  </WhatsappShareButton>
+                url={`https://thesolepost.com/article/${article.attributes.slug}`}
+                quote={'Check out this article from Solepost!'}
+              >
+                <WhatsappIcon size={32} round />
+              </WhatsappShareButton>
               <TwitterShareButton
-                    url={`https://thesolepost.com/article/${article.attributes.slug}`}
-                    quote={'Check out this article from Solepost!'}
-                    hashtag={`#${article.attributes.category.data.attributes.name}`}
-                  >
-                    <TwitterIcon size={32} round />
-                  </TwitterShareButton>
-              <div>                
+                url={`https://thesolepost.com/article/${article.attributes.slug}`}
+                quote={'Check out this article from Solepost!'}
+                hashtag={`#${article.attributes.category.data.attributes.name}`}
+              >
+                <TwitterIcon size={32} round />
+              </TwitterShareButton>
+              <div>
                 {article.attributes.category && (
                   <Typography
                     variant="h5"
                     color="secondary"
                     component={Link}
                     className={styles.link}
-                    href={`${article.attributes.category.data.attributes.slug}`}
+                    href={`/category/${article.attributes.category.data.attributes.slug}`}
                   >
                     {article.attributes.category.data.attributes.name}
                   </Typography>
@@ -107,13 +119,12 @@ const Article = ({ article, categories }) => {
                           color="secondary"
                           className={styles.link}
                           component={Link}
-                          href={`${tag.attributes.slug}`}
+                          href={`/category/${article.attributes.category.data.attributes.slug}/tag/${tag.attributes.slug}`}
                         >
                           {tag.attributes.name}
                         </Typography>
                       );
                     })}
-
                 </div>
               </div>
             </div>
