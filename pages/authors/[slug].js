@@ -5,26 +5,86 @@ import { fetchAPI } from '../../lib/api';
 import { useRouter } from 'next/router';
 import styles from '../../styles/Author.module.css';
 import Typography from '@mui/material/Typography';
-const Author = ({ author, categories }) => {
+import { useState, useEffect } from 'react';
+import InfiniteScroll from 'react-infinite-scroll-component';
+
+const Author = ({ author, categories, count }) => {
+  const router = useRouter();
+  const { slug } = router.query;
+  const [posts, setPosts] = useState(author.attributes.articles.data);
+  const [hasMore, setHasMore] = useState(true);
+  const getMorePosts = async () => {
+    const res = await fetchAPI('/writers', {
+      filters: { id: slug },
+      populate: {
+        articles: {
+          populate: '*',
+          start: posts.length,
+          limit: 10,
+        },
+      },
+    });
+    const newPosts = await res.data[0];
+    setPosts([...posts, ...newPosts.attributes.articles.data]);
+    console.log(posts);
+  };
+
+  useEffect(() => {
+    setHasMore(
+      count.attributes.articles.data.attributes.count > posts.length
+        ? true
+        : false
+    );
+  }, [posts]);
   return (
     <Layout categories={categories.data}>
-      <div className={styles.main}> 
-      <div className={styles.outer}>
-        <div className={styles.header}>
-          <div className={styles.container}>
-            <img src={getStrapiMedia(author.attributes.picture)} />
+      <div className={styles.main}>
+        <div className={styles.outer}>
+          <div className={styles.header}>
+            <div className={styles.container}>
+              {console.log(count)}
+              <img src={getStrapiMedia(author.attributes.picture)} />
+            </div>
+            <Typography
+              variant="h1"
+              color="secondary"
+              style={{ alignSelf: 'center' }}
+            >
+              {author.attributes.name}
+            </Typography>
           </div>
-
-          {console.log(author)}
-          <h1>{author.attributes.name}</h1>
-        </div>
-        <div className={styles.email}>
+          <div className={styles.email}>
             <small>{author.attributes.email}</small>
+          </div>
         </div>
-</div>
-        {author.attributes.articles.data.map((article) => {
-          return <ListedArticle article={article} key={article.id} />;
-        })}
+        <InfiniteScroll
+          dataLength={posts.length}
+          next={getMorePosts}
+          hasMore={hasMore}
+          loader={
+            <Typography
+              variant="h4"
+              color="secondary"
+              style={{ textAlign: 'center' }}
+            >
+              Loading...
+            </Typography>
+          }
+          endMessage={
+            <Typography
+              variant="h4"
+              color="secondary"
+              style={{ textAlign: 'center' }}
+            >
+              End
+            </Typography>
+          }
+          style={{ overflow: 'hidden' }}
+        >
+          {posts.map((article) => {
+            return <ListedArticle article={article} key={article.id} />;
+          })}
+        </InfiniteScroll>
       </div>
     </Layout>
   );
@@ -36,8 +96,17 @@ export async function getServerSideProps({ params }) {
     populate: {
       articles: {
         populate: '*',
+        limit: 10,
       },
       picture: true,
+    },
+  });
+  const count = await fetchAPI('/writers', {
+    filters: { id: params.slug },
+    populate: {
+      articles: {
+        count: true,
+      },
     },
   });
   const allCategories = await fetchAPI('/categories', {
@@ -48,6 +117,7 @@ export async function getServerSideProps({ params }) {
     props: {
       author: matchingAuthors.data[0],
       categories: allCategories,
+      count: count.data[0],
     },
   };
 }

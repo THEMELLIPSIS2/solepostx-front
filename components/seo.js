@@ -7,14 +7,14 @@ const Seo = ({ seo }) => {
   const { defaultSeo, siteName } = useContext(GlobalContext);
   const seoWithDefaults = {
     ...defaultSeo,
-    ...seo
+    ...seo,
   };
   const fullSeo = {
     ...seoWithDefaults,
     // Add title suffix
     metaTitle: `${seoWithDefaults.metaTitle} | ${siteName}`,
     // Get full image URL
-    shareImage: getStrapiMedia(seoWithDefaults.shareImage)
+    shareImage: getStrapiMedia(seoWithDefaults.shareImage),
   };
 
   return (

@@ -1,8 +1,8 @@
 import { Card, Typography, Box } from '@mui/material';
 import Image from './image';
 import Link from 'next/link';
-import { getStrapiMedia } from '@/lib/media';
-import styles from './layout.module.css'
+import styles from './layout.module.css';
+import { getStrapiMedia } from '../lib/media';
 
 const ListedArticle = ({ article }) => {
   let capitalized = article.attributes.title
@@ -11,7 +11,9 @@ const ListedArticle = ({ article }) => {
       return word[0].toUpperCase() + word.substring(1);
     })
     .join(' ');
-   let category = article.attributes.category.data ? article.attributes.category.data.attributes.name : null;
+  let category = article.attributes.category
+    ? article.attributes.category.data.attributes.name
+    : null;
 
   let date = new Date(article.attributes.publishedAt);
   return (
@@ -23,7 +25,7 @@ const ListedArticle = ({ article }) => {
         gap: 2,
         flexDirection: { xs: 'column', sm: 'row' },
         textAlign: {},
-        color:'secondary.main'
+        color: 'secondary.main',
       }}
       className={styles.card}
     >
@@ -38,15 +40,22 @@ const ListedArticle = ({ article }) => {
           flexDirection: 'column',
           p: { xs: 1, sm: 0 },
           height: '100%',
-          gap: 1
+          gap: 1,
         }}
       >
-        {category && 
-        <Link href={`/category/${article.attributes.category.data.attributes.slug}`}>
-          <Typography variant="subtitle2" color='secondary'>{category.toUpperCase()}</Typography>
-        </Link> }
+        {category && (
+          <Link
+            href={`/category/${article.attributes.category.data.attributes.slug}`}
+          >
+            <Typography variant="subtitle2" color="secondary">
+              {category.toUpperCase()}
+            </Typography>
+          </Link>
+        )}
         <Link href={`/article/${article.attributes.slug}`}>
-          <Typography variant="h5" color='secondary'>{capitalized}</Typography>
+          <Typography variant="h5" color="secondary">
+            {capitalized}
+          </Typography>
         </Link>
         <Typography variant="caption">
           {date.toDateString().toUpperCase()}

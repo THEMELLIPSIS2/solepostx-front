@@ -4,6 +4,7 @@ import styles from './Homepage.module.css';
 import Link from 'next/link';
 import { getStrapiMedia } from '../lib/media';
 import { useEffect, useState } from 'react';
+import Image from './image';
 
 export const Card = ({ article }) => {
   let [date, setDate] = useState();
@@ -24,9 +25,9 @@ export const Card = ({ article }) => {
           <Typography className={styles.header} variant="h6">
             {capitalized}
           </Typography>
-          <img
+          <Image
             className={styles.image}
-            src={getStrapiMedia(article.attributes.image)}
+          image={article.attributes.image}
           />
         </Link>
         <div className={styles.bottom}>

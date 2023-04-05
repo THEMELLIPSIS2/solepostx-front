@@ -86,7 +86,6 @@ const Home = ({ articles, categories }) => {
 };
 
 export async function getServerSideProps({ params }) {
-
   const [articlesRes, categoriesRes] = await Promise.all([
     fetchAPI('/articles', {
       populate: '*',
