@@ -31,10 +31,8 @@ const Videos = ({ articles, categories }) => {
     <Layout categories={categories}>
       <div className="uk-section">
         <div className="uk-container uk-container-large">
-          {/* <Typography variant="h1" color="secondary">
-            Videos
-          </Typography> */}
-          <div style={{height:'700px'}}>
+
+          <div style={{minHeight:'700px'}}>
 <Playlist videos={articles.data.slice(0,5)} />
 </div>
           <InfiniteScroll

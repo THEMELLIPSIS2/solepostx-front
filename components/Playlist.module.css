@@ -23,20 +23,3 @@
     margin-bottom: 10px;
     width:98%;
   }
-.imgContainer{
-    position:relative;
-}
-.imgContainer .img {
-    display:block;
-
-}
-.imgContainer .play {
-    position:absolute;
-    top:0;
-    bottom: 0;
-    right:0;
-    left:0;
-    display:block;
-    margin:auto;
-    font-size:70px
-}

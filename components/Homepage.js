@@ -148,7 +148,18 @@ export const HomePage = ({ recents = [], features = [], video = [] }) => {
                 />
               </div>
             </Grid>
-          </Grid>
+
+          </Grid>            <Grid item xs={3} className={styles.recent} alignItems="center">
+              {rightRecents.map((article) => {
+                return (
+                  <Card
+                    article={article}
+                    key={article.id}
+                    className={styles.card}
+                  />
+                );
+              })}
+            </Grid>
         </div>
       )}
     </div>
