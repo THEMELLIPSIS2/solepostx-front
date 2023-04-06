@@ -5,6 +5,8 @@ import { Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import {Playlist} from '../components/playlist'
+
 
 const Videos = ({ articles, categories }) => {
   const [posts, setPosts] = useState(articles.data);
@@ -29,9 +31,10 @@ const Videos = ({ articles, categories }) => {
     <Layout categories={categories}>
       <div className="uk-section">
         <div className="uk-container uk-container-large">
-          <Typography variant="h1" color="secondary">
-            Videos
-          </Typography>
+
+          <div style={{minHeight:'700px'}}>
+<Playlist videos={articles.data.slice(0,5)} />
+</div>
           <InfiniteScroll
             dataLength={posts.length}
             next={getMorePosts}

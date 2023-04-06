@@ -1,0 +1,25 @@
+.frameContainer {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%;
+  }
+  
+  .iFrame {
+    position: absolute;
+    top: 2%;
+    bottom: 0;
+    left:2%;
+    right:0;
+    width: 95%;
+    height: 90%;
+  }
+  
+  .link:hover {
+    color:rgb(167, 0, 0)
+  }
+
+  .thumbnail {
+    margin-bottom: 10px;
+    width:98%;
+  }
