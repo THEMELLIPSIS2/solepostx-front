@@ -38,7 +38,6 @@ function Footer() {
             align="left"
             color="inherit"
             component="p"
-            sx={{ display: 'flex', justifyContent: 'space-between' }}
             className={styles.footer}
           >
             <Link

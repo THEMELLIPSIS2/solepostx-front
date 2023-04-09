@@ -37,6 +37,7 @@ const CateTag = ({ catetags, categories, count }) => {
           <Typography variant="h4" color="secondary">
             {tag}
           </Typography>
+          {posts.length === 0 && 'No articles yet!'}
           <InfScroll
             count={count.attributes.articles.data.attributes.count}
             posts={posts}

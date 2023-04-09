@@ -118,7 +118,7 @@ const Article = ({ article, categories }) => {
                           color="secondary"
                           className={styles.link}
                           component={Link}
-                          href={`/category/${article.attributes.category.data.attributes.slug}/tag/${tag.attributes.slug}`}
+                          href={`/tag/${tag.attributes.slug}`}
                         >
                           {tag.attributes.name}
                         </Typography>

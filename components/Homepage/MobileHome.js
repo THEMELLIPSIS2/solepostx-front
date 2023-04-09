@@ -4,12 +4,12 @@ import styles from './Homepage.module.css';
 import { Card } from './card';
 import Link from 'next/link';
 import VideocamIcon from '@mui/icons-material/Videocam';
-
+import Typography from '@mui/material/Typography';
 
 
 export default function MobileHome ({video,features,recents}) {
     return (
-        <div className={styles.mobileFeature}>
+        <div className={styles.mobileHome}>
         
     {features.map((article) => {
       return <Card article={article} key={article.id} />;
@@ -41,7 +41,7 @@ export default function MobileHome ({video,features,recents}) {
       }}
     >
       <Grid item xs={9} alignItems="center">
-        <div className={styles.frameContainer}>
+        <div className={styles.frameContainer} >
           <iframe
             src={`${video[0].attributes.youtubeURL}`}
             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -50,6 +50,24 @@ export default function MobileHome ({video,features,recents}) {
             className={styles.iFrame}
           />
         </div>
+        <Typography
+                className={styles.link}
+                varaint="h6"
+                component={Link}
+                href={`/article/${video[0].attributes.slug}`}
+                style={{ display: 'block' }}
+              >
+                {video[0].attributes.title}
+              </Typography>
+              <Button
+                component={Link}
+                href="/videos"
+                size="large"
+                color="secondary"
+                className={styles.link}
+              >
+                See more
+              </Button>
       </Grid>
     </Grid>{' '}
     <Grid item xs={3} alignItems="center">

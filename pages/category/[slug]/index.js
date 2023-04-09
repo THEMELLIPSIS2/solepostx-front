@@ -41,6 +41,7 @@ const Category = ({ category, categories, count }) => {
           <Typography variant="h2" color="secondary.main">
             {category.attributes.name.toUpperCase()}
           </Typography>
+          {posts.length === 0 && 'No articles yet!'}
             <InfScroll count={count.attributes.articles.data.attributes.count} posts={posts} getMorePosts={getMorePosts}/>
         </div>
       </div>

@@ -41,6 +41,7 @@ const Tag = ({ tag, categories, count }) => {
           <Typography variant="h2" color="secondary.main">
             {tag.attributes.name.toUpperCase()}
           </Typography>
+          {posts.length === 0 && 'No articles yet!'}
           <InfScroll
             getMorePosts={getMorePosts}
             count={count.attributes.articles.data.attributes.count}

@@ -24,15 +24,17 @@ export function Playlist({ videos }) {
           >
             {picked.attributes.title.toUpperCase()}
           </Typography>
-          <Paper className={styles.frameContainer} style={{ height: '600px' }}>
-            <iframe
-              key={picked.id}
-              src={`${picked.attributes.youtubeURL}`}
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              title="Embedded youtube"
-              className={styles.iFrame}
-            />
+          <Paper style={{ maxHeight: '600px' }}>
+            <div className={styles.frameContainer}>
+              <iframe
+                key={picked.id}
+                src={`${picked.attributes.youtubeURL}`}
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title="Embedded youtube"
+                className={styles.iFrame}
+              />
+            </div>
           </Paper>
         </Grid>
 
@@ -52,30 +54,32 @@ export function Playlist({ videos }) {
               .join(' ');
             return (
               <Paper
-                key={video.id}
-                className={styles.frameContainer}
-                onClick={() => pickNew(video)}
-                onKeyDown={() => pickNew(video)}
-                style={{ cursor: 'pointer', height: '400px' }}
-                component="button"
+                style={{
+                  cursor: 'pointer',
+
+                  border: video.id === picked.id ? '2px solid red' : 'none',
+                }}
               >
-                <iframe
-                  width="853"
-                  height="460"
-                  src={`${video.attributes.youtubeURL}`}
-                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  title="Embedded youtube"
-                  className={styles.iFrame}
-                  key={video.id}
-                  style={{ pointerEvents: 'none' }}
-                  tabIndex="-1"
-                />
-                <Typography
-                  variant="h6"
-                  color="secondary"
-                  style={{ position: 'absolute', bottom: 0, left: 10 }}
+                <div
+                  className={styles.frameContainer}
+                  onClick={() => pickNew(video)}
+                  onKeyDown={() => pickNew(video)}
+                  component="button"
                 >
+                  <iframe
+                    width="853"
+                    height="460"
+                    src={`${video.attributes.youtubeURL}`}
+                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    title="Embedded youtube"
+                    className={styles.iFrame}
+                    key={video.id}
+                    style={{ pointerEvents: 'none' }}
+                    tabIndex="-1"
+                  />
+                </div>
+                <Typography variant="h6" color="secondary">
                   {capitalized}
                 </Typography>
               </Paper>

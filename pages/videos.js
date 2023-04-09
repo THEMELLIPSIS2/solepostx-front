@@ -26,6 +26,7 @@ const Videos = ({ articles, categories }) => {
           <div style={{ minHeight: '700px' }}>
             <Playlist videos={articles.data.slice(0, 5)} />
           </div>
+          {posts.length === 0 && 'No articles yet!'}
           <InfScroll
             count={articles.meta.pagination.total}
             getMorePosts={getMorePosts}

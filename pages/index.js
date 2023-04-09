@@ -33,7 +33,7 @@ export async function getStaticProps() {
       }),
       fetchAPI('/categories', { filters: { isBrand: { $eq: 'true' } } }),
       fetchAPI('/articles', {
-        filters: { youtubeURL: { $notNull: 'true' } },
+        filters: { youtubeURL: { $notNull: 'true' }, featured: {$eq:'true'} },
         pagination: { limit: 1 },
         sort: 'createdAt:desc',
       }),

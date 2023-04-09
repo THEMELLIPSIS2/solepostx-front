@@ -93,9 +93,9 @@ const Layout = ({ children, categories, seo }) => {
               <ArrowUpwardIcon />
             </IconButton>
           )}
-
+<div style={{minHeight:'100vh'}}>
           {children}
-
+</div>
           <Footer />
         </ThemeProvider>
       )}

@@ -61,6 +61,8 @@ const Home = ({ articles, categories }) => {
               label={'MM YYYY'}
               views={['month', 'year']}
               className={styles.calendar}
+              minDate={dayjs('2000-01-01')}
+              maxDate={dayjs('2030-01-01')}
             />
           </LocalizationProvider>
           <Button onClick={handleClick} color="secondary">
@@ -80,7 +82,7 @@ const Home = ({ articles, categories }) => {
               );
             })
           ) : (
-            <div>No release dates this month!</div>
+            <div>No release dates on this month!</div>
           )}
         </div>
       </div>
@@ -96,7 +98,7 @@ export async function getServerSideProps({ params }) {
         releaseMonthYear: params.date,
       },
       publicationState: 'live',
-      sort: 'releaseDate:asc',
+      sort: 'releaseDate:desc',
     }),
     fetchAPI('/categories', { filters: { isBrand: { $eq: 'true' } } }),
   ]);
