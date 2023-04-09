@@ -1,18 +1,22 @@
 import { getStrapiMedia } from '../../lib/media';
-import Layout from '../../components/layout';
-import ListedArticle from '../../components/ListedArticle';
+import Layout from '../../components/Layout';
 import { fetchAPI } from '../../lib/api';
 import { useRouter } from 'next/router';
 import styles from '../../styles/Author.module.css';
 import Typography from '@mui/material/Typography';
-import { useState, useEffect } from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
-
+import { useState } from 'react';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import IconButton from '@mui/material/IconButton';
+import Link from '@mui/material/Link';
+import InfScroll from '../../components/InfiniteScroll'
 const Author = ({ author, categories, count }) => {
   const router = useRouter();
   const { slug } = router.query;
   const [posts, setPosts] = useState(author.attributes.articles.data);
-  const [hasMore, setHasMore] = useState(true);
+
+
   const getMorePosts = async () => {
     const res = await fetchAPI('/writers', {
       filters: { id: slug },
@@ -21,28 +25,20 @@ const Author = ({ author, categories, count }) => {
           populate: '*',
           start: posts.length,
           limit: 10,
+          sort: 'createdAt:desc',
         },
       },
     });
     const newPosts = await res.data[0];
     setPosts([...posts, ...newPosts.attributes.articles.data]);
-    console.log(posts);
   };
 
-  useEffect(() => {
-    setHasMore(
-      count.attributes.articles.data.attributes.count > posts.length
-        ? true
-        : false
-    );
-  }, [posts]);
   return (
     <Layout categories={categories.data}>
       <div className={styles.main}>
         <div className={styles.outer}>
           <div className={styles.header}>
             <div className={styles.container}>
-              {console.log(count)}
               <img src={getStrapiMedia(author.attributes.picture)} />
             </div>
             <Typography
@@ -55,36 +51,37 @@ const Author = ({ author, categories, count }) => {
           </div>
           <div className={styles.email}>
             <small>{author.attributes.email}</small>
+            {author.attributes.youtube && (
+              <IconButton
+                IconButton
+                component={Link}
+                className={styles.link}
+                href={`https://youtube.com/@${author.attributes.youtube}`}
+              >
+                <YouTubeIcon />
+              </IconButton>
+            )}
+            {author.attributes.Instagram && (
+              <IconButton
+                component={Link}
+                className={styles.link}
+                href={`https://instagram.com/${author.attributes.Instagram}`}
+              >
+                <InstagramIcon />
+              </IconButton>
+            )}
+            {author.attributes.Twitter && (
+              <IconButton
+                component={Link}
+                className={styles.link}
+                href={`https://twittter.com/${author.attributes.Twitter}`}
+              >
+                <TwitterIcon />
+              </IconButton>
+            )}
           </div>
         </div>
-        <InfiniteScroll
-          dataLength={posts.length}
-          next={getMorePosts}
-          hasMore={hasMore}
-          loader={
-            <Typography
-              variant="h4"
-              color="secondary"
-              style={{ textAlign: 'center' }}
-            >
-              Loading...
-            </Typography>
-          }
-          endMessage={
-            <Typography
-              variant="h4"
-              color="secondary"
-              style={{ textAlign: 'center' }}
-            >
-              End
-            </Typography>
-          }
-          style={{ overflow: 'hidden' }}
-        >
-          {posts.map((article) => {
-            return <ListedArticle article={article} key={article.id} />;
-          })}
-        </InfiniteScroll>
+        <InfScroll getMorePosts={getMorePosts} count={count.attributes.articles.data.attributes.count} posts={posts}/>
       </div>
     </Layout>
   );
@@ -97,6 +94,7 @@ export async function getServerSideProps({ params }) {
       articles: {
         populate: '*',
         limit: 10,
+        sort: 'createdAt:desc',
       },
       picture: true,
     },

@@ -1,11 +1,10 @@
 import Seo from '../../../components/seo';
-import Layout from '../../../components/layout';
-import ListedArticle from '../../../components/ListedArticle';
+import Layout from '../../../components/Layout';
 import { fetchAPI } from '../../../lib/api';
 import Typography from '@mui/material/Typography';
-import { useState, useEffect } from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
+import InfScroll from '@/components/InfiniteScroll';
 
 const Category = ({ category, categories, count }) => {
   const seo = {
@@ -16,7 +15,7 @@ const Category = ({ category, categories, count }) => {
   const router = useRouter();
   const { slug } = router.query;
   const [posts, setPosts] = useState(category.attributes.articles.data);
-  const [hasMore, setHasMore] = useState(true);
+
   const getMorePosts = async () => {
     const res = await fetchAPI('/categories', {
       filters: { slug: slug.split('/')[0] },
@@ -25,21 +24,14 @@ const Category = ({ category, categories, count }) => {
           populate: '*',
           start: posts.length,
           limit: 10,
+          sort: 'createdAt:desc',
         },
       },
     });
     const newPosts = await res.data[0];
     setPosts([...posts, ...newPosts.attributes.articles.data]);
-    console.log(posts);
   };
 
-  useEffect(() => {
-    setHasMore(
-      count.attributes.articles.data.attributes.count > posts.length
-        ? true
-        : false
-    );
-  }, [posts]);
 
   return (
     <Layout categories={categories.data}>
@@ -49,34 +41,7 @@ const Category = ({ category, categories, count }) => {
           <Typography variant="h2" color="secondary.main">
             {category.attributes.name.toUpperCase()}
           </Typography>
-          <InfiniteScroll
-            dataLength={posts.length}
-            next={getMorePosts}
-            hasMore={hasMore}
-            loader={
-              <Typography
-                variant="h4"
-                color="secondary"
-                style={{ textAlign: 'center' }}
-              >
-                Loading...
-              </Typography>
-            }
-            endMessage={
-              <Typography
-                variant="h4"
-                color="secondary"
-                style={{ textAlign: 'center' }}
-              >
-                End
-              </Typography>
-            }
-            style={{ overflow: 'hidden' }}
-          >
-            {posts.map((article) => {
-              return <ListedArticle article={article} key={article.id} />;
-            })}
-          </InfiniteScroll>
+            <InfScroll count={count.attributes.articles.data.attributes.count} posts={posts} getMorePosts={getMorePosts}/>
         </div>
       </div>
     </Layout>
@@ -90,6 +55,7 @@ export async function getServerSideProps({ params }) {
       articles: {
         populate: '*',
         limit: 10,
+        sort: 'createdAt:desc',
       },
     },
   });

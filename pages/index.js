@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../components/layout';
+import Layout from '../components/Layout';
 import styles from '../styles/Home.module.css';
 import { HomePage } from '@/components/Homepage';
 import { fetchAPI } from '../lib/api';
@@ -15,7 +15,6 @@ const Home = ({ articles, features, categories, video }) => {
 };
 
 export async function getStaticProps() {
-  // Run API calls in parallel
   const [articlesRes, featuredRes, categoriesRes, videoRes] = await Promise.all(
     [
       fetchAPI('/articles', {

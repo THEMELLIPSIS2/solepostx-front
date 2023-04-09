@@ -8,7 +8,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import styles from './Footer.module.css';
-import logo from '../assets/lgo3.png';
+import logo from '../../assets/lgo3.png';
 
 function Copyright() {
   return (
@@ -31,7 +31,7 @@ function Copyright() {
 function Footer() {
   return (
     <Box component="footer" sx={{ bgcolor: 'background.paper', py: 3 }}>
-      <Container maxWidth="lg">
+      <Container>
         <img src={logo.src} width="90px" />
         <Box align="left" sx={{ display: 'flex', float: 'left' }}>
           <Box

@@ -1,7 +1,6 @@
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Searchfield from './Searchbar.js';
 import styles from './Nav.module.css';
@@ -10,13 +9,13 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { MobileNav } from './mobileNav.js';
-import logo from '../assets/logo2.png';
+import logo from '../../assets/logo2.png';
 
 function Nav({ categories, storedTheme }) {
   const [monthYear, setMonthYear] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const isMobile = useMediaQuery('(max-width:975px)');
+  const isMobile = useMediaQuery('(max-width:1040px)');
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);

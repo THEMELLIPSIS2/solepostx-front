@@ -1,4 +1,4 @@
-import Layout from '../../components/layout';
+import Layout from '../../components/Layout';
 import '../../styles/Home.module.css';
 import { fetchAPI } from '../../lib/api';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -11,6 +11,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import ListedArticle from '../../components/ListedArticle';
 import Button from '@mui/material/Button';
 import styles from '../../styles/Calendar.module.css';
+import { Typography } from '@mui/material';
 
 const Home = ({ articles, categories }) => {
   const [date, setDate] = useState(dayjs());
@@ -51,7 +52,7 @@ const Home = ({ articles, categories }) => {
 
   return (
     <Layout categories={categories.data}>
-      <div className={styles.container}>
+      <div className={styles.container} style={{ minHeight: '100vh' }}>
         <div>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
@@ -62,7 +63,7 @@ const Home = ({ articles, categories }) => {
               className={styles.calendar}
             />
           </LocalizationProvider>
-          <Button onClick={handleClick}>
+          <Button onClick={handleClick} color="secondary">
             <SearchIcon />
           </Button>
         </div>
@@ -71,7 +72,9 @@ const Home = ({ articles, categories }) => {
             Object.entries(sorted).map(([date, articles]) => {
               return (
                 <div key={date}>
-                  <h1>{date}</h1>
+                  <Typography variant="h1" color="secondary">
+                    {date}
+                  </Typography>
                   <div>{mapArticles(articles)}</div>
                 </div>
               );
