@@ -10,7 +10,6 @@ export function Playlist({ videos }) {
 
   function pickNew(video) {
     setPicked(video);
-    console.log(picked);
   }
   return (
     <Paper style={{ padding: '10px' }}>

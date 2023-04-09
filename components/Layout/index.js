@@ -1,9 +1,9 @@
 import Nav from './nav';
 import styles from './layout.module.css';
 import { ThemeProvider } from '@mui/material';
-import { lightTheme, darkTheme } from '../util/theme';
+import { lightTheme, darkTheme } from '../../util/theme';
 import CssBaseline from '@mui/material/CssBaseline';
-import Footer from '@/components/Footer';
+import Footer from './Footer';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import IconButton from '@mui/material/IconButton';

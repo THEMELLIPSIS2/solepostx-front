@@ -1,17 +1,15 @@
-import Layout from '../../../../components/layout';
-import ListedArticle from '../../../../components/ListedArticle';
+import Layout from '../../../../components/Layout';
 import { fetchAPI } from '../../../../lib/api';
 import Typography from '@mui/material/Typography';
-import { useState, useEffect } from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
+import InfScroll from '@/components/InfiniteScroll';
 
 const CateTag = ({ catetags, categories, count }) => {
   const router = useRouter();
   const { slug, tag } = router.query;
-
   const [posts, setPosts] = useState(catetags.attributes.articles.data);
-  const [hasMore, setHasMore] = useState(true);
+
   const getMorePosts = async () => {
     const res = await fetchAPI('/categories', {
       filters: { slug: slug },
@@ -21,27 +19,17 @@ const CateTag = ({ catetags, categories, count }) => {
           filters: { tags: { slug: { $eqi: tag } } },
           start: posts.length,
           limit: 10,
+          sort: 'createdAt:desc',
         },
       },
     });
     const newPosts = await res.data[0];
-    console.log(res);
     setPosts([...posts, ...newPosts.attributes.articles.data]);
-    console.log(posts);
   };
 
-  useEffect(() => {
-    setHasMore(
-      count.attributes.articles.data.attributes.count > posts.length
-        ? true
-        : false
-    );
-  }, [posts]);
   return (
     <Layout categories={categories.data}>
-      {console.log(posts)}
-
-      <div className="uk-section">
+    <div className="uk-section">
         <div className="uk-container uk-container-large">
           <Typography variant="h2" color="secondary.main">
             {catetags.attributes.name.toUpperCase()}
@@ -49,34 +37,11 @@ const CateTag = ({ catetags, categories, count }) => {
           <Typography variant="h4" color="secondary">
             {tag}
           </Typography>
-          <InfiniteScroll
-            dataLength={posts.length}
-            next={getMorePosts}
-            hasMore={hasMore}
-            loader={
-              <Typography
-                variant="h4"
-                color="secondary"
-                style={{ textAlign: 'center' }}
-              >
-                Loading...
-              </Typography>
-            }
-            endMessage={
-              <Typography
-                variant="h4"
-                color="secondary"
-                style={{ textAlign: 'center' }}
-              >
-                End
-              </Typography>
-            }
-            style={{ overflow: 'hidden' }}
-          >
-            {posts.map((article) => {
-              return <ListedArticle article={article} key={article.id} />;
-            })}
-          </InfiniteScroll>
+          <InfScroll
+            count={count.attributes.articles.data.attributes.count}
+            posts={posts}
+            getMorePosts={getMorePosts}
+          />
         </div>
       </div>
     </Layout>
@@ -84,7 +49,6 @@ const CateTag = ({ catetags, categories, count }) => {
 };
 
 export async function getServerSideProps({ params }) {
-  console.log('tag', params.tag);
   const matchingCateTags = await fetchAPI('/categories', {
     filters: { slug: params.slug },
     populate: {
@@ -92,6 +56,7 @@ export async function getServerSideProps({ params }) {
         populate: '*',
         filters: { tags: { slug: { $eqi: params.tag } } },
         limit: 10,
+        sort: 'createdAt:desc',
       },
     },
   });

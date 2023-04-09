@@ -2,9 +2,9 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import styles from './Homepage.module.css';
 import Link from 'next/link';
-import { getStrapiMedia } from '../lib/media';
+import { getStrapiMedia } from '../../lib/media';
 import { useEffect, useState } from 'react';
-import Image from './image';
+import Image from '../image';
 
 export const Card = ({ article }) => {
   let [date, setDate] = useState();
@@ -25,18 +25,19 @@ export const Card = ({ article }) => {
           <Typography className={styles.header} variant="h6">
             {capitalized}
           </Typography>
-          <Image
-            className={styles.image}
-          image={article.attributes.image}
-          />
+          <Image className={styles.image} image={article.attributes.image} />
         </Link>
         <div className={styles.bottom}>
-          <Typography variant="small" >
+          <Typography variant="small">
             {date && date.split(' ').slice(1, 3).join(' ')}
           </Typography>
-          <Typography variant="small" component={Link} href={`/authors/${article.attributes.author.data.id}` }className={styles.link}>
+          <Typography
+            variant="small"
+            component={Link}
+            href={`/authors/${article.attributes.author.data.id}`}
+            className={styles.link}
+          >
             {article.attributes.author.data.attributes.name}
-            {console.log(article)}
           </Typography>
         </div>
       </Paper>

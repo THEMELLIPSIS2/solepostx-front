@@ -2,7 +2,7 @@ import Moment from 'react-moment';
 import ReactMarkdown from 'react-markdown';
 import styles from '../../styles/Author.module.css';
 import Seo from '../../components/seo';
-import Layout from '../../components/layout';
+import Layout from '../../components/Layout';
 import Link from 'next/link';
 import { fetchAPI } from '../../lib/api';
 import { getStrapiMedia } from '../../lib/media';
@@ -11,10 +11,8 @@ import TagIcon from '@mui/icons-material/Tag';
 import {
   FacebookShareButton,
   FacebookIcon,
-  FacebookMessengerShareButton,
   TwitterShareButton,
   WhatsappShareButton,
-  FacebookMessengerIcon,
   TwitterIcon,
   WhatsappIcon,
 } from 'react-share';
@@ -115,6 +113,7 @@ const Article = ({ article, categories }) => {
                     article.attributes.tags.data.map((tag) => {
                       return (
                         <Typography
+                        key={tag.id}
                           variant="p"
                           color="secondary"
                           className={styles.link}

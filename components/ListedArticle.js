@@ -1,7 +1,7 @@
 import { Card, Typography, Box } from '@mui/material';
 import Image from './image';
 import Link from 'next/link';
-import styles from './layout.module.css';
+import styles from './Layout/layout.module.css';
 import { getStrapiMedia } from '../lib/media';
 
 const ListedArticle = ({ article }) => {

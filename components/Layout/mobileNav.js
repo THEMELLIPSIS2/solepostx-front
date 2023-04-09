@@ -5,7 +5,7 @@ import Searchfield from './Searchbar.js';
 import styles from './Nav.module.css';
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
-import logo from '../assets/logo2.png';
+import logo from '../../assets/logo2.png';
 //drawer elements used
 import Drawer from '@mui/material/Drawer';
 import CloseIcon from '@mui/icons-material/Close';
