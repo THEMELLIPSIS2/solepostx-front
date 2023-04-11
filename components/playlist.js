@@ -14,7 +14,7 @@ export function Playlist({ videos }) {
   return (
     <Paper style={{ padding: '10px' }}>
       <Grid container>
-        <Grid item xs={12} sm={12} md={8}>
+        <Grid item xs={12} sm={12} md={8} sx={{alignSelf:'center'}}>
           <Typography
             variant="h4"
             color="secondary"
@@ -43,7 +43,7 @@ export function Playlist({ videos }) {
           xs={12}
           sm={12}
           md={4}
-          style={{ overflowY: 'scroll', height: '600px' }}
+          style={{ overflowY: 'scroll', maxHeight: '600px' }}
         >
           {videos.map((video) => {
             let capitalized = video.attributes.title
@@ -56,8 +56,8 @@ export function Playlist({ videos }) {
               <Paper
                 style={{
                   cursor: 'pointer',
-
                   border: video.id === picked.id ? '2px solid red' : 'none',
+                  
                 }}
               >
                 <div

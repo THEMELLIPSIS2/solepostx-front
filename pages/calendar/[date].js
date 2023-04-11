@@ -12,6 +12,9 @@ import ListedArticle from '../../components/ListedArticle';
 import Button from '@mui/material/Button';
 import styles from '../../styles/Calendar.module.css';
 import { Typography } from '@mui/material';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import Link from 'next/link';
 
 const Home = ({ articles, categories }) => {
   const [date, setDate] = useState(dayjs());
@@ -46,7 +49,25 @@ const Home = ({ articles, categories }) => {
 
   function mapArticles(articles) {
     return articles.map((article) => {
-      return <ListedArticle key={article.attributes.title} article={article} />;
+      return (
+        <Paper className={styles.card} key={article.id}>
+          <Paper sx={{ bgcolor: 'secondary.main', minWidth: '100px', display:'flex'  }}>
+            <div className={styles.marker}></div>
+            <Typography variant="h2" color="secondary.contrastText" >
+              {article.attributes.releaseDate.split('-')[2]}
+            </Typography>
+          </Paper>
+          <Typography variant="h5" color="secondary" className={styles.title} >
+            <Link
+              href={`/article/${article.attributes.slug}`}
+              className={styles.link}
+            >
+              {' '}
+              {article.attributes.title.toUpperCase()}
+            </Link>
+          </Typography>
+        </Paper>
+      );
     });
   }
 
@@ -71,17 +92,17 @@ const Home = ({ articles, categories }) => {
         </div>
         <div>
           {Object.keys(sorted).length > 0 ? (
-            Object.entries(sorted).map(([date, articles]) => {
-              return (
-                <div key={date}>
-                  <Typography variant="h1" color="secondary">
-                    {date}
-                  </Typography>
-                  <div>{mapArticles(articles)}</div>
-                </div>
-              );
-            })
+            // Object.entries(sorted).map(([date, articles]) => {
+            //   return (
+            //     <div key={date}>
+            //       <Typography variant="h1" color="secondary">
+            //         {date}
+            //       </Typography>
+            <div>{mapArticles(articles)}</div>
           ) : (
+            // </div>
+            //   );
+            // })
             <div>No release dates on this month!</div>
           )}
         </div>
@@ -98,7 +119,7 @@ export async function getServerSideProps({ params }) {
         releaseMonthYear: params.date,
       },
       publicationState: 'live',
-      sort: 'releaseDate:desc',
+      sort: 'releaseDate:asc',
     }),
     fetchAPI('/categories', { filters: { isBrand: { $eq: 'true' } } }),
   ]);
