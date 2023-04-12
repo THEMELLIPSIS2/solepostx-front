@@ -9,6 +9,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import styles from './Footer.module.css';
 import logo from '../../assets/lgo3.png';
+import TikTok from '../../public/tiktok.svg';
 
 function Copyright() {
   return (
@@ -28,7 +29,7 @@ function Copyright() {
   );
 }
 
-function Footer() {
+function Footer({ socials }) {
   return (
     <Box component="footer" sx={{ bgcolor: 'background.paper', py: 3 }}>
       <Container>
@@ -38,46 +39,63 @@ function Footer() {
             align="left"
             color="inherit"
             component="p"
-            sx={{ display: 'flex', justifyContent: 'space-between' }}
             className={styles.footer}
           >
-            <Link
-              href="https://www.instagram.com/thesolepost/?hl=en"
-              target="_blank"
-              rel="noreferrer"
-              color="inherit"
-              sx={{ paddingRight: 1 }}
-            >
-              <InstagramIcon />
-            </Link>
+            {socials.Instagram && (
+              <Link
+                href={`https://www.instagram.com/${socials.Instagram}`}
+                target="_blank"
+                rel="noreferrer"
+                color="inherit"
+                sx={{ paddingRight: 1 }}
+              >
+                <InstagramIcon />
+              </Link>
+            )}
 
-            <Link
-              href="https://twitter.com/theSolePost?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"
-              target="_blank"
-              rel="noreferrer"
-              color="inherit"
-              sx={{ paddingRight: 1 }}
-            >
-              <TwitterIcon />
-            </Link>
+            {socials.Twitter && (
+              <Link
+                href={`https://twitter.com/${socials.Twitter}`}
+                target="_blank"
+                rel="noreferrer"
+                color="inherit"
+                sx={{ paddingRight: 1 }}
+              >
+                <TwitterIcon />
+              </Link>
+            )}
 
-            <Link
-              href="https://www.youtube.com/@SolePost/featured"
-              target="_blank"
-              rel="noreferrer"
-              color="inherit"
-              sx={{ paddingRight: 1 }}
-            >
-              <YouTubeIcon />
-            </Link>
-            <Link
-              href="https://www.facebook.com/theSolePost/"
-              target="_blank"
-              color="inherit"
-              rel="noreferrer"
-            >
-              <FacebookIcon />
-            </Link>
+            {socials.Youtube && (
+              <Link
+                href={`https://www.youtube.com/@${socials.Youtube}`}
+                target="_blank"
+                rel="noreferrer"
+                color="inherit"
+                sx={{ paddingRight: 1 }}
+              >
+                <YouTubeIcon />
+              </Link>
+            )}
+            {socials.Facebook && (
+              <Link
+                href={`https://www.facebook.com/${socials.Facebook}`}
+                target="_blank"
+                color="inherit"
+                rel="noreferrer"
+              >
+                <FacebookIcon />
+              </Link>
+            )}
+            {socials.TikTok && (
+              <Link
+                href={`https://www.tiktok.com/@${socials.TikTok}`}
+                target="_blank"
+                color="inherit"
+                rel="noreferrer"
+              >
+                <TikTok style={{ width: '20px',margin:'8px' }} />
+              </Link>
+            )}
           </Box>
         </Box>
 

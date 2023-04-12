@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import InfScroll from '@/components/InfiniteScroll';
 
-const CateTag = ({ catetags, categories, count }) => {
+const CateTag = ({ catetags, count }) => {
   const router = useRouter();
   const { slug, tag } = router.query;
   const [posts, setPosts] = useState(catetags.attributes.articles.data);
@@ -28,7 +28,7 @@ const CateTag = ({ catetags, categories, count }) => {
   };
 
   return (
-    <Layout categories={categories.data}>
+    <Layout>
     <div className="uk-section">
         <div className="uk-container uk-container-large">
           <Typography variant="h2" color="secondary.main">
@@ -37,6 +37,7 @@ const CateTag = ({ catetags, categories, count }) => {
           <Typography variant="h4" color="secondary">
             {tag}
           </Typography>
+          {posts.length === 0 && 'No articles yet!'}
           <InfScroll
             count={count.attributes.articles.data.attributes.count}
             posts={posts}
@@ -60,9 +61,6 @@ export async function getServerSideProps({ params }) {
       },
     },
   });
-  const allCategories = await fetchAPI('/categories', {
-    filters: { isBrand: { $eq: 'true' } },
-  });
   const count = await fetchAPI('/categories', {
     filters: { slug: params.slug },
     populate: {
@@ -76,7 +74,6 @@ export async function getServerSideProps({ params }) {
   return {
     props: {
       catetags: matchingCateTags.data[0],
-      categories: allCategories,
       count: count.data[0],
     },
   };

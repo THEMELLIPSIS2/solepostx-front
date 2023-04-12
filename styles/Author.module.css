@@ -50,6 +50,11 @@
   color: rgb(168, 0, 0);
 }
 
+.tiktok {
+  -webkit-mask: url(../public/tiktok.svg) no-repeat center;
+  mask: url(../public/tiktok.svg) no-repeat center;
+}
+
 .banner img {
   object-fit: contain;
   height: 100%;

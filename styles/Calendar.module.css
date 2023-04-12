@@ -8,3 +8,38 @@
 .container button {
   height: 60px !important;
 }
+ .card {
+ transition: all 0.3s ease-in-out; 
+  display: flex;
+  margin:5px;
+  height:70px;
+  overflow-y: hidden;
+ }
+
+.card .title{
+  margin-left: 10px;
+  align-self: center;
+
+}
+.link:hover{
+  color:rgb(168, 0, 0)
+} 
+
+.card .marker{
+  background-color: rgb(168, 0, 0) !important;
+  width:5px !important;
+  border-radius: 7%;
+  transition: all 0.3s ease-in-out; 
+
+}
+.card:hover .marker{
+  background-color: rgb(168, 0, 0) !important;
+  width:20px !important;
+  transition: all 0.3s ease-in-out; 
+
+}
+@media screen and (max-width:500px) {
+  .card .title {
+    font-size: 4vw !important;
+  }
+}

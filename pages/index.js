@@ -4,9 +4,9 @@ import styles from '../styles/Home.module.css';
 import { HomePage } from '@/components/Homepage';
 import { fetchAPI } from '../lib/api';
 
-const Home = ({ articles, features, categories, video }) => {
+const Home = ({ articles, features, video }) => {
   return (
-    <Layout categories={categories}>
+    <Layout>
       <div className={styles.index}>
         <HomePage recents={articles} features={features} video={video} />
       </div>
@@ -15,7 +15,7 @@ const Home = ({ articles, features, categories, video }) => {
 };
 
 export async function getStaticProps() {
-  const [articlesRes, featuredRes, categoriesRes, videoRes] = await Promise.all(
+  const [articlesRes, featuredRes, videoRes] = await Promise.all(
     [
       fetchAPI('/articles', {
         populate: '*',
@@ -31,9 +31,8 @@ export async function getStaticProps() {
         pagination: { limit: 1 },
         sort: 'createdAt:desc',
       }),
-      fetchAPI('/categories', { filters: { isBrand: { $eq: 'true' } } }),
       fetchAPI('/articles', {
-        filters: { youtubeURL: { $notNull: 'true' } },
+        filters: { youtubeURL: { $notNull: 'true' }, featured: {$eq:'true'} },
         pagination: { limit: 1 },
         sort: 'createdAt:desc',
       }),
@@ -44,7 +43,6 @@ export async function getStaticProps() {
     props: {
       articles: articlesRes.data,
       features: featuredRes.data,
-      categories: categoriesRes.data,
       video: videoRes.data,
     },
     revalidate: 1,

@@ -46,10 +46,11 @@
   transform: scale(1.05);
   z-index: 999 !important;
 }
-.mobileFeature {
+.mobileHome {
   margin: 6%;
+  text-align: center;
 }
-.mobileFeature .card {
+.mobileHome .card {
   width: 95%;
 }
 

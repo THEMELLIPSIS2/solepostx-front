@@ -5,7 +5,7 @@ import { Card } from './card';
 import Link from 'next/link';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import VideocamIcon from '@mui/icons-material/Videocam';
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
 import MobileHome from './MobileHome'
 
 export const HomePage = ({ recents = [], features = [], video = [] }) => {
@@ -106,6 +106,15 @@ export const HomePage = ({ recents = [], features = [], video = [] }) => {
               >
                 {video[0].attributes.title}
               </Typography>
+              <Button
+                component={Link}
+                href="/videos"
+                size="large"
+                color="secondary"
+                className={styles.link}
+              >
+                See more
+              </Button>
             </Grid>
           </Grid>
         </>

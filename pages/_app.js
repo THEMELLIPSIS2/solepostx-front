@@ -1,6 +1,6 @@
 import App from 'next/app';
 import Head from 'next/head';
-import { createContext } from 'react';
+import { createContext, useContext } from 'react';
 import { fetchAPI } from '../lib/api';
 import { getStrapiMedia } from '../lib/media';
 // Store Strapi Global object in context
@@ -31,6 +31,9 @@ const MyApp = ({ Component, pageProps }) => {
     </>
   );
 };
+export function useAppContext(){
+  return useContext(GlobalContext)
+}
 
 // getInitialProps disables automatic static optimization for pages that don't
 // have getStaticProps. So article, category and home pages still get SSG.
@@ -46,8 +49,14 @@ MyApp.getInitialProps = async (ctx) => {
       defaultSeo: {
         populate: '*',
       },
+      Socials: {populate:'*'}
     },
   });
+  
+  const allCategories = await fetchAPI('/categories', {
+    filters: { isBrand: { $eq: 'true' } },
+  });
+  globalRes.data.attributes['categories'] = allCategories.data
   // Pass the data to our page via props
   return { ...appProps, pageProps: { global: globalRes.data } };
 };

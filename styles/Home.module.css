@@ -6,3 +6,27 @@
   padding: 6rem;
   min-height: 100vh;
 }
+.four {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  justify-content: space-evenly;
+  text-align: center;
+  min-height: 100vh;
+}
+.shoe {
+  animation: rotation 5s infinite linear;
+  padding:50px;
+  overflow: visible;
+  justify-self: center;
+  align-self: center;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}

@@ -8,12 +8,13 @@ import { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import { useRouter } from 'next/router';
 import SearchIcon from '@mui/icons-material/Search';
-import ListedArticle from '../../components/ListedArticle';
 import Button from '@mui/material/Button';
 import styles from '../../styles/Calendar.module.css';
 import { Typography } from '@mui/material';
+import Paper from '@mui/material/Paper';
+import Link from 'next/link';
 
-const Home = ({ articles, categories }) => {
+const Home = ({ articles }) => {
   const [date, setDate] = useState(dayjs());
   const [monthYear, setMonthYear] = useState();
 
@@ -34,24 +35,34 @@ const Home = ({ articles, categories }) => {
   function handleClick() {
     router.push(`/calendar/${monthYear[0]}-${monthYear[1]}`);
   }
-  const sorted = {};
-  articles.map((article) => {
-    let day = article.attributes.releaseDate.split('-')[2];
-    if (day in sorted) {
-      sorted[day].push(article);
-    } else {
-      sorted[day] = [article];
-    }
-  });
+
 
   function mapArticles(articles) {
     return articles.map((article) => {
-      return <ListedArticle key={article.attributes.title} article={article} />;
+      return (
+        <Paper className={styles.card} key={article.id}>
+          <Paper sx={{ bgcolor: 'secondary.main', minWidth: '100px', display:'flex'  }}>
+            <div className={styles.marker}></div>
+            <Typography variant="h2" color="secondary.contrastText" >
+              {article.attributes.releaseDate && article.attributes.releaseDate.split('-')[2]}
+            </Typography>
+          </Paper>
+          <Typography variant="h5" color="secondary" className={styles.title} >
+            <Link
+              href={`/article/${article.attributes.slug}`}
+              className={styles.link}
+            >
+              {' '}
+              {article.attributes.title.toUpperCase()}
+            </Link>
+          </Typography>
+        </Paper>
+      );
     });
   }
 
   return (
-    <Layout categories={categories.data}>
+    <Layout>
       <div className={styles.container} style={{ minHeight: '100vh' }}>
         <div>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -61,6 +72,8 @@ const Home = ({ articles, categories }) => {
               label={'MM YYYY'}
               views={['month', 'year']}
               className={styles.calendar}
+              minDate={dayjs('2000-01-01')}
+              maxDate={dayjs('2030-01-01')}
             />
           </LocalizationProvider>
           <Button onClick={handleClick} color="secondary">
@@ -68,19 +81,10 @@ const Home = ({ articles, categories }) => {
           </Button>
         </div>
         <div>
-          {Object.keys(sorted).length > 0 ? (
-            Object.entries(sorted).map(([date, articles]) => {
-              return (
-                <div key={date}>
-                  <Typography variant="h1" color="secondary">
-                    {date}
-                  </Typography>
-                  <div>{mapArticles(articles)}</div>
-                </div>
-              );
-            })
+          {articles.length > 0 ? (
+            <div>{mapArticles(articles)}</div>
           ) : (
-            <div>No release dates this month!</div>
+            <div>No release dates on this month!</div>
           )}
         </div>
       </div>
@@ -89,7 +93,7 @@ const Home = ({ articles, categories }) => {
 };
 
 export async function getServerSideProps({ params }) {
-  const [articlesRes, categoriesRes] = await Promise.all([
+  const [articlesRes] = await Promise.all([
     fetchAPI('/articles', {
       populate: '*',
       filters: {
@@ -98,13 +102,11 @@ export async function getServerSideProps({ params }) {
       publicationState: 'live',
       sort: 'releaseDate:asc',
     }),
-    fetchAPI('/categories', { filters: { isBrand: { $eq: 'true' } } }),
   ]);
 
   return {
     props: {
       articles: articlesRes.data,
-      categories: categoriesRes,
     },
   };
 }
