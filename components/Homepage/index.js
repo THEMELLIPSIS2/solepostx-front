@@ -67,7 +67,7 @@ export const HomePage = ({ recents = [], features = [], video = [] }) => {
               marginRight: 'auto',
               fontSize: '50px',
             }}
-          />
+          /> {video.length > 0 && 
           <Grid
             container
             justifyContent="center"
@@ -78,6 +78,7 @@ export const HomePage = ({ recents = [], features = [], video = [] }) => {
               marginBottom: '50px',
             }}
           >
+            
             <Grid
               item
               xs={9}
@@ -87,7 +88,7 @@ export const HomePage = ({ recents = [], features = [], video = [] }) => {
               style={{ textAlign: 'center' }}
             >
               <div className={styles.frameContainer}>
-                <iframe
+              <iframe
                   width="853"
                   height="480"
                   src={`${video[0].attributes.youtubeURL}`}
@@ -117,6 +118,7 @@ export const HomePage = ({ recents = [], features = [], video = [] }) => {
               </Button>
             </Grid>
           </Grid>
+          }
         </>
       ) : (
         <>

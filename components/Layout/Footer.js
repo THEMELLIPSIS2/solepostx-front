@@ -41,6 +41,8 @@ function Footer({ socials }) {
             component="p"
             className={styles.footer}
           >
+           {socials &&
+           <div>
             {socials.Instagram && (
               <Link
                 href={`https://www.instagram.com/${socials.Instagram}`}
@@ -95,7 +97,7 @@ function Footer({ socials }) {
               >
                 <TikTok style={{ width: '20px',margin:'8px' }} />
               </Link>
-            )}
+            )}</div>}
           </Box>
         </Box>
 
