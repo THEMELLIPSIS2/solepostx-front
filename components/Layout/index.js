@@ -9,12 +9,13 @@ import DarkModeIcon from '@mui/icons-material/DarkMode';
 import IconButton from '@mui/material/IconButton';
 import { useState, useEffect, useRef } from 'react';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import { useAppContext } from '@/pages/_app';
 
-const Layout = ({ children, categories, seo }) => {
+const Layout = ({ children, seo }) => {
+  const context = useAppContext();
   const isBrowser = () => typeof window !== 'undefined';
   let [storedTheme, setStoredTheme] = useState();
   const [showButton, setShowButton] = useState(false);
-
 
   // scroll to top button
   const handleShowButton = () => {
@@ -30,29 +31,24 @@ const Layout = ({ children, categories, seo }) => {
     }
   };
   if (isBrowser()) window.addEventListener('scroll', handleShowButton);
-
   useEffect(() => {
     if (isBrowser()) {
       return window.removeEventListener('scroll', handleShowButton);
     }
   });
-
   function scrollToTop() {
     if (!isBrowser()) return;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   // theme logic
-
   useEffect(() => {
     let theme = JSON.parse(localStorage.getItem('theme'));
     if (!theme) {
       localStorage.setItem('theme', JSON.stringify('dark'));
     }
-
     setStoredTheme(theme);
   }, []);
-
   function toggleTheme() {
     if (storedTheme === 'light') {
       setStoredTheme('dark');
@@ -69,7 +65,7 @@ const Layout = ({ children, categories, seo }) => {
         <ThemeProvider theme={storedTheme === 'light' ? lightTheme : darkTheme}>
           <CssBaseline />
           <Nav
-            categories={categories}
+            categories={context.categories}
             className={styles.nav}
             storedTheme={storedTheme}
           />
@@ -93,10 +89,8 @@ const Layout = ({ children, categories, seo }) => {
               <ArrowUpwardIcon />
             </IconButton>
           )}
-<div style={{minHeight:'100vh'}}>
-          {children}
-</div>
-          <Footer />
+          <div style={{ minHeight: '100vh' }}>{children}</div>
+          <Footer socials={context.Socials} />
         </ThemeProvider>
       )}
     </>

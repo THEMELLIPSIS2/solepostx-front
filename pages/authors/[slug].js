@@ -8,14 +8,15 @@ import { useState } from 'react';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import FacebookIcon from '@mui/icons-material/Facebook';
 import IconButton from '@mui/material/IconButton';
+import TikTok from '../../public/tiktok.svg';
 import Link from '@mui/material/Link';
-import InfScroll from '../../components/InfiniteScroll'
-const Author = ({ author, categories, count }) => {
+import InfScroll from '../../components/InfiniteScroll';
+const Author = ({ author, count }) => {
   const router = useRouter();
   const { slug } = router.query;
   const [posts, setPosts] = useState(author.attributes.articles.data);
-
 
   const getMorePosts = async () => {
     const res = await fetchAPI('/writers', {
@@ -34,7 +35,7 @@ const Author = ({ author, categories, count }) => {
   };
 
   return (
-    <Layout categories={categories.data}>
+    <Layout>
       <div className={styles.main}>
         <div className={styles.outer}>
           <div className={styles.header}>
@@ -50,13 +51,16 @@ const Author = ({ author, categories, count }) => {
             </Typography>
           </div>
           <div className={styles.email}>
-            <small>{author.attributes.email}</small>
-            {author.attributes.youtube && (
+            {author.attributes.email && (
+              <small>{author.attributes.email}</small>
+            )}
+
+            {author.attributes.Youtube && (
               <IconButton
                 IconButton
                 component={Link}
                 className={styles.link}
-                href={`https://youtube.com/@${author.attributes.youtube}`}
+                href={`https://youtube.com/@${author.attributes.Youtube}`}
               >
                 <YouTubeIcon />
               </IconButton>
@@ -79,9 +83,31 @@ const Author = ({ author, categories, count }) => {
                 <TwitterIcon />
               </IconButton>
             )}
+            {author.attributes.TikTok && (
+              <IconButton
+                component={Link}
+                className={styles.link}
+                href={`https://tiktok.com/@${author.attributes.TikTok}`}
+              >
+                <TikTok style={{ width: '20px' }} />
+              </IconButton>
+            )}
+            {author.attributes.Facebook && (
+              <IconButton
+                component={Link}
+                className={styles.link}
+                href={`https://facebook.com/${author.attributes.Facebook}`}
+              >
+                <FacebookIcon />
+              </IconButton>
+            )}
           </div>
         </div>
-        <InfScroll getMorePosts={getMorePosts} count={count.attributes.articles.data.attributes.count} posts={posts}/>
+        <InfScroll
+          getMorePosts={getMorePosts}
+          count={count.attributes.articles.data.attributes.count}
+          posts={posts}
+        />
       </div>
     </Layout>
   );
@@ -107,14 +133,10 @@ export async function getServerSideProps({ params }) {
       },
     },
   });
-  const allCategories = await fetchAPI('/categories', {
-    filters: { isBrand: { $eq: 'true' } },
-  });
 
   return {
     props: {
       author: matchingAuthors.data[0],
-      categories: allCategories,
       count: count.data[0],
     },
   };

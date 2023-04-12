@@ -8,15 +8,13 @@ import { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import { useRouter } from 'next/router';
 import SearchIcon from '@mui/icons-material/Search';
-import ListedArticle from '../../components/ListedArticle';
 import Button from '@mui/material/Button';
 import styles from '../../styles/Calendar.module.css';
 import { Typography } from '@mui/material';
 import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
 import Link from 'next/link';
 
-const Home = ({ articles, categories }) => {
+const Home = ({ articles }) => {
   const [date, setDate] = useState(dayjs());
   const [monthYear, setMonthYear] = useState();
 
@@ -37,15 +35,7 @@ const Home = ({ articles, categories }) => {
   function handleClick() {
     router.push(`/calendar/${monthYear[0]}-${monthYear[1]}`);
   }
-  const sorted = {};
-  articles.map((article) => {
-    let day = article.attributes.releaseDate.split('-')[2];
-    if (day in sorted) {
-      sorted[day].push(article);
-    } else {
-      sorted[day] = [article];
-    }
-  });
+
 
   function mapArticles(articles) {
     return articles.map((article) => {
@@ -54,7 +44,7 @@ const Home = ({ articles, categories }) => {
           <Paper sx={{ bgcolor: 'secondary.main', minWidth: '100px', display:'flex'  }}>
             <div className={styles.marker}></div>
             <Typography variant="h2" color="secondary.contrastText" >
-              {article.attributes.releaseDate.split('-')[2]}
+              {article.attributes.releaseDate && article.attributes.releaseDate.split('-')[2]}
             </Typography>
           </Paper>
           <Typography variant="h5" color="secondary" className={styles.title} >
@@ -72,7 +62,7 @@ const Home = ({ articles, categories }) => {
   }
 
   return (
-    <Layout categories={categories.data}>
+    <Layout>
       <div className={styles.container} style={{ minHeight: '100vh' }}>
         <div>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -91,18 +81,9 @@ const Home = ({ articles, categories }) => {
           </Button>
         </div>
         <div>
-          {Object.keys(sorted).length > 0 ? (
-            // Object.entries(sorted).map(([date, articles]) => {
-            //   return (
-            //     <div key={date}>
-            //       <Typography variant="h1" color="secondary">
-            //         {date}
-            //       </Typography>
+          {articles.length > 0 ? (
             <div>{mapArticles(articles)}</div>
           ) : (
-            // </div>
-            //   );
-            // })
             <div>No release dates on this month!</div>
           )}
         </div>
@@ -112,7 +93,7 @@ const Home = ({ articles, categories }) => {
 };
 
 export async function getServerSideProps({ params }) {
-  const [articlesRes, categoriesRes] = await Promise.all([
+  const [articlesRes] = await Promise.all([
     fetchAPI('/articles', {
       populate: '*',
       filters: {
@@ -121,13 +102,11 @@ export async function getServerSideProps({ params }) {
       publicationState: 'live',
       sort: 'releaseDate:asc',
     }),
-    fetchAPI('/categories', { filters: { isBrand: { $eq: 'true' } } }),
   ]);
 
   return {
     props: {
       articles: articlesRes.data,
-      categories: categoriesRes,
     },
   };
 }

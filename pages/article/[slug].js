@@ -1,5 +1,5 @@
 import Moment from 'react-moment';
-import ReactMarkdown from 'react-markdown';
+import parse from 'html-react-parser';
 import styles from '../../styles/Author.module.css';
 import Seo from '../../components/seo';
 import Layout from '../../components/Layout';
@@ -17,7 +17,7 @@ import {
   WhatsappIcon,
 } from 'react-share';
 
-const Article = ({ article, categories }) => {
+const Article = ({ article }) => {
   const imageUrl = getStrapiMedia(article.attributes.image);
 
   const seo = {
@@ -28,7 +28,7 @@ const Article = ({ article, categories }) => {
   };
 
   return (
-    <Layout categories={categories.data}>
+    <Layout>
       <Seo seo={seo} />
 
       <div className={styles.banner}>
@@ -55,8 +55,10 @@ const Article = ({ article, categories }) => {
       </div>
       <div className="uk-section">
         <div className="uk-container uk-container-small">
-          <ReactMarkdown children={article.attributes.content} />
-
+          {/* <ReactMarkdown children={article.attributes.content} /> */}
+<div>
+  {parse(article.attributes.content)}
+</div>
           <hr className="uk-divider-small" />
           <div className="uk-grid-small uk-flex-left" data-uk-grid="true">
             <div className="uk-width-expand">
@@ -141,12 +143,10 @@ export async function getServerSideProps({ params }) {
     },
     populate: '*',
   });
-  const categoriesRes = await fetchAPI('/categories', {
-    filters: { isBrand: { $eq: 'true' } },
-  });
+
 
   return {
-    props: { article: articlesRes.data[0], categories: categoriesRes },
+    props: { article: articlesRes.data[0] },
   };
 }
 

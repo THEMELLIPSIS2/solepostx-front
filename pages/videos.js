@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Playlist } from '../components/playlist';
 import InfScroll from '@/components/InfiniteScroll';
 
-const Videos = ({ articles, categories }) => {
+const Videos = ({ articles }) => {
   const [posts, setPosts] = useState(articles.data);
 
   const getMorePosts = async () => {
@@ -20,7 +20,7 @@ const Videos = ({ articles, categories }) => {
   };
 
   return (
-    <Layout categories={categories}>
+    <Layout>
       <div className="uk-section">
         <div className="uk-container uk-container-large">
           <div style={{ minHeight: '700px' }}>
@@ -38,7 +38,7 @@ const Videos = ({ articles, categories }) => {
   );
 };
 export async function getStaticProps() {
-  const [videoRes, categoriesRes] = await Promise.all([
+  const [videoRes] = await Promise.all([
     fetchAPI('/articles', {
       populate: ['image', 'category', 'tags'],
       filters: { youtubeURL: { $null: false } },
@@ -46,14 +46,11 @@ export async function getStaticProps() {
       pagination: { withCount: true, limit: 10 },
       sort: 'createdAt:desc',
     }),
-
-    fetchAPI('/categories', { filters: { isBrand: { $eq: 'true' } } }),
   ]);
 
   return {
     props: {
       articles: videoRes,
-      categories: categoriesRes.data,
     },
     revalidate: 1,
   };

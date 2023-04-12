@@ -12,13 +12,14 @@
  transition: all 0.3s ease-in-out; 
   display: flex;
   margin:5px;
-  
-
+  height:70px;
+  overflow-y: hidden;
  }
 
 .card .title{
   margin-left: 10px;
   align-self: center;
+
 }
 .link:hover{
   color:rgb(168, 0, 0)
@@ -37,8 +38,8 @@
   transition: all 0.3s ease-in-out; 
 
 }
-@media screen and (max-width:400px) {
+@media screen and (max-width:500px) {
   .card .title {
-    font-size: 5vw !important;
+    font-size: 4vw !important;
   }
 }

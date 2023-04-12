@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import InfScroll from '@/components/InfiniteScroll';
 
-const Category = ({ category, categories, count }) => {
+const Category = ({ category, count }) => {
   const seo = {
     metaTitle: category.attributes.name,
     metaDescription: `All ${category.attributes.name} articles`,
@@ -34,7 +34,7 @@ const Category = ({ category, categories, count }) => {
 
 
   return (
-    <Layout categories={categories.data}>
+    <Layout>
       <Seo seo={seo} />
       <div className="uk-section">
         <div className="uk-container uk-container-large">
@@ -60,9 +60,6 @@ export async function getServerSideProps({ params }) {
       },
     },
   });
-  const allCategories = await fetchAPI('/categories', {
-    filters: { isBrand: { $eq: 'true' } },
-  });
   const count = await fetchAPI('/categories', {
     filters: { slug: params.slug.split('/')[0] },
     populate: {
@@ -74,7 +71,6 @@ export async function getServerSideProps({ params }) {
   return {
     props: {
       category: matchingCategories.data[0],
-      categories: allCategories,
       count: count.data[0],
     },
   };
