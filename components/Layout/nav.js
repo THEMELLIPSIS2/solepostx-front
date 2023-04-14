@@ -10,6 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { MobileNav } from './mobileNav.js';
 import logo from '../../assets/logo2.png';
+import Newsletter from './Newsletter.js';
 
 function Nav({ categories, storedTheme }) {
   const [monthYear, setMonthYear] = useState([]);
@@ -43,9 +44,7 @@ function Nav({ categories, storedTheme }) {
             sx={{ bgcolor: 'background.paper' }}
             className={styles.innerNav}
           >
-            <Button size="small" color="secondary">
-              Subscribe
-            </Button>
+            <Newsletter />
             <Link href="/">
               {' '}
               <img src={logo.src} height="100px" width="250px" />
