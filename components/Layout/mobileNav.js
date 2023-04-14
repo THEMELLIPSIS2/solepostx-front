@@ -6,6 +6,7 @@ import styles from './Nav.module.css';
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
 import logo from '../../assets/logo2.png';
+import Newsletter from './Newsletter.js';
 //drawer elements used
 import Drawer from '@mui/material/Drawer';
 import CloseIcon from '@mui/icons-material/Close';
@@ -135,9 +136,7 @@ export function MobileNav({ categories }) {
           <ListItem>
             <Searchfield />
           </ListItem>
-          <ListItemButton>
-            <ListItemText primary="SUBSCRIBE" />
-          </ListItemButton>
+              <Newsletter/>
         </Box>
       </Drawer>
     </>
