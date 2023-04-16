@@ -41,63 +41,65 @@ function Footer({ socials }) {
             component="p"
             className={styles.footer}
           >
-           {socials &&
-           <div>
-            {socials.Instagram && (
-              <Link
-                href={`https://www.instagram.com/${socials.Instagram}`}
-                target="_blank"
-                rel="noreferrer"
-                color="inherit"
-                sx={{ paddingRight: 1 }}
-              >
-                <InstagramIcon />
-              </Link>
-            )}
+            {socials && (
+              <div>
+                {socials.Instagram && (
+                  <Link
+                    href={`https://www.instagram.com/${socials.Instagram}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    color="inherit"
+                    sx={{ paddingRight: 1 }}
+                  >
+                    <InstagramIcon />
+                  </Link>
+                )}
 
-            {socials.Twitter && (
-              <Link
-                href={`https://twitter.com/${socials.Twitter}`}
-                target="_blank"
-                rel="noreferrer"
-                color="inherit"
-                sx={{ paddingRight: 1 }}
-              >
-                <TwitterIcon />
-              </Link>
-            )}
+                {socials.Twitter && (
+                  <Link
+                    href={`https://twitter.com/${socials.Twitter}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    color="inherit"
+                    sx={{ paddingRight: 1 }}
+                  >
+                    <TwitterIcon />
+                  </Link>
+                )}
 
-            {socials.Youtube && (
-              <Link
-                href={`https://www.youtube.com/@${socials.Youtube}`}
-                target="_blank"
-                rel="noreferrer"
-                color="inherit"
-                sx={{ paddingRight: 1 }}
-              >
-                <YouTubeIcon />
-              </Link>
+                {socials.Youtube && (
+                  <Link
+                    href={`https://www.youtube.com/@${socials.Youtube}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    color="inherit"
+                    sx={{ paddingRight: 1 }}
+                  >
+                    <YouTubeIcon />
+                  </Link>
+                )}
+                {socials.Facebook && (
+                  <Link
+                    href={`https://www.facebook.com/${socials.Facebook}`}
+                    target="_blank"
+                    color="inherit"
+                    rel="noreferrer"
+                  >
+                    <FacebookIcon />
+                  </Link>
+                )}
+                {socials.TikTok && (
+                  <Link
+                    href={`https://www.tiktok.com/@${socials.TikTok}`}
+                    target="_blank"
+                    color="inherit"
+                    rel="noreferrer"
+                  >
+                    <TikTok style={{ width: '20px', margin: '8px' }} />
+                  </Link>
+                )}
+              </div>
             )}
-            {socials.Facebook && (
-              <Link
-                href={`https://www.facebook.com/${socials.Facebook}`}
-                target="_blank"
-                color="inherit"
-                rel="noreferrer"
-              >
-                <FacebookIcon />
-              </Link>
-            )}
-            {socials.TikTok && (
-              <Link
-                href={`https://www.tiktok.com/@${socials.TikTok}`}
-                target="_blank"
-                color="inherit"
-                rel="noreferrer"
-              >
-                <TikTok style={{ width: '20px',margin:'8px' }} />
-              </Link>
-            )}</div>}
           </Box>
         </Box>
 
