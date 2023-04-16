@@ -38,7 +38,7 @@ function Footer({ socials }) {
           <Box
             align="left"
             color="inherit"
-            component="p"
+            
             className={styles.footer}
           >
            {socials &&
