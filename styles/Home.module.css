@@ -15,18 +15,17 @@
   min-height: 100vh;
 }
 .shoe {
-  animation: rotation 5s infinite linear;
-  padding:50px;
+ animation: spin 7s linear infinite;
   overflow: visible;
   justify-self: center;
   align-self: center;
+  width:50%;
+  max-width: 400px;
 }
 
-@keyframes rotation {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(359deg);
-  }
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% {  transform: rotate(359deg); }
 }

@@ -12,11 +12,7 @@ const NotFoundPage = () => {
     Nothing here
     </div>
 
-    <Image
-      priority
-      src={Shoe}
-      className={styles.shoe}
-    />
+ <Shoe className={styles.shoe} />
 
     <Button onClick={()=>router.back()}>Go back</Button>
     </div> )
