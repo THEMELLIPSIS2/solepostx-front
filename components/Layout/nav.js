@@ -16,7 +16,7 @@ function Nav({ categories, storedTheme }) {
   const [monthYear, setMonthYear] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const isMobile = useMediaQuery('(max-width:1040px)');
+  const isMobile = useMediaQuery('(max-width:1070px)');
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -44,10 +44,9 @@ function Nav({ categories, storedTheme }) {
             sx={{ bgcolor: 'background.paper' }}
             className={styles.innerNav}
           >
-            <Newsletter />
-            <Link href="/">
-              {' '}
-              <img src={logo.src} height="100px" width="250px" />
+            <Newsletter  />
+            <Link href="/" style={{marginLeft:'10px'}}>
+              <img src={logo.src} height="100px" width="220px" />
             </Link>
             <div>
               <Link
