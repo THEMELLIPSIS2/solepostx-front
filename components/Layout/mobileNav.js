@@ -1,5 +1,4 @@
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Searchfield from './Searchbar.js';
 import styles from './Nav.module.css';
@@ -44,6 +43,7 @@ export function MobileNav({ categories }) {
     }
     setDrawer(drawer);
   };
+
   return (
     <>
       <Link href="/">
@@ -99,7 +99,7 @@ export function MobileNav({ categories }) {
               <ListItemText primary="Release Dates" />
             </ListItemButton>
           </Box>
-          <ListItem button onClick={handleOpenSettings}>
+          <ListItemButton onClick={handleOpenSettings}>
             <ListItemText primary="Brands" />
             <ListItemIcon>
               {!openCollapse ? (
@@ -108,7 +108,7 @@ export function MobileNav({ categories }) {
                 <KeyboardArrowUpIcon />
               )}
             </ListItemIcon>
-          </ListItem>
+          </ListItemButton>
           <Collapse in={openCollapse} timeout="auto" unmountOnExit>
             <Box component="div">
               {categories.map((brand) => {
@@ -132,11 +132,13 @@ export function MobileNav({ categories }) {
               })}
             </Box>
           </Collapse>
-
-          <ListItem>
+          <ListItem >
             <Searchfield />
           </ListItem>
-              <Newsletter/>
+          <ListItem>
+            <Newsletter/>
+          </ListItem>
+              
         </Box>
       </Drawer>
     </>
