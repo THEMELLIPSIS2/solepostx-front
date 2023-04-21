@@ -36,6 +36,7 @@ export const Card = ({ article }) => {
             component={Link}
             href={`/authors/${article.attributes.author.data.id}`}
             className={styles.link}
+            
           >
             {article.attributes.author.data.attributes.name}
           </Typography>

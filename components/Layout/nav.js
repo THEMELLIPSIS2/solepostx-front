@@ -50,15 +50,15 @@ function Nav({ categories, storedTheme }) {
             </Link>
             <div>
               <Link
-                color="inherit"
+                color="secondary.main"
                 variant="subtitle1"
-                sx={{ p: 1, flexShrink: 0 }}
+                sx={{ p: 1, flexShrink: 0, }}
                 href="/features"
               >
                 Features
               </Link>
               <Link
-                color="inherit"
+                color="secondary.main"
                 variant="subtitle1"
                 sx={{ p: 1, flexShrink: 0 }}
                 href="/videos"
@@ -66,7 +66,7 @@ function Nav({ categories, storedTheme }) {
                 Videos
               </Link>
               <Link
-                color="inherit"
+                color="secondary.main"
                 variant="subtitle1"
                 sx={{ p: 1, flexShrink: 0 }}
                 href={`/calendar/${monthYear[0]}-${monthYear[1]}`}

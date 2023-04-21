@@ -12,7 +12,7 @@ export const darkTheme = createTheme({
       default: '#4d4d4d',
     },
     secondary: {
-      main: '#fff',
+      main: '#F0F0F0',
       contrastText: '#343434',
     },
     info: {
@@ -24,12 +24,13 @@ export const lightTheme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#fff',
+      main: '#F0F0F0',
       contrastText: '#222222',
     },
     background: {
       paper: '#878787',
       default: '#DFDFDF',
+      playlist:'#702727'
     },
     secondary: {
       main: '#1A1A1A',

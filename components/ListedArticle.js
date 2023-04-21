@@ -2,7 +2,6 @@ import { Card, Typography, Box } from '@mui/material';
 import Image from './image';
 import Link from 'next/link';
 import styles from './Layout/layout.module.css';
-import { getStrapiMedia } from '../lib/media';
 
 const ListedArticle = ({ article }) => {
   let capitalized = article.attributes.title
@@ -17,6 +16,7 @@ const ListedArticle = ({ article }) => {
 
   let date = new Date(article.attributes.publishedAt);
   return (
+    <div>
     <Card
       sx={{
         m: 1,
@@ -26,6 +26,7 @@ const ListedArticle = ({ article }) => {
         flexDirection: { xs: 'column', sm: 'row' },
         textAlign: {},
         color: 'secondary.main',
+        maxHeight:'300px'
       }}
       className={styles.card}
     >
@@ -62,6 +63,7 @@ const ListedArticle = ({ article }) => {
         </Typography>
       </Box>
     </Card>
+    </div>
   );
 };
 
