@@ -22,9 +22,9 @@ const Videos = ({ articles }) => {
   return (
     <Layout>
       <div className="uk-section">
-        <div className="uk-container uk-container-large">
-          <div style={{ minHeight: '700px' }}>
-            <Playlist videos={articles.data.slice(0, 5)} />
+        <div className="uk-container uk-container-large" style={{display:'flex',flexDirection:'column',alignContent:'center'}}> 
+          <div style={{ minHeight: '700px',display:'flex',flexDirection:'column' }}>
+            <Playlist videos={articles.data.slice(0, 5)}/>
           </div>
           {posts.length === 0 && 'No articles yet!'}
           <InfScroll

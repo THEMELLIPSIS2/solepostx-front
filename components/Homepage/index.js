@@ -20,6 +20,7 @@ export const HomePage = ({ recents = [], features = [], video = [] }) => {
           <Grid
             container
             alignItems="center"
+            justifyContent="center"
             rowSpacing={2}
             columnSpacing={{ xs: 1, sm: 2, md: 3 }}
           >
@@ -85,7 +86,7 @@ export const HomePage = ({ recents = [], features = [], video = [] }) => {
               className={styles.recent}
               alignItems="center"
               justifyContent="center"
-              style={{ textAlign: 'center' }}
+              style={{ textAlign: 'center',maxWidth:'900px' }}
             >
               <div className={styles.frameContainer}>
               <iframe

@@ -10,7 +10,7 @@ export default function MobileHome({ video, features, recents }) {
   return (
     <div className={styles.mobileHome}>
       {features.map((article) => {
-        return <Card article={article} key={article.id} />;
+        return <Card article={article} key={article.id}/>;
       })}
       <Button
         className={styles.link}

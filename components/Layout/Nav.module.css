@@ -1,6 +1,7 @@
 .nav a {
   text-decoration: none;
   color: inherit;
+  font-family: 'Open Sans', sans-serif !important;
 }
 .nav a:hover {
   color: #c80000;
@@ -12,6 +13,7 @@
 
 .innerNav {
   height: 100px;
+
 }
 .search {
   margin-left: auto;
@@ -19,4 +21,7 @@
 .link:hover {
   color: rgb(200, 0, 0);
   text-decoration: underline;
+}
+.link {
+  font-family: 'Open Sans', sans-serif !important;
 }
