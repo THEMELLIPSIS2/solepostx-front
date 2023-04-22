@@ -23,16 +23,15 @@ const ListedArticle = ({ article }) => {
         alignItems: { xs: '', sm: 'center' },
         gap: 2,
         flexDirection: { xs: 'column', sm: 'row' },
-        color: 'secondary.main'
+        textAlign: {},
+        color: 'secondary.main',
+        maxHeight: '300px'
       }}
       className={styles.card}
     >
       <Box sx={{ width: { xs: '100%', sm: '40%' } }}>
         <Link href={`/article/${article.attributes.slug}`}>
-          <Image
-            image={article.attributes.image}
-            alt={article.attributes.title + 'cover image'}
-          />
+          <Image image={article.attributes.image} />
         </Link>
       </Box>
       <Box
