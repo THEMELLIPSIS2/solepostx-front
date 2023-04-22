@@ -1,6 +1,6 @@
 import ListedArticle from '../ListedArticle';
 import { Typography, Box, Card, Paper, Container } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { SearchIndex } from '.';
 import InfScroll from '../InfiniteScroll';
 import { fetchAPI } from '@/lib/api';
@@ -13,6 +13,9 @@ export const SearchResults = ({ searchResults, query }) => {
   const [posts, setPosts] = useState(data ?? []);
   console.log(data);
   console.log(meta);
+  useEffect(() => {
+    setPosts(data);
+  }, [data]);
   const getMorePosts = async () => {
     const res = await fetchAPI('/articles', {
       filters: {
