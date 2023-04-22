@@ -6,16 +6,20 @@ import { fetchAPI } from '@/lib/api';
 
 const Search = ({ categories, searchResults, tags }) => {
   const router = useRouter();
-  console.log(searchResults);
   const { query } = router;
   return (
     <Layout categories={categories.data}>
       <div className="uk-section">
         <div className="uk-container uk-container-large">
+          <SearchIndex
+            categories={categories}
+            tags={tags}
+            query={query ?? {}}
+          />
           {Object.keys(query).length ? (
-            <SearchResults searchResults={searchResults} />
+            <SearchResults searchResults={searchResults} query={query} />
           ) : (
-            <SearchIndex categories={categories} tags={tags} />
+            ''
           )}
         </div>
       </div>

@@ -28,7 +28,7 @@ import { useRouter } from 'next/router';
 
 import { useState, useEffect } from 'react';
 
-export const SearchIndex = ({ categories, tags }) => {
+export const SearchIndex = ({ categories, tags, query }) => {
   const router = useRouter();
 
   const [filter, setFilter] = useState('');
@@ -41,7 +41,7 @@ export const SearchIndex = ({ categories, tags }) => {
     e.preventDefault();
     let qs = ``;
     qs += filter !== '' ? `filter=${filter}` : '';
-    qs += useCategory ? `&category=${cat.attributes.slug}` : '';
+    qs += useCategory ? `&category=${cat?.attributes.slug}` : '';
     qs += useTag
       ? `&tag=${tag
           .map((t) => {
@@ -49,7 +49,7 @@ export const SearchIndex = ({ categories, tags }) => {
           })
           .join(',')}`
       : '';
-    router.push(`search?${qs}`);
+    router.push(`./search?${qs}`);
   };
 
   const handleClear = () => {
