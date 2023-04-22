@@ -31,7 +31,7 @@ import { useState, useEffect } from 'react';
 export const SearchIndex = ({ categories, tags, query }) => {
   const router = useRouter();
 
-  const [filter, setFilter] = useState('');
+  const [filter, setFilter] = useState(query.filter ?? '');
   const [useCategory, setUseCategory] = useState(false);
   const [cat, setCat] = useState(null);
   const [useTag, setUseTag] = useState(false);
