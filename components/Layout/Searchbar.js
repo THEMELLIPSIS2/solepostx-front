@@ -18,7 +18,7 @@ export default function SearchField() {
     e.preventDefault();
     let qs = ``;
     qs += field !== '' ? `filter=${field}` : '';
-    router.push(`../search?${qs}`);
+    router.push(`/search?${qs}`);
   }
 
   return (
