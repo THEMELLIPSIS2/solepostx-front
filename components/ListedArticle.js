@@ -16,7 +16,6 @@ const ListedArticle = ({ article }) => {
 
   let date = new Date(article.attributes.publishedAt);
   return (
-    <div>
     <Card
       sx={{
         m: 1,
@@ -26,7 +25,7 @@ const ListedArticle = ({ article }) => {
         flexDirection: { xs: 'column', sm: 'row' },
         textAlign: {},
         color: 'secondary.main',
-        maxHeight:'300px'
+        maxHeight: '300px'
       }}
       className={styles.card}
     >
@@ -41,7 +40,7 @@ const ListedArticle = ({ article }) => {
           flexDirection: 'column',
           p: { xs: 1, sm: 0 },
           height: '100%',
-          gap: 1,
+          gap: 1
         }}
       >
         {category && (
@@ -63,7 +62,6 @@ const ListedArticle = ({ article }) => {
         </Typography>
       </Box>
     </Card>
-    </div>
   );
 };
 
