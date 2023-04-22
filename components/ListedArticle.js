@@ -16,7 +16,6 @@ const ListedArticle = ({ article }) => {
 
   let date = new Date(article.attributes.publishedAt);
   return (
-    <div>
     <Card
       sx={{
         m: 1,
@@ -24,15 +23,16 @@ const ListedArticle = ({ article }) => {
         alignItems: { xs: '', sm: 'center' },
         gap: 2,
         flexDirection: { xs: 'column', sm: 'row' },
-        textAlign: {},
-        color: 'secondary.main',
-        maxHeight:'300px'
+        color: 'secondary.main'
       }}
       className={styles.card}
     >
       <Box sx={{ width: { xs: '100%', sm: '40%' } }}>
         <Link href={`/article/${article.attributes.slug}`}>
-          <Image image={article.attributes.image} />
+          <Image
+            image={article.attributes.image}
+            alt={article.attributes.title + 'cover image'}
+          />
         </Link>
       </Box>
       <Box
@@ -41,7 +41,7 @@ const ListedArticle = ({ article }) => {
           flexDirection: 'column',
           p: { xs: 1, sm: 0 },
           height: '100%',
-          gap: 1,
+          gap: 1
         }}
       >
         {category && (
@@ -63,7 +63,6 @@ const ListedArticle = ({ article }) => {
         </Typography>
       </Box>
     </Card>
-    </div>
   );
 };
 

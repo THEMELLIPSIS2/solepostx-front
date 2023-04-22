@@ -1,12 +1,15 @@
 import Layout from '@/components/Layout';
+import { Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import { SearchIndex } from '@/components/Search';
 import { SearchResults } from '@/components/Search/SearchResults';
 import { fetchAPI } from '@/lib/api';
-
-const Search = ({ categories, searchResults, tags }) => {
+import InfScroll from '@/components/InfiniteScroll';
+const Search = ({ categories, searchResults, tags, count }) => {
   const router = useRouter();
   const { query } = router;
+  const { data, meta } = searchResults;
+
   return (
     <Layout categories={categories.data}>
       <div className="uk-section">
@@ -16,7 +19,7 @@ const Search = ({ categories, searchResults, tags }) => {
             tags={tags}
             query={query ?? {}}
           />
-          {Object.keys(query).length ? (
+          {data?.length ? (
             <SearchResults searchResults={searchResults} query={query} />
           ) : (
             ''
@@ -30,40 +33,42 @@ const Search = ({ categories, searchResults, tags }) => {
 export default Search;
 
 export async function getServerSideProps({ query }) {
-  console.log(query);
   let { filter, tag, category } = query;
   const tagsFilter = tag && tag != '' ? tag.split(',') : [];
-  const searchResults =
-    Object.keys(query).length > 0
-      ? await fetchAPI('/articles', {
-          filters: {
-            $or: [
-              {
-                title: {
-                  $containsi: filter || ''
-                }
-              },
-              {
-                description: {
-                  $containsi: filter || ''
-                }
-              }
-            ],
-            category: {
-              slug: {
-                $eqi: category
+  const hasQuery = Object.keys(query).length > 0;
+  let searchObj = hasQuery
+    ? {
+        filters: {
+          $or: [
+            {
+              title: {
+                $containsi: filter || ''
               }
             },
-            tags: {
-              slug: {
-                $in: tagsFilter
+            {
+              description: {
+                $containsi: filter || ''
               }
             }
+          ],
+          category: {
+            slug: {
+              $eqi: category
+            }
           },
-          populate: '*'
-        })
-      : [];
-
+          tags: {
+            slug: {
+              $in: tagsFilter
+            }
+          }
+        },
+        populate: '*',
+        sort: 'createdAt:desc'
+      }
+    : {};
+  const searchResults = hasQuery
+    ? await fetchAPI('/articles', { ...searchObj })
+    : [];
   const categories = await fetchAPI('/categories');
   const allTags = await fetchAPI('/tags');
   return {
