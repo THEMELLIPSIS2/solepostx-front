@@ -13,6 +13,7 @@ import styles from '../../styles/Calendar.module.css';
 import { Typography } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import Link from 'next/link';
+import Seo from '../../components/seo';
 
 const Home = ({ articles }) => {
   const [date, setDate] = useState(dayjs());
@@ -35,7 +36,12 @@ const Home = ({ articles }) => {
   function handleClick() {
     router.push(`/calendar/${monthYear[0]}-${monthYear[1]}`);
   }
+const seo = monthYear ? {
+    metaTitle: `Release dates in ${monthYear[0]}, ${monthYear[1]}`,
+    metaDescription: `All articles with release dates in ${monthYear[0]}, ${monthYear[1]}`,
+  } : null;
 
+ 
 
   function mapArticles(articles) {
     return articles.map((article) => {
@@ -63,6 +69,7 @@ const Home = ({ articles }) => {
 
   return (
     <Layout>
+      {seo && <Seo seo={seo}/>}
       <div className={styles.container} style={{ minHeight: '100vh' }}>
         <div>
           <LocalizationProvider dateAdapter={AdapterDayjs}>

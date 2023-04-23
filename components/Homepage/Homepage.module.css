@@ -1,4 +1,3 @@
-
 .article {
   height: 100%;
   position: relative;
@@ -7,10 +6,10 @@
 .card {
   z-index: 1 !important;
   position: relative;
- 
+  margin-bottom: 15px;
 }
 .card img {
-  object-fit:cover;
+  object-fit: cover;
 }
 
 .homepage {
@@ -63,7 +62,7 @@
   height: 200px;
   width: 100%;
 }
-.recent .card  {
+.recent .card {
   max-width: 400px;
 }
 .featured {
@@ -76,13 +75,11 @@
   justify-content: space-between;
 }
 
-
 .frameContainer {
   position: relative;
   overflow: hidden;
   width: 100%;
   padding-top: 66.66%;
-
 }
 
 .iFrame {
@@ -94,21 +91,17 @@
   width: 100%;
   height: 100%;
 }
-.features .card img{
-
+.features .card img {
   max-height: 500px;
-
 }
 .features .card {
-
   max-width: 600px;
-
 }
 .features {
-display: flex;
-justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
-.card.bottom {
-  border:3px solid blue
+.features .card .bottom {
+  max-height: 10px;
 }

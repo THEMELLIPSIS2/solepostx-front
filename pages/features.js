@@ -3,10 +3,15 @@ import Layout from '../components/Layout';
 import Typography from '@mui/material/Typography';
 import { useState} from 'react';
 import InfScroll from '@/components/InfiniteScroll';
+import Seo from '../components/seo';
+
 
 const Featured = ({ articles }) => {
   const [posts, setPosts] = useState(articles.data);
-
+  const seo = {
+    metaTitle: 'Featurs',
+    metaDescription: `All featured articles`,
+  };
   const getMorePosts = async () => {
     const res = await fetchAPI('/articles', {
       populate: ['image', 'category', 'tags'],
@@ -21,6 +26,7 @@ const Featured = ({ articles }) => {
 
   return (
     <Layout>
+      <Seo seo={seo} />
       <div className="uk-section">
         <div className="uk-container uk-container-large">
           <Typography variant="h2" color="secondary.main">
