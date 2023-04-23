@@ -9,6 +9,9 @@
   position: relative;
  
 }
+.card img {
+  object-fit:cover;
+}
 
 .homepage {
   margin: 3%;
@@ -94,8 +97,18 @@
 .features .card img{
 
   max-height: 500px;
+
 }
 .features .card {
- 
-  max-width: 700px;
+
+  max-width: 600px;
+
+}
+.features {
+display: flex;
+justify-content: center;
+}
+
+.card.bottom {
+  border:3px solid blue
 }
