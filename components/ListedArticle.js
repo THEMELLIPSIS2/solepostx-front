@@ -20,38 +20,41 @@ const ListedArticle = ({ article }) => {
       sx={{
         m: 1,
         display: 'flex',
-        alignItems: { xs: '', sm: 'center' },
+        alignItems: 'center',
         gap: 2,
-        flexDirection: { xs: 'column', sm: 'row' },
+        flexDirection: 'row',
         textAlign: {},
-        color: 'secondary.main',
-        maxHeight: '300px'
+        maxHeight: '160px'
       }}
       className={styles.card}
     >
-      <Box sx={{ width: { xs: '100%', sm: '40%' } }}>
-        <Link href={`/article/${article.attributes.slug}`}>
+      <Link href={`/article/${article.attributes.slug}`}>
+        <Box
+          sx={{
+            width: '250px',
+            minWidth: '250px'
+          }}
+        >
           <Image image={article.attributes.image} />
-        </Link>
-      </Box>
+        </Box>
+      </Link>
       <Box
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          p: { xs: 1, sm: 0 },
-          height: '100%',
-          gap: 1
+          justifyContent: 'space-around',
+          p: 1,
+          gap: 1,
+          width: '100%'
         }}
       >
-        {category && (
-          <Link
-            href={`/category/${article.attributes.category.data.attributes.slug}`}
-          >
-            <Typography variant="subtitle2" color="secondary">
-              {category.toUpperCase()}
-            </Typography>
-          </Link>
-        )}
+        <Link
+          href={`/category/${article.attributes.category.data.attributes.slug}`}
+        >
+          <Typography variant="subtitle2" color="secondary">
+            {category.toUpperCase()}
+          </Typography>
+        </Link>
         <Link href={`/article/${article.attributes.slug}`}>
           <Typography variant="h5" color="secondary">
             {capitalized}
