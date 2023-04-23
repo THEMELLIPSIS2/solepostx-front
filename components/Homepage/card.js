@@ -2,7 +2,6 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import styles from './Homepage.module.css';
 import Link from 'next/link';
-import { getStrapiMedia } from '../../lib/media';
 import { useEffect, useState } from 'react';
 import Image from '../image';
 

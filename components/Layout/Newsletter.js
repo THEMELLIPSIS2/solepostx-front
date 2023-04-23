@@ -86,7 +86,7 @@ export default function Newsletter() {
       <ColorButton onClick={handleClickOpen}>
         Newsletter
       </ColorButton>
-      <Dialog open={open} onClose={handleClose} fullWidth="true" style={{textAlign:'center'}}>
+      <Dialog open={open} onClose={handleClose} fullWidth style={{textAlign:'center'}}>
         <DialogTitle color="secondary">Subscribe</DialogTitle>
         <DialogContent>
           <DialogContentText color="secondary">{message}</DialogContentText>

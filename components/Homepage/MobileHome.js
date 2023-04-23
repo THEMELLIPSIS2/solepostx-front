@@ -9,9 +9,9 @@ import Typography from '@mui/material/Typography';
 export default function MobileHome({ video, features, recents }) {
   return (
     <div className={styles.mobileHome}>
-      {features.map((article) => {
-        return <Card article={article} key={article.id}/>;
-      })}
+      <div className={styles.features} >
+      {features.length > 0 && <Card article={features[0]} />}
+      </div>
       <Button
         className={styles.link}
         component={Link}
@@ -25,7 +25,8 @@ export default function MobileHome({ video, features, recents }) {
           display: 'block',
           marginLeft: 'auto',
           marginRight: 'auto',
-          fontSize: '50px'
+          fontSize: '50px',
+          marginTop:'40px'
         }}
       />
       <Grid
@@ -35,38 +36,40 @@ export default function MobileHome({ video, features, recents }) {
         sx={{
           backgroundColor: '#737373',
           width: '100%',
-          marginBottom: '50px'
+          marginBottom: '50px',
         }}
       >
-        <Grid item xs={9} alignItems="center">
-          <div className={styles.frameContainer}>
-            <iframe
-              src={`${video[0]?.attributes.youtubeURL}`}
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              title="Embedded youtube"
-              className={styles.iFrame}
-            />
-          </div>
-          <Typography
-            className={styles.link}
-            varaint="h6"
-            component={Link}
-            href={`/article/${video[0]?.attributes.slug}`}
-            style={{ display: 'block' }}
-          >
-            {video[0]?.attributes.title}
-          </Typography>
-          <Button
-            component={Link}
-            href="/videos"
-            size="large"
-            color="secondary"
-            className={styles.link}
-          >
-            See more
-          </Button>
-        </Grid>
+        {video.length > 0 && (
+          <Grid item xs={9} alignItems="center">
+            <div className={styles.frameContainer}>
+              <iframe
+                src={`${video[0]?.attributes.youtubeURL}`}
+                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title="Embedded youtube"
+                className={styles.iFrame}
+              />
+            </div>
+            <Typography
+              className={styles.link}
+              varaint="h6"
+              component={Link}
+              href={`/article/${video[0]?.attributes.slug}`}
+              style={{ display: 'block' }}
+            >
+              {video[0]?.attributes.title}
+            </Typography>
+            <Button
+              component={Link}
+              href="/videos"
+              size="large"
+              color="secondary"
+              className={styles.link}
+            >
+              See more
+            </Button>
+          </Grid>
+        )}
       </Grid>{' '}
       <Grid item xs={3} alignItems="center">
         {recents.map((article) => {

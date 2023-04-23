@@ -15,6 +15,7 @@ export function Playlist({ videos }) {
     <Paper  style={{ padding: '10px',maxWidth:'1100px',width:'100%',alignSelf:'center'}} >
       <Grid container>
         <Grid item xs={12} sm={12} md={8} sx={{alignSelf:'center', textAlign:'center',marginBottom:'10px'}}>
+          <Paper style={{ maxHeight: '600px' }} elevation='8'>
           <Typography
             variant="h4"
             color="secondary"
@@ -24,7 +25,7 @@ export function Playlist({ videos }) {
           >
             {picked.attributes.title.toUpperCase()}
           </Typography>
-          <Paper style={{ maxHeight: '600px' }} elevation='8'>
+          
             <div className={styles.frameContainer}>
               <iframe
                 key={picked.id}
