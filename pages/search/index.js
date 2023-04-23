@@ -1,5 +1,5 @@
 import Layout from '@/components/Layout';
-import { Typography } from '@mui/material';
+import { Typography, paginationClasses } from '@mui/material';
 import { useRouter } from 'next/router';
 import { SearchIndex } from '@/components/Search';
 import { SearchResults } from '@/components/Search/SearchResults';
@@ -63,7 +63,10 @@ export async function getServerSideProps({ query }) {
           }
         },
         populate: '*',
-        sort: 'createdAt:desc'
+        sort: 'createdAt:desc',
+        pagination: {
+          limit: 10
+        }
       })
     : [];
   const categories = await fetchAPI('/categories');
