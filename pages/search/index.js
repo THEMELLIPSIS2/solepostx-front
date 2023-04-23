@@ -36,8 +36,8 @@ export async function getServerSideProps({ query }) {
   let { filter, tag, category } = query;
   const tagsFilter = tag && tag != '' ? tag.split(',') : [];
   const hasQuery = Object.keys(query).length > 0;
-  let searchObj = hasQuery
-    ? {
+  const searchResults = hasQuery
+    ? await fetchAPI('/articles', {
         filters: {
           $or: [
             {
@@ -64,10 +64,7 @@ export async function getServerSideProps({ query }) {
         },
         populate: '*',
         sort: 'createdAt:desc'
-      }
-    : {};
-  const searchResults = hasQuery
-    ? await fetchAPI('/articles', { ...searchObj })
+      })
     : [];
   const categories = await fetchAPI('/categories');
   const allTags = await fetchAPI('/tags');
