@@ -2,7 +2,7 @@ import { getStrapiMedia } from '../../lib/media';
 import Layout from '../../components/Layout';
 import { fetchAPI } from '../../lib/api';
 import { useRouter } from 'next/router';
-import styles from '../../styles/Author.module.css';
+import styles from '../../styles/Other.module.css';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -13,10 +13,17 @@ import IconButton from '@mui/material/IconButton';
 import TikTok from '../../public/tiktok.svg';
 import Link from '@mui/material/Link';
 import InfScroll from '../../components/InfiniteScroll';
+import Seo from '../../components/seo';
+
 const Author = ({ author, count }) => {
   const router = useRouter();
   const { slug } = router.query;
   const [posts, setPosts] = useState(author.attributes.articles.data);
+
+  const seo = {
+    metaTitle: author.attributes.name,
+    metaDescription: `All articles by ${author.attributes.name}`,
+  };
 
   const getMorePosts = async () => {
     const res = await fetchAPI('/writers', {
@@ -36,6 +43,7 @@ const Author = ({ author, count }) => {
 
   return (
     <Layout>
+      <Seo seo={seo}/>
       <div className={styles.main}>
         <div className={styles.outer}>
           <div className={styles.header}>
@@ -45,7 +53,7 @@ const Author = ({ author, count }) => {
             <Typography
               variant="h1"
               color="secondary"
-              style={{ alignSelf: 'center' }}
+              style={{ alignSelf: 'center',justifySelf:'center' }}
             >
               {author.attributes.name}
             </Typography>
@@ -57,7 +65,6 @@ const Author = ({ author, count }) => {
 
             {author.attributes.Youtube && (
               <IconButton
-                IconButton
                 component={Link}
                 className={styles.link}
                 href={`https://youtube.com/@${author.attributes.Youtube}`}

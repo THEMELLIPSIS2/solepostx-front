@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { SearchIndex } from '@/components/Search';
 import { SearchResults } from '@/components/Search/SearchResults';
 import { fetchAPI } from '@/lib/api';
-import InfScroll from '@/components/InfiniteScroll';
+
 const Search = ({ categories, searchResults, tags, count }) => {
   const router = useRouter();
   const { query } = router;
@@ -63,6 +63,7 @@ export async function getServerSideProps({ query }) {
           }
         },
         populate: '*',
+        search
         sort: 'createdAt:desc',
         pagination: {
           limit: 10

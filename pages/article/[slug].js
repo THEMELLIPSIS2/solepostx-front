@@ -1,6 +1,6 @@
 import Moment from 'react-moment';
 import parse from 'html-react-parser';
-import styles from '../../styles/Author.module.css';
+import styles from '../../styles/Other.module.css';
 import Seo from '../../components/seo';
 import Layout from '../../components/Layout';
 import Link from 'next/link';

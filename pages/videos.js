@@ -3,8 +3,14 @@ import Layout from '../components/Layout';
 import { useState } from 'react';
 import { Playlist } from '../components/playlist';
 import InfScroll from '@/components/InfiniteScroll';
+import Seo from '../components/seo';
 
 const Videos = ({ articles }) => {
+
+  const seo = {
+    metaTitle: 'Videos',
+    metaDescription: `All video articles`,
+  };
   const [posts, setPosts] = useState(articles.data);
 
   const getMorePosts = async () => {
@@ -21,6 +27,7 @@ const Videos = ({ articles }) => {
 
   return (
     <Layout>
+      <Seo seo={seo}/>
       <div className="uk-section">
         <div className="uk-container uk-container-large" style={{display:'flex',flexDirection:'column',alignContent:'center'}}> 
           <div style={{ minHeight: '700px',display:'flex',flexDirection:'column' }}>
@@ -34,6 +41,7 @@ const Videos = ({ articles }) => {
           />
         </div>
       </div>
+
     </Layout>
   );
 };

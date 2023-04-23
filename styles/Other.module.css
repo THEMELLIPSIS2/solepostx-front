@@ -5,6 +5,7 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  text-align: center;
 }
 .header .container {
   display: inline-block;
