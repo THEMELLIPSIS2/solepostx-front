@@ -9,13 +9,13 @@ import Seo from '../components/seo';
 const Featured = ({ articles }) => {
   const [posts, setPosts] = useState(articles.data);
   const seo = {
-    metaTitle: 'Featurs',
+    metaTitle: 'Features',
     metaDescription: `All featured articles`,
   };
   const getMorePosts = async () => {
     const res = await fetchAPI('/articles', {
       populate: ['image', 'category', 'tags'],
-      filters: { featured: { $eq: 'true' } },
+      filters: { featured: { $eq: 'true' },youtubeURL: { $null: 'true' } },
       publicationState: 'live',
       pagination: { start: posts.length, limit: 10 },
       sort: 'createdAt:desc',
@@ -47,7 +47,7 @@ export async function getStaticProps() {
   const [featuredRes] = await Promise.all([
     fetchAPI('/articles', {
       populate: ['image', 'category', 'tags'],
-      filters: { featured: { $eq: 'true' } },
+      filters: { featured: { $eq: 'true' }, youtubeURL: { $null: 'true' } },
       publicationState: 'live',
       pagination: { withCount: true, limit: 10 },
       sort: 'createdAt:desc',

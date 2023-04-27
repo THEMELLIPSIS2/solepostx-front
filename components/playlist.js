@@ -12,10 +12,27 @@ export function Playlist({ videos }) {
     setPicked(video);
   }
   return (
-    <Paper  style={{ padding: '10px',maxWidth:'1100px',width:'100%',alignSelf:'center'}} >
+    <div
+      style={{
+        padding: '10px',
+        maxWidth: '1500px',
+        width: '100%',
+        alignSelf: 'center',
+      }}
+    >
       <Grid container>
-        <Grid item xs={12} sm={12} md={8} sx={{alignSelf:'center', textAlign:'center',marginBottom:'10px'}}>
-          <Paper style={{ maxHeight: '600px' }} elevation='8'>
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={7}
+          sx={{
+            alignSelf: 'center',
+            textAlign: 'center',
+            marginBottom: '10px',
+          }}
+        >
+          {/*          
           <Typography
             variant="h4"
             color="secondary"
@@ -24,27 +41,26 @@ export function Playlist({ videos }) {
             className={styles.link}
           >
             {picked.attributes.title.toUpperCase()}
-          </Typography>
-          
-            <div className={styles.frameContainer}>
-              <iframe
-                key={picked.id}
-                src={`${picked.attributes.youtubeURL}`}
-                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title="Embedded youtube"
-                className={styles.iFrame}
-              />
-            </div>
-          </Paper>
+          </Typography> */}
+
+          <div className={styles.frameContainer}>
+            <iframe
+              key={picked.id}
+              src={`${picked.attributes.youtubeURL}`}
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title="Embedded youtube"
+              className={styles.iFrame}
+            />
+          </div>
         </Grid>
 
         <Grid
           item
           xs={12}
           sm={12}
-          md={4}
-          style={{ overflowY: 'scroll', maxHeight: '600px' }}
+          md={5}
+          style={{ overflowY: 'scroll', maxHeight: '550px' }}
         >
           {videos.map((video) => {
             let capitalized = video.attributes.title
@@ -54,41 +70,42 @@ export function Playlist({ videos }) {
               })
               .join(' ');
             return (
-              <Paper
+              <div
                 style={{
                   cursor: 'pointer',
-                  border: video.id === picked.id ? '2px solid red' : 'none',
-                  textAlign:'center', margin:'10px'
+                  border: video.id === picked.id ? '2px solid black' : 'none',
+                  textAlign: 'center',
+                  margin: '10px',
+                  display: 'flex',
+                  height:'200px'
                 }}
-                elevation='8'
+                onClick={() => pickNew(video)}
+                  onKeyDown={() => pickNew(video)}
               >
                 <div
-                  className={styles.frameContainer}
-                  onClick={() => pickNew(video)}
-                  onKeyDown={() => pickNew(video)}
+                  className={styles.frameContainerSmall}
+                  
                   component="button"
                 >
                   <iframe
-                    width="853"
-                    height="460"
                     src={`${video.attributes.youtubeURL}`}
                     allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     title="Embedded youtube"
-                    className={styles.iFrame}
+                    className={styles.iFrameSmall}
                     key={video.id}
                     style={{ pointerEvents: 'none' }}
                     tabIndex="-1"
                   />
                 </div>
-                <Typography variant="h6" color="secondary">
+                <Typography variant="h6" color="secondary" style={{alignSelf:'center', marginLeft:'5px'}}>
                   {capitalized}
                 </Typography>
-              </Paper>
+              </div>
             );
           })}
         </Grid>
       </Grid>
-    </Paper>
+    </div>
   );
 }

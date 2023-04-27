@@ -1,7 +1,7 @@
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
+import Link from 'next/link'
 import Searchfield from './Searchbar.js';
 import styles from './Nav.module.css';
 import { useState, useEffect } from 'react';
@@ -51,8 +51,8 @@ function Nav({ categories, storedTheme }) {
             <div>
               <Link
                 color="secondary.main"
-                variant="subtitle1"
                 sx={{ p: 1, flexShrink: 0, }}
+                style={{marginRight:'10px'}}
                 href="/features"
               >
                 Features
@@ -60,7 +60,7 @@ function Nav({ categories, storedTheme }) {
               <Link
                 color="secondary.main"
                 variant="subtitle1"
-                sx={{ p: 1, flexShrink: 0 }}
+                sx={{ p: 1, flexShrink: 0 }}style={{marginRight:'10px'}}
                 href="/videos"
               >
                 Videos
@@ -68,7 +68,7 @@ function Nav({ categories, storedTheme }) {
               <Link
                 color="secondary.main"
                 variant="subtitle1"
-                sx={{ p: 1, flexShrink: 0 }}
+                sx={{ p: 1, flexShrink: 0 }}style={{marginRight:'10px'}}
                 href={`/calendar/${monthYear[0]}-${monthYear[1]}`}
               >
                 Release Dates
