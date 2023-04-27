@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
+import Link from 'next/link'
 import Searchfield from './Searchbar.js';
 import styles from './Nav.module.css';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -126,6 +126,7 @@ export function MobileNav({ categories }) {
                     className={styles.link}
                     color="secondary"
                   >
+                  
                     <ListItemText inset primary={capitalized} />
                   </ListItem>
                 );

@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
+import Link from 'next/link'
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import YouTubeIcon from '@mui/icons-material/YouTube';
@@ -50,6 +50,7 @@ function Footer({ socials }) {
                     rel="noreferrer"
                     color="inherit"
                     sx={{ paddingRight: 1 }}
+                    style={{marginRight:'10px'}}
                   >
                     <InstagramIcon />
                   </Link>
@@ -62,6 +63,7 @@ function Footer({ socials }) {
                     rel="noreferrer"
                     color="inherit"
                     sx={{ paddingRight: 1 }}
+                    style={{marginRight:'10px'}}
                   >
                     <TwitterIcon />
                   </Link>
@@ -74,6 +76,7 @@ function Footer({ socials }) {
                     rel="noreferrer"
                     color="inherit"
                     sx={{ paddingRight: 1 }}
+                    style={{marginRight:'10px'}}
                   >
                     <YouTubeIcon />
                   </Link>
@@ -84,6 +87,7 @@ function Footer({ socials }) {
                     target="_blank"
                     color="inherit"
                     rel="noreferrer"
+                    style={{marginRight:'10px'}}
                   >
                     <FacebookIcon />
                   </Link>
@@ -94,6 +98,7 @@ function Footer({ socials }) {
                     target="_blank"
                     color="inherit"
                     rel="noreferrer"
+                    style={{marginRight:'5px'}}
                   >
                     <TikTok style={{ width: '20px', margin: '8px' }} />
                   </Link>

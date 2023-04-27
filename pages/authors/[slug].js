@@ -11,7 +11,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import IconButton from '@mui/material/IconButton';
 import TikTok from '../../public/tiktok.svg';
-import Link from '@mui/material/Link';
+import Link from 'next/link'
 import InfScroll from '../../components/InfiniteScroll';
 import Seo from '../../components/seo';
 

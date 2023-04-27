@@ -20,10 +20,10 @@ export const Card = ({ article }) => {
   return (
     <div key={article.id} className={styles.card}>
       <Paper className={styles.article} style={{ margin: '10px' }}>
-        <Link href={`/article/${article.attributes.slug}`}>
+        <Link href={`/article/${article.attributes.slug}`}><a>
           <Typography className={styles.header} variant="h6">
             {capitalized}
-          </Typography>
+          </Typography></a>
           <Image className={styles.image} image={article.attributes.image} />
         </Link>
         <div className={styles.bottom}>

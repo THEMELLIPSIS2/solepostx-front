@@ -10,6 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import { useState, useEffect, useRef } from 'react';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import { useAppContext } from '@/pages/_app';
+import Newsletter from './Newsletter';
 
 const Layout = ({ children, seo }) => {
   const context = useAppContext();
@@ -89,6 +90,17 @@ const Layout = ({ children, seo }) => {
               <ArrowUpwardIcon />
             </IconButton>
           )}
+          {showButton && (  <div style={{
+                position: 'fixed',
+                bottom: '30px',
+                left: '10px',
+                backgroundColor: 'secondary.contrastText',
+                zIndex: '9999',
+              }}>
+           <Newsletter       
+                  />
+              </div>)}
+        
           <div style={{ minHeight: '100vh' }}>{children}</div>
           <Footer socials={context.Socials} />
         </ThemeProvider>
