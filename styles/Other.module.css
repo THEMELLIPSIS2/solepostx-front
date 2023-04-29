@@ -84,6 +84,7 @@
 .mainContent {
   padding: 50px;
   max-width: 1000px;
+
 }
 
 
@@ -92,4 +93,8 @@ position: sticky;
 top:0;
 position: -webkit-sticky;
 text-align: center;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+height:100vh
 }

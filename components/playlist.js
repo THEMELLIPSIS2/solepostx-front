@@ -84,7 +84,6 @@ export function Playlist({ videos }) {
               >
                 <div
                   className={styles.frameContainerSmall}
-                  
                   component="button"
                 >
                   <iframe
@@ -98,7 +97,7 @@ export function Playlist({ videos }) {
                     tabIndex="-1"
                   />
                 </div>
-                <Typography variant="h6" color="secondary" style={{alignSelf:'center', marginLeft:'5px'}}>
+                <Typography variant="h6" color="secondary" style={{alignSelf:'center', marginLeft:'5px',width:'50%'}}>
                   {capitalized}
                 </Typography>
               </div>

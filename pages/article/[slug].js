@@ -65,7 +65,7 @@ const Article = ({ article, recents }) => {
         )}
       </div>
       <div className={styles.contentContainer}>
-        <Paper className={styles.mainContent} elevation="8">
+        <Paper className={styles.mainContent} elevation={8} sx={{width:{sm:'100%',md:'80%'}}}>
           {parse(article.attributes.content)}
           <hr className="uk-divider-small" style={{ marginTop: '100px' }} />
           <div>
@@ -126,12 +126,14 @@ const Article = ({ article, recents }) => {
             color: 'white',
             display: { xs: 'none', sm: 'none', md: 'block', lg: 'block' },
             marginLeft: '5px',
+            width: '350px',
             minWidth: '300px',
+
           }}
           className={styles.sidebar}
         >
           <Box className={styles.content}> 
-          <Typography variant="h4" color="secondary">
+          <Typography variant="h4" sx={{color:'white'}}>
                 Share
               </Typography>
             <div
@@ -197,6 +199,7 @@ export async function getServerSideProps({ params }) {
     pagination: { limit: 2 },
     sort: 'createdAt:desc',
   });
+
   return {
     props: { article: articlesRes.data[0], recents: recentRes.data },
   };
