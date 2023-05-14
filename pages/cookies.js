@@ -20,7 +20,7 @@ const CookieAccept = () => {
       declineButtonText="Decline"
       buttonText="Accept"
       cookieName="SolePost Cookie"
-      style={{ background: 'black' }}
+      style={{ background: 'black', zIndex: '9999999999999999' }}
       buttonStyle={{
         fontSize: '15px',
         backgroundColor: '#d32f2f',
