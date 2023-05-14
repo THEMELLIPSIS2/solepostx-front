@@ -6,6 +6,7 @@ import { getStrapiMedia } from '../lib/media';
 // Store Strapi Global object in context
 export const GlobalContext = createContext({});
 import '../styles/globals.css';
+import CookieAccept from './cookies';
 
 const MyApp = ({ Component, pageProps }) => {
   const { global } = pageProps;
@@ -26,6 +27,7 @@ const MyApp = ({ Component, pageProps }) => {
       </Head>
 
       <GlobalContext.Provider value={global.attributes}>
+        <CookieAccept />
         <Component {...pageProps} />
       </GlobalContext.Provider>
     </>
