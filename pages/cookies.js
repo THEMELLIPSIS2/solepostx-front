@@ -5,7 +5,6 @@ const CookieAccept = () => {
 
   return (
     <CookieConsent
-    debug={true}
     onAccept={() => {    
       }}
       enableDeclineButton
