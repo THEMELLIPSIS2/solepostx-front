@@ -29,7 +29,7 @@ const CookieAccept = () => {
       }}
       expires={450}
     >
-      This website uses cookies om nom nom UwU
+      This website uses cookies to enhance user experience. Please see our privacy policy.
     </CookieConsent>
   );
 };
