@@ -63,7 +63,6 @@ export async function getServerSideProps({ query }) {
           }
         },
         populate: '*',
-        search
         sort: 'createdAt:desc',
         pagination: {
           limit: 10
@@ -80,3 +79,4 @@ export async function getServerSideProps({ query }) {
     }
   };
 }
+
