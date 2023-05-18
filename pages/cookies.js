@@ -1,6 +1,6 @@
 import React from "react";
 import CookieConsent from 'react-cookie-consent';
-
+import Link from 'next/link';
 const CookieAccept = () => {
 
   return (
@@ -19,7 +19,7 @@ const CookieAccept = () => {
       location="bottom"
       declineButtonText="Decline"
       buttonText="Accept"
-      cookieName="SolePost Cookie"
+      cookieName="localConsent"
       style={{ background: 'black', zIndex: '9999999999999999' }}
       buttonStyle={{
         fontSize: '15px',
@@ -33,7 +33,7 @@ const CookieAccept = () => {
       }}
       expires={450}
     >
-      This website uses cookies to enhance user experience. Please see our privacy policy.
+      This website uses cookies to enhance user experience. Please see our <Link href="/privacy">privacy policy</Link>.
     </CookieConsent>
   );
 };
