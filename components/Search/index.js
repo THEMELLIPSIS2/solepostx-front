@@ -28,6 +28,8 @@ import { useRouter } from 'next/router';
 
 import { useState, useEffect } from 'react';
 
+import * as ga from '../../lib/ga'
+
 export const SearchIndex = ({ categories, tags, query }) => {
   const router = useRouter();
 
@@ -39,6 +41,7 @@ export const SearchIndex = ({ categories, tags, query }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    search()
     let qs = ``;
     qs += filter !== '' ? `filter=${filter}` : '';
     qs += useCategory ? `&category=${cat?.attributes.slug}` : '';
@@ -60,7 +63,16 @@ export const SearchIndex = ({ categories, tags, query }) => {
     setTag([]);
   };
 
-  return (
+  const search = () => {
+    ga.event({
+      action: "search",
+      params : {
+        search_term: filter
+      }
+    })
+  }
+
+    return (
     <Container>
       <Card sx={{ p: 2, m: 2, gap: 2 }}>
         <form onSubmit={handleSubmit}>

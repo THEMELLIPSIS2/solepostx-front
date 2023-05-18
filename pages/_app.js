@@ -7,8 +7,30 @@ import { getStrapiMedia } from '../lib/media';
 export const GlobalContext = createContext({});
 import '../styles/globals.css';
 import CookieAccept from './cookies';
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+import * as ga from '../lib/ga'
+
+import Script from 'next/script';
 
 const MyApp = ({ Component, pageProps }) => {
+  const router = useRouter()
+
+   useEffect(() => {
+    const handleRouteChange = (url) => {
+      ga.pageview(url)
+    }
+    //When the component is mounted, subscribe to router changes
+    //and log those page views
+    router.events.on('routeChangeComplete', handleRouteChange)
+
+    // If the component is unmounted, unsubscribe
+    // from the event with the `off` method
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
+
   const { global } = pageProps;
   let storedTheme;
   if (typeof window !== 'undefined') {
@@ -20,12 +42,32 @@ const MyApp = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
+       
         <link
           rel="shortcut icon"
           href={getStrapiMedia(global.attributes.favicon)}
         />
+        
       </Head>
-
+      <Script
+        id="gtag"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            
+            gtag('consent', 'default', {
+              'ad_storage': 'denied',
+              'analytics_storage': 'denied'
+            });
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                      })(window,document,'script','dataLayer','GTM-PR7FDL7');`,
+        }}
+      />
       <GlobalContext.Provider value={global.attributes}>
         <CookieAccept />
         <Component {...pageProps} />

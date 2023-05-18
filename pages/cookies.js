@@ -6,7 +6,11 @@ const CookieAccept = () => {
   return (
     <CookieConsent
     debug={true}
-    onAccept={() => {    
+    onAccept={() => {  
+      gtag('consent', 'update', {
+        ad_storage: 'granted',
+        analytics_storage: 'granted',
+      });  
       }}
       enableDeclineButton
       onDecline={() => {
