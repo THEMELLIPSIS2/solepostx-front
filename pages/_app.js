@@ -7,29 +7,34 @@ import { getStrapiMedia } from '../lib/media';
 export const GlobalContext = createContext({});
 import '../styles/globals.css';
 import CookieAccept from './cookies';
-import { useEffect } from 'react'
-import { useRouter } from 'next/router'
-import * as ga from '../lib/ga'
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import * as ga from '../lib/ga';
+import CookieConsent, {
+  Cookies,
+  getCookieConsentValue
+} from 'react-cookie-consent';
 
 import Script from 'next/script';
 
 const MyApp = ({ Component, pageProps }) => {
-  const router = useRouter()
-
-   useEffect(() => {
+  const router = useRouter();
+  const consent = getCookieConsentValue();
+  console.log(getCookieConsentValue());
+  useEffect(() => {
     const handleRouteChange = (url) => {
-      ga.pageview(url)
-    }
+      ga.pageview(url);
+    };
     //When the component is mounted, subscribe to router changes
     //and log those page views
-    router.events.on('routeChangeComplete', handleRouteChange)
+    router.events.on('routeChangeComplete', handleRouteChange);
 
     // If the component is unmounted, unsubscribe
     // from the event with the `off` method
     return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-    }
-  }, [router.events])
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
 
   const { global } = pageProps;
   let storedTheme;
@@ -42,13 +47,25 @@ const MyApp = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
-       
         <link
           rel="shortcut icon"
           href={getStrapiMedia(global.attributes.favicon)}
         />
-        
       </Head>
+      {consent === true && (
+        <Script
+          id="consupd"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+            gtag('consent', 'update', {
+              'ad_storage': 'granted',
+              'analytics_storage': 'granted'
+            });
+          `
+          }}
+        />
+      )}
       <Script
         id="gtag"
         strategy="afterInteractive"
@@ -66,7 +83,7 @@ const MyApp = ({ Component, pageProps }) => {
                       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
                       j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                      })(window,document,'script','dataLayer','GTM-PR7FDL7');`,
+                      })(window,document,'script','dataLayer','${process.env.GTM_ID}');`
         }}
       />
       <GlobalContext.Provider value={global.attributes}>
@@ -76,8 +93,8 @@ const MyApp = ({ Component, pageProps }) => {
     </>
   );
 };
-export function useAppContext(){
-  return useContext(GlobalContext)
+export function useAppContext() {
+  return useContext(GlobalContext);
 }
 
 // getInitialProps disables automatic static optimization for pages that don't
@@ -92,16 +109,16 @@ MyApp.getInitialProps = async (ctx) => {
     populate: {
       favicon: '*',
       defaultSeo: {
-        populate: '*',
+        populate: '*'
       },
-      Socials: {populate:'*'}
-    },
+      Socials: { populate: '*' }
+    }
   });
-  
+
   const allCategories = await fetchAPI('/categories', {
-    filters: { isBrand: { $eq: 'true' } },
+    filters: { isBrand: { $eq: 'true' } }
   });
-  globalRes.data.attributes['categories'] = allCategories.data
+  globalRes.data.attributes['categories'] = allCategories.data;
   // Pass the data to our page via props
   return { ...appProps, pageProps: { global: globalRes.data } };
 };
