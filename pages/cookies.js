@@ -11,7 +11,7 @@ const CookieAccept = () => {
         ad_storage: 'granted',
         analytics_storage: 'granted',
       });  
-
+    }}
       enableDeclineButton
       onDecline={() => {
       }}
