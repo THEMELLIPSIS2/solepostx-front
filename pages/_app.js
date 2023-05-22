@@ -20,7 +20,7 @@ import Script from 'next/script';
 const MyApp = ({ Component, pageProps }) => {
   const router = useRouter();
 
-const [consent,setConsent] = useState(true)
+const [consent,setConsent] = useState(getCookieConsentValue('localConsent'))
 
 
   useEffect(() => {
