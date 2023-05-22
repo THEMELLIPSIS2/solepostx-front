@@ -18,7 +18,7 @@ const nextConfig = {
     MAILCHIMP_API_SERVER: process.env.MAILCHIMP_API_SERVER,
     MAILCHIMP_AUDIENCE_ID: process.env.MAILCHIMP_AUDIENCE_ID,
     NEXT_PUBLIC_GOOGLE_ANALYTICS: process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS,
-    GTM_ID: process.env.GTM_ID
+    GTM_ID: process.env.GTM_ID,
   },
   async rewrites() {
     return [

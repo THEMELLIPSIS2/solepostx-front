@@ -5,9 +5,8 @@ const CookieAccept = () => {
 
   return (
     <CookieConsent
-    debug={true}
     onAccept={() => {  
-      gtag('consent', 'update', {
+      return gtag('consent', 'update', {
         ad_storage: 'granted',
         analytics_storage: 'granted',
       });  
