@@ -5,12 +5,13 @@ const CookieAccept = () => {
 
   return (
     <CookieConsent
+
     onAccept={() => {  
       return gtag('consent', 'update', {
         ad_storage: 'granted',
         analytics_storage: 'granted',
       });  
-      }}
+
       enableDeclineButton
       onDecline={() => {
       }}
@@ -18,7 +19,9 @@ const CookieAccept = () => {
       location="bottom"
       declineButtonText="Decline"
       buttonText="Accept"
+
       cookieName="localConsent"
+
       style={{ background: 'black', zIndex: '9999999999999999' }}
       buttonStyle={{
         fontSize: '15px',
@@ -32,7 +35,9 @@ const CookieAccept = () => {
       }}
       expires={450}
     >
+
       This website uses cookies to enhance user experience. Please see our <Link href="/privacy">privacy policy</Link>.
+
     </CookieConsent>
   );
 };

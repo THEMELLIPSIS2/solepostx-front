@@ -20,41 +20,39 @@ const ListedArticle = ({ article }) => {
       sx={{
         m: 1,
         display: 'flex',
-        alignItems: 'center',
+        alignItems: { xs: '', sm: 'center' },
         gap: 2,
-        flexDirection: 'row',
-        textAlign: {},
-        maxHeight: '160px'
+        flexDirection: { xs: 'column', sm: 'row' },
+        color: 'secondary.main'
       }}
       className={styles.card}
     >
-      <Link href={`/article/${article.attributes.slug}`}>
-        <Box
-          sx={{
-            width: '250px',
-            minWidth: '250px'
-          }}
-        >
-          <Image image={article.attributes.image} />
-        </Box>
-      </Link>
+      <Box sx={{ width: { xs: '100%', sm: '40%' } }}>
+        <Link href={`/article/${article.attributes.slug}`}>
+          <Image
+            image={article.attributes.image}
+            alt={article.attributes.title + 'cover image'}
+          />
+        </Link>
+      </Box>
       <Box
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'space-around',
-          p: 1,
-          gap: 1,
-          width: '100%'
+          p: { xs: 1, sm: 0 },
+          height: '100%',
+          gap: 1
         }}
       >
-        <Link
-          href={`/category/${article.attributes.category.data.attributes.slug}`}
-        >
-          <Typography variant="subtitle2" color="secondary">
-            {category.toUpperCase()}
-          </Typography>
-        </Link>
+        {category && (
+          <Link
+            href={`/category/${article.attributes.category.data.attributes.slug}`}
+          >
+            <Typography variant="subtitle2" color="secondary">
+              {category.toUpperCase()}
+            </Typography>
+          </Link>
+        )}
         <Link href={`/article/${article.attributes.slug}`}>
           <Typography variant="h5" color="secondary">
             {capitalized}
