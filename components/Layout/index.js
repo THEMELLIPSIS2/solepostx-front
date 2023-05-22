@@ -84,7 +84,7 @@ const Layout = ({ children, seo }) => {
                 bottom: '30px',
                 right: '10px',
                 backgroundColor: 'secondary.contrastText',
-                zIndex: '9999',
+                zIndex: '999',
               }}
             >
               <ArrowUpwardIcon />
@@ -95,7 +95,7 @@ const Layout = ({ children, seo }) => {
                 bottom: '30px',
                 left: '10px',
                 backgroundColor: 'secondary.contrastText',
-                zIndex: '9999',
+                zIndex: '999',
               }}>
            <Newsletter       
                   />
