@@ -102,6 +102,7 @@ const Layout = ({ children, seo }) => {
               </div>)}
         
           <div style={{ minHeight: '100vh' }}>{children}</div>
+          
           <Footer socials={context.Socials} />
         </ThemeProvider>
       )}
