@@ -31,8 +31,8 @@ function Copyright() {
 
 function Footer({ socials }) {
   return (
-    <Box component="footer" sx={{ bgcolor: 'background.paper', py: 3 }} style={{zIndex:'9999'}}>
-      <Container>
+    <Box component="footer" sx={{ bgcolor: 'background.paper', py: 3, position:'relative'}} style={{zIndex:'10000'}} >
+      <Container >
         <img src={logo.src} width="90px" />
         <Box align="left" sx={{ display: 'flex', float: 'left' }}>
           <Box

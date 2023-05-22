@@ -101,7 +101,7 @@ export const HomePage = ({ recents = [], features = [], video = [] }) => {
               </div>
               <Typography
                 className={styles.link}
-                varaint="h6"
+                variant="h6"
                 component={Link}
                 href={`/article/${video[0].attributes.slug}`}
                 style={{ display: 'block' }}
