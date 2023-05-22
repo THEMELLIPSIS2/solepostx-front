@@ -31,7 +31,7 @@ function Copyright() {
 
 function Footer({ socials }) {
   return (
-    <Box component="footer" sx={{ bgcolor: 'background.paper', py: 3 }}>
+    <Box component="footer" sx={{ bgcolor: 'background.paper', py: 3 }} style={{zIndex:'9999'}}>
       <Container>
         <img src={logo.src} width="90px" />
         <Box align="left" sx={{ display: 'flex', float: 'left' }}>
@@ -103,8 +103,17 @@ function Footer({ socials }) {
                     <TikTok style={{ width: '20px', margin: '8px' }} />
                   </Link>
                 )}
+                  
               </div>
-            )}
+            )}    <Link
+                    href={`/privacy`}
+                    target="_blank"
+                    color="inherit"
+                    rel="noreferrer"
+                    style={{marginRight:'5px'}}
+                  >
+                    Privacy Policy
+                  </Link>
           </Box>
         </Box>
 
