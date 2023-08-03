@@ -71,6 +71,7 @@ export function Playlist({ videos }) {
               .join(' ');
             return (
               <div
+                key={index}
                 style={{
                   cursor: 'pointer',
                   border: video.id === picked.id ? '2px solid black' : 'none',
